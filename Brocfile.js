@@ -3,10 +3,18 @@
 
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-var app = new EmberAddon();
+var app = new EmberAddon({
+  vendorFiles: {
+    'handlebars.js': null
+  }
+});
+
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
+
+app.import('bower_components/chai-jquery/chai-jquery.js', {type: 'test'});
+
 //
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
