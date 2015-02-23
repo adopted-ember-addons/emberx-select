@@ -76,7 +76,7 @@ export default Ember.Component.extend({
    */
   raiseAction: Ember.observer('value', function() {
     this.sendAction('action', this.get('value'), this);
-  })
+  }),
 
   /**
    * @private
