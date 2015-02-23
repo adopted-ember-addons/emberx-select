@@ -1,5 +1,7 @@
 # emberx-select
 
+[![Build Status](https://travis-ci.org/thefrontside/emberx-select.svg)](https://travis-ci.org/thefrontside/emberx-select)
+
 A Select component based on the native html select.
 
 Why a select component? Because `Ember.Select` is hard to use, and
