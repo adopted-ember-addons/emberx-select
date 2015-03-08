@@ -20,8 +20,8 @@ component to construct select boxes. E.g.
 
 ```handlebars
 {{#x-select value=bob action="selectPerson"}}
-  {{x-option value=fred}}Fred Flintstone{{/x-option}}
-  {{x-option value=bob}}Bob Newhart{{/x-option}}
+  {{#x-option value=fred}}Fred Flintstone{{/x-option}}
+  {{#x-option value=bob}}Bob Newhart{{/x-option}}
 {{/x-select}}
 ```
 the options are always up to date, so that when the object bound to
