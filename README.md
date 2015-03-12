@@ -1,6 +1,7 @@
 # emberx-select
 
 [![Build Status](https://travis-ci.org/thefrontside/emberx-select.svg)](https://travis-ci.org/thefrontside/emberx-select)
+[![Ember Observer Score](http://emberobserver.com/badges/emberx-select.svg)](http://emberobserver.com/addons/emberx-select)
 
 A Select component based on the native html select.
 
