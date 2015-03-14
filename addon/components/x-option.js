@@ -38,20 +38,17 @@ export default Ember.Component.extend({
     return this.get('value') === this.get('select.value');
   }),
 
-  /**
-   * @private
-   */
-  registerWithSelect: (function() {
+  didInsertElement: function() {
+    this._super.apply(this, arguments);
+
     var select = this.nearestOfType(XSelectComponent);
     Ember.assert("x-option component declared without enclosing x-select", !!select);
     this.set('select', select);
     select.registerOption(this);
-  }).on('didInsertElement'),
+  },
 
-  /**
-   * @private
-   */
-  unregisterWithSelect: (function() {
+  willDestroyElement: function() {
+    this._super.apply(this, arguments);
     this.get('select').unregisterOption(this);
-  }).on('willDestroyElement')
+  }
 });

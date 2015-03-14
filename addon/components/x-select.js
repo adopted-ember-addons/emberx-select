@@ -55,10 +55,9 @@ export default Ember.Component.extend({
     return Ember.A();
   }),
 
-  /**
-   * @private
-   */
-  setup: (function() {
+  didInsertElement: function() {
+    this._super.apply(this, arguments);
+
     this.$().on('change', Ember.run.bind(this, function() {
       var option = this.get('options').find(function(option) {
         return option.$().is(':selected');
@@ -68,8 +67,7 @@ export default Ember.Component.extend({
         this.set('value', option.get('value'));
       }
     }));
-  }).on('didInsertElement'),
-
+  },
 
   /**
    * XSelect supports both two-way binding as well as an action. Observe the
@@ -81,14 +79,13 @@ export default Ember.Component.extend({
     this.sendAction('action', this.get('value'), this);
   }),
 
-  /**
-   * @private
-   */
-  teardown: (function() {
+  willDestroyElement: function() {
+    this._super.apply(this, arguments);
+
     this.$().off('change');
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
-  }).on('willDestroyElement'),
+  },
 
   /**
    * @private
