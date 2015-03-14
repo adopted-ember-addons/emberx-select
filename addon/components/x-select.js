@@ -63,7 +63,10 @@ export default Ember.Component.extend({
       var option = this.get('options').find(function(option) {
         return option.$().is(':selected');
       });
-      this.set("value", option ? option.get('value') : undefined);
+
+      if (option) {
+        this.set('value', option.get('value'));
+      }
     }));
   }).on('didInsertElement'),
 
