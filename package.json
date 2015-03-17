@@ -1,6 +1,6 @@
 {
   "name": "emberx-select",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Select component based on html select.",
   "directories": {
     "doc": "doc",
