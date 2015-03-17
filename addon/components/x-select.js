@@ -55,6 +55,15 @@ export default Ember.Component.extend({
     return Ember.A();
   }),
 
+  /**
+   * Listen for change events on the native <select> element, which
+   * indicates that the user has chosen a new option from the
+   * dropdown. If there is an associated `x-option` component that is
+   * selected, then the overall value of `x-select` becomes the value
+   * of that option.
+   *
+   * @override
+   */
   didInsertElement: function() {
     this._super.apply(this, arguments);
 
@@ -72,6 +81,17 @@ export default Ember.Component.extend({
   },
 
   /**
+   * @override
+   */
+  willDestroyElement: function() {
+    this._super.apply(this, arguments);
+
+    this.$().off('change');
+    // might be overkill, but make sure options can get gc'd
+    this.get('options').clear();
+  },
+
+  /**
    * XSelect supports both two-way binding as well as an action. Observe the
    * `value` property, and when it changes, raise that as an action.
    *
@@ -81,13 +101,6 @@ export default Ember.Component.extend({
     this.sendAction('action', this.get('value'), this);
   }),
 
-  willDestroyElement: function() {
-    this._super.apply(this, arguments);
-
-    this.$().off('change');
-    // might be overkill, but make sure options can get gc'd
-    this.get('options').clear();
-  },
 
   /**
    * @private

@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   /**
    * The value associated with this option. When this option is
    * selected, the `x-select` will fire its action with this
-   * value.p
+   * value.
    *
    * @property value
    * @type Object
@@ -38,6 +38,11 @@ export default Ember.Component.extend({
     return this.get('value') === this.get('select.value');
   }),
 
+  /**
+   * Register this x-option with the containing `x-select`
+   *
+   * @override
+   */
   didInsertElement: function() {
     this._super.apply(this, arguments);
 
@@ -47,6 +52,11 @@ export default Ember.Component.extend({
     select.registerOption(this);
   },
 
+  /**
+   * Unregister this x-option with its containing x-select.
+   *
+   * @override
+   */
   willDestroyElement: function() {
     this._super.apply(this, arguments);
     this.get('select').unregisterOption(this);
