@@ -1,7 +1,27 @@
 <h1> XSelect </h1>
+
+<p>
 {{#x-select value=it action="tagYouAreIt" disabled=isDisabled}}
   {{#x-option value=charles}}Charles{{/x-option}}
   {{#x-option value=bastion}}Bastion{{/x-option}}
   {{#x-option value=stanley}}Stanley{{/x-option}}
   <option>Nobody</option>
 {{/x-select}}
+</p>
+<p>Selected: {{it.name}}</p>
+<p>
+{{#x-select value=it2 action="tagYouAreIt" disabled=isDisabled multiple=true}}
+  {{#x-option value=charles}}Charles{{/x-option}}
+  {{#x-option value=bastion}}Bastion{{/x-option}}
+  {{#x-option value=stanley}}Stanley{{/x-option}}
+  <option>Nobody</option>
+{{/x-select}}
+</p>
+<p>Selected:</p>
+<ul>
+{{#each selection in it2}}
+  <li>{{selection.name}}</li>
+{{else}}
+  <li>(None)</li>
+{{/each}}
+</ul>

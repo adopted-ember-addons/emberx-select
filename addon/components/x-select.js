@@ -22,7 +22,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  attributeBindings: ['disabled', 'tabindex'],
+  attributeBindings: ['disabled', 'tabindex', 'multiple'],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -32,6 +32,15 @@ export default Ember.Component.extend({
    * @default false
    */
   disabled: false,
+
+  /**
+   * Bound to the `multiple` attribute on the native <select> tag.
+   *
+   * @property multiple
+   * @type Boolean
+   * @default false
+   */
+  multiple: false,
 
   /**
    * Bound to the `tabindex` attribute on the native <select> tag.
@@ -68,16 +77,46 @@ export default Ember.Component.extend({
     this._super.apply(this, arguments);
 
     this.$().on('change', Ember.run.bind(this, function() {
-      var option = this.get('options').find(function(option) {
-        return option.$().is(':selected');
-      });
-
-      if (option) {
-        this.set('value', option.get('value'));
+      if (this.get('multiple')) {
+        this._updateValueMultiple();
       } else {
-        this.set('value', undefined);
+        this._updateValueSingle();
       }
     }));
+  },
+
+  /**
+   * Updates `value` with the object associated with the selected option tag
+   *
+   * @private
+   */
+  _updateValueSingle: function(){
+    var option = this.get('options').find(function(option) {
+      return option.$().is(':selected');
+    });
+
+    if (option) {
+      this.set('value', option.get('value'));
+    } else {
+      this.set('value', undefined);
+    }
+  },
+
+  /**
+   * Updates `value` with an array of objects associated with the selected option tags
+   *
+   * @private
+   */
+  _updateValueMultiple: function() {
+    var options = this.get('options').filter(function(option) {
+      return option.$().is(':selected');
+    });
+
+    if (options && options.get('length') > 0) {
+      this.set('value', options.mapBy('value'));
+    } else {
+      this.set('value', Ember.A());
+    }
   },
 
   /**

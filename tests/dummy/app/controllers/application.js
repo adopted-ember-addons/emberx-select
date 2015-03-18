@@ -11,6 +11,7 @@ export default Ember.ObjectController.extend({
   charles: charles,
   stanley: stanley,
   it: bastion,
+  it2: [bastion],
   isDisabled: false,
   model: {},
 
