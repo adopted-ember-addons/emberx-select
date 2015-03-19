@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+var isArray = Ember.isArray;
+
 /**
  * Wraps a native <select> element so that it can be object and
  * binding aware. It is used in conjuction with the
@@ -112,10 +114,14 @@ export default Ember.Component.extend({
       return option.$().is(':selected');
     });
 
-    if (options && options.get('length') > 0) {
-      this.set('value', options.mapBy('value'));
+    options = options || Ember.A();
+
+    var newValues = options.mapBy('value');
+
+    if (isArray(this.get('value'))) {
+      this.get('value').setObjects(newValues);
     } else {
-      this.set('value', Ember.A());
+      this.set('value', newvalues);
     }
   },
 

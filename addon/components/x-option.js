@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import XSelectComponent from './x-select';
 
+var isArray = Ember.isArray;
+
 /**
  * Used to wrap a native `<option>` tag and associate an object with
  * it that can be bound. It can only be used in conjuction with a
@@ -35,7 +37,7 @@ export default Ember.Component.extend({
    * @type Boolean
    */
   selected: Ember.computed('value', 'select.value', 'select.multiple', function() {
-    if (this.get('select.multiple') && Ember.isArray(this.get('select.value'))) {
+    if (this.get('select.multiple') && isArray(this.get('select.value'))) {
       return this.get('select.value').contains(this.get('value'));
     } else {
       return this.get('value') === this.get('select.value');
