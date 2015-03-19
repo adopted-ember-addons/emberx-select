@@ -114,14 +114,12 @@ export default Ember.Component.extend({
       return option.$().is(':selected');
     });
 
-    options = options || Ember.A();
-
     var newValues = options.mapBy('value');
 
     if (isArray(this.get('value'))) {
       this.get('value').setObjects(newValues);
     } else {
-      this.set('value', newvalues);
+      this.set('value', newValues);
     }
   },
 
