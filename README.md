@@ -51,9 +51,9 @@ The selections array will be initialized to an empty array if not present.
 
 > Heads Up! This will mutate the contents of your value array as the
 > user changes their selections. This can lead to strange behavior and
-> inconsistencies if you are computed using arrays and/or ember-data
-> `hasMany` relationships. Just remember, you can't go wrong if you
-> use just a simple array.
+> inconsistencies if you are using computed using arrays and/or
+> ember-data `hasMany` relationships. Just remember, you can't go
+> wrong if you use just a simple array.
 
 
 ## EmberX
