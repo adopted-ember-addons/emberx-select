@@ -1,0 +1,16 @@
+<p>
+{{#x-select value=model action="tagYouAreIt" disabled=isDisabled multiple=true}}
+  {{#x-option value=charles}}Charles{{/x-option}}
+  {{#x-option value=bastion}}Bastion{{/x-option}}
+  {{#x-option value=stanley}}Stanley{{/x-option}}
+  <option>Nobody</option>
+{{/x-select}}
+</p>
+<p>Selected:</p>
+<ul>
+{{#each selection in model}}
+  <li>{{selection.name}}</li>
+{{else}}
+  <li>(None)</li>
+{{/each}}
+</ul>

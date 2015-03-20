@@ -5,6 +5,7 @@ import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import { it } from 'ember-mocha';
 import { beforeEach, afterEach, describe } from '../test-helper';
+import { bastion, stanley, charles } from 'dummy/mixins/folks';
 
 var App;
 
@@ -12,7 +13,7 @@ describe('XSelect', function() {
   var select, controller;
   beforeEach(function() {
     App = startApp();
-    visit("/");
+    visit("/single");
   });
   beforeEach(function() {
     var el = Ember.$('select');
@@ -20,7 +21,7 @@ describe('XSelect', function() {
     this.$ = function() {
       return select.$.apply(select, arguments);
     };
-    controller = App.__container__.lookup('controller:application');
+    controller = App.__container__.lookup('controller:single');
   });
 
   afterEach(function() {
@@ -51,7 +52,7 @@ describe('XSelect', function() {
     });
 
     it('invokes action', function() {
-      expect(controller.get('tagged')).to.equal(controller.get('stanley'));
+      expect(controller.get('tagged')).to.equal(stanley);
     });
   });
 
