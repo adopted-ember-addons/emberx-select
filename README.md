@@ -31,6 +31,29 @@ the options are always up to date, so that when the object bound to
 Whenever the select tag receives a change event, it will fire
 `action`
 
+### Multiselect
+
+As of version 1.1.0, `emberx-select` supports the `multiple`
+option. This means you can pass an array as its value, and it will set
+its selections directly on that array.
+
+```hbs
+{{#x-select value=selections multiple=true action="selectionsChanged"}}
+ {{#x-option value=fred}}Fred Flintstone{{/x-option}}
+ {{#x-option value=bob}}Bob Newhart{{/x-option}}
+ {{#x-option value=andrew}}Andrew WK{{/x-option}}
+{/x-select}}
+
+```
+
+The selections array will be initialized to an empty array if not present.
+
+> Heads Up! This will mutate the contents of your value array as the
+> user changes their selections. This can lead to strange behavior and
+> inconsistencies if you are computed using arrays and/or ember-data
+> `hasMany` relationships. Just remember, you can't go wrong if you
+> use just a simple array.
+
 
 ## EmberX
 
