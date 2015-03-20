@@ -9,11 +9,11 @@ import { bastion, stanley, charles } from 'dummy/mixins/folks';
 
 var App;
 
-describe('XSelect', function() {
+describe('XSelect: Multiple Selection', function() {
   var select, controller;
   beforeEach(function() {
     App = startApp();
-    visit("/single");
+    visit("/multiple");
   });
   beforeEach(function() {
     var el = Ember.$('select');
@@ -21,7 +21,7 @@ describe('XSelect', function() {
     this.$ = function() {
       return select.$.apply(select, arguments);
     };
-    controller = App.__container__.lookup('controller:single');
+    controller = App.__container__.lookup('controller:multiple');
   });
 
   afterEach(function() {
@@ -29,21 +29,12 @@ describe('XSelect', function() {
   });
 
   it("does not fire any actions on didInsertElement", function() {
-    expect(controller.get('tagged')).not.to.be.ok();
+    expect(controller.get('changedSelections')).not.to.be.ok();
   });
 
-  it('is enabled by default', function() {
-    expect(this.$()).not.to.be.disabled;
-  });
-
-  it('renders an option for each view', function() {
-    expect(this.$('option').length).to.equal(4);
-    expect(this.$('option:first')).to.have.text('Charles');
-    expect(this.$('option:last')).to.have.text('Nobody');
-  });
-
-  it('marks the selected value', function() {
+  it('marks all selected values', function() {
     expect(this.$('option:eq(1)')).to.be.selected;
+    expect(this.$('option:eq(2)')).to.be.selected;
   });
 
   describe('choosing the last option', function() {
@@ -52,35 +43,46 @@ describe('XSelect', function() {
     });
 
     it('invokes action', function() {
-      expect(controller.get('tagged')).to.equal(stanley);
+      expect(controller.get('currentSelections.length')).to.equal(1);
+      expect(controller.get('currentSelections.firstObject.name')).to.deep.equal('Stanley');
     });
   });
 
   describe('manually setting the selected binding', function() {
     beforeEach(function() {
-      controller.set('it', controller.get('charles'));
+      controller.set('selections', [controller.get('charles'), controller.get('stanley')]);
     });
     it('updates the selected option', function() {
       expect(this.$('option:first')).to.be.selected;
-    });
-  });
-
-  describe('disabling', function() {
-    beforeEach(function() {
-      controller.set('isDisabled', true);
-    });
-    it('disables the select box', function() {
-      expect(this.$()).not.to.be.enabled;
+      expect(this.$('option:eq(2)')).to.be.selected;
     });
   });
 
   describe("when no option is selected", function() {
     beforeEach(function() {
-      this.$().prop('selectedIndex', 4).trigger('change');
+      this.$().prop('selectedIndex', 3).trigger('change');
     });
-    it("has no value", function() {
-      expect(controller.get('tagged')).to.equal(undefined);
+    it("has the empty array as a value", function() {
+      expect(controller.get('currentSelections.length')).to.equal(0);
     });
   });
+
+  describe("trying to set the value to a non-array", function() {
+    beforeEach(function() {
+      try {
+        Ember.run(function() {
+          controller.set('selections', 'OHAI!');
+        });
+      } catch (e) {
+        this.exception = e;
+      }
+    });
+    it("throws an error", function() {
+      expect(this.exception).not.to.be.undefined;
+      expect(this.exception.message).to.match(/enumerable/);
+    });
+
+  });
+
 
 });

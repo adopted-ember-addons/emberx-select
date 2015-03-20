@@ -121,6 +121,7 @@ export default Ember.Component.extend({
     } else {
       this.set('value', newValues);
     }
+    this.raiseAction();
   },
 
   /**
@@ -144,6 +145,18 @@ export default Ember.Component.extend({
     this.sendAction('action', this.get('value'), this);
   }),
 
+  /**
+   * If this is a mult-select, and the value is not an array, that
+   * probably indicates a misconfiguration somewhere, so we error out.
+   *
+   * @private
+   */
+  ensureProperType: Ember.observer('value', function() {
+    var value = this.get('value');
+    if (value != null && this.get('multiple') && !isArray(value)) {
+      throw new Error('x-select multiple=true was set, but value "' + value + '" is not enumerable.');
+    }
+  }).on('init'),
 
   /**
    * @private
