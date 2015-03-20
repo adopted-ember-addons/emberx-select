@@ -43,7 +43,7 @@ its selections directly on that array.
  {{#x-option value=fred}}Fred Flintstone{{/x-option}}
  {{#x-option value=bob}}Bob Newhart{{/x-option}}
  {{#x-option value=andrew}}Andrew WK{{/x-option}}
-{/x-select}}
+{{/x-select}}
 
 ```
 
