@@ -1,0 +1,15 @@
+<p>
+{{x-select action="tagYouAreIt" disabled=isDisabled
+  multiple=true
+  content=folks
+  selection=it
+  optionLabelPath="content.name"}}
+</p>
+<p>Selected:</p>
+<ul>
+{{#each selection in model}}
+  <li>{{selection.name}}</li>
+{{else}}
+  <li>(None)</li>
+{{/each}}
+</ul>

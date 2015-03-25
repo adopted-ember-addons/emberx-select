@@ -1,0 +1,10 @@
+{{#if template}}
+  {{yield}}
+{{else}}
+  {{#if placeholder}}
+    <option>{{placeholder}}</option>
+  {{/if}}
+  {{#each option in _optionValues}}
+    {{#x-option value=option.value}}{{option.label}}{{/x-option}}
+  {{/each}}
+{{/if}}

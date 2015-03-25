@@ -8,6 +8,8 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('single');
   this.route('multiple');
+  this.route('blockless-single');
+  this.route('blockless-multiple');
 });
 
 export default Router;
