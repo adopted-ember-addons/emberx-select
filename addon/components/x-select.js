@@ -131,13 +131,13 @@ export default Ember.Component.extend({
    *
    * @private
    */
-  _contentDidChange: function() {
+  _contentDidChange: Ember.observer('content.@each', function() {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
       this._updateValueSingle();
     }
-  }.observes('content.@each'),
+  }),
 
   /**
    * Updates `value` with the object associated with the selected option tag
