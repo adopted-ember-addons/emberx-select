@@ -6,6 +6,9 @@ export default Ember.ObjectController.extend(Folks, {
   actions: {
     tagYouAreIt: function(object) {
       this.tagged = object;
+    },
+    removeFolk: function(folk) {
+      this.get('folks').removeObject(folk);
     }
   }
 });

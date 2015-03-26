@@ -120,13 +120,24 @@ export default Ember.Component.extend({
     this._super.apply(this, arguments);
 
     this.$().on('change', Ember.run.bind(this, function() {
-      if (this.get('multiple')) {
-        this._updateValueMultiple();
-      } else {
-        this._updateValueSingle();
-      }
+      this._contentDidChange();
     }));
   },
+
+  /**
+   * Triggers an update of the selected options.
+   * Observing `content` ensures that if an element is removed that
+   * is also part of the selection, selection is cleared.
+   *
+   * @private
+   */
+  _contentDidChange: function() {
+    if (this.get('multiple')) {
+      this._updateValueMultiple();
+    } else {
+      this._updateValueSingle();
+    }
+  }.observes('content.@each'),
 
   /**
    * Updates `value` with the object associated with the selected option tag
@@ -187,7 +198,7 @@ export default Ember.Component.extend({
   }),
 
   /**
-   * If this is a mult-select, and the value is not an array, that
+   * If this is a multi-select, and the value is not an array, that
    * probably indicates a misconfiguration somewhere, so we error out.
    *
    * @private

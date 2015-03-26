@@ -13,3 +13,11 @@
   <li>(None)</li>
 {{/each}}
 </ul>
+<p>All options:</p>
+<ul>
+{{#each folk in folks}}
+  <li>{{folk.name}} - <a href="#" {{action "removeFolk" folk}}>Remove Folk</a></li>
+{{else}}
+  <li>(None)</li>
+{{/each}}
+</ul>
