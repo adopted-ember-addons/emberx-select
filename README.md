@@ -55,6 +55,28 @@ The selections array will be initialized to an empty array if not present.
 > `hasMany` relationships. Just remember, you can't go wrong if you
 > use just a simple array.
 
+### Test Helpers
+
+Since `emberx-select` uses internal identifiers as the `value` attribute, it
+doesn't integrate with the `fillIn` test helper.
+
+Instead, select options based on their `text` values. To do so,
+import and invoke the `registerSelectHelper` in your `tests/test-helper.js`:
+
+```js
+// tests/test-helper.js
+import registerSelectHelper from 'emberx-select/helpers/register-select-helper';
+
+registerSelectHelper();
+```
+
+Then in your test:
+
+```js
+andThen(function() {
+  select('.my-drop-down', 'My Option');
+});
+```
 
 ## EmberX
 
