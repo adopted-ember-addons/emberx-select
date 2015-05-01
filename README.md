@@ -55,6 +55,23 @@ The selections array will be initialized to an empty array if not present.
 > `hasMany` relationships. Just remember, you can't go wrong if you
 > use just a simple array.
 
+## Blockless Form
+
+As of version 1.1.2, `x-select` can be invoked in a blockless form
+which is API compatible with `Ember.SelectView`. While most of the
+time you want to use it in block-form, there are some cases where it
+makes more sense to specify your select on a single line. Also, it
+makes a more incremental approach to migrating from `SelectView` possible.
+
+```hbs
+{{x-select action="tagYouAreIt" disabled=isDisabled
+  multiple=true
+  content=folks
+  selection=it
+  optionValuePath="content.id"
+  optionLabelPath="content.name"}}
+```
+
 
 ## EmberX
 
