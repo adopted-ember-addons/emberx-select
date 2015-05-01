@@ -72,6 +72,49 @@ makes a more incremental approach to migrating from `SelectView` possible.
   optionLabelPath="content.name"}}
 ```
 
+## Action and Action Arguments
+
+The action that is dispatched by x-select whenever the selected value or values
+change has a function signature of:
+
+
+
+```js
+/**
+* @param value {Object} the value selected by the user.
+* @param component {Ember.Component} the x-select component itself
+*/
+function (value, component) {
+  // action body...
+}
+```
+
+Most of the time all you need is the value that has been selected, but
+sometimes your action requires more context than just that. In those
+cases, you can associate arbitrary attributes with the component
+itself and use them later inside your action handler.  For example:
+
+```hbs
+{{#x-select action="didMakeSelection" default=anything}}
+  <option>Nothing</option>
+  {{#x-option value=something}}Something{{/x-option}}
+{{/x-select}}
+```
+then, inside your action handler:
+
+```js
+export default Ember.Route.extend({
+  actions: {
+    didMakeSelection: function(selection, component) {
+      if (selection) {
+        this.set('selection', selection)
+      } else {
+        this.set('selection', component.get('default'))
+      }
+    }
+  }
+});
+```
 
 ## EmberX
 
