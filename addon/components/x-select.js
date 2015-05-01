@@ -54,6 +54,47 @@ export default Ember.Component.extend({
   tabindex: 1,
 
   /**
+   * Auxiliary computed property that replaces `content.`
+   * in `optionLabelPath`.
+   *
+   * @private
+   * @property _labelPath
+   */
+  _labelPath: Ember.computed('optionLabelPath', function() {
+    return this.get('optionLabelPath').replace(/^content\.?/, '');
+  }),
+
+  /**
+   * Alias to `value`.
+   * This way we accept `value` or `selection` properties.
+   *
+   * @property selection
+   */
+  selection: Ember.computed.alias('value'),
+
+  /**
+   * Alias to `prompt`.
+   * This way we accept `prompt` or `placeholder` properties.
+   *
+   * @property placeholder
+   */
+  placeholder: Ember.computed.alias('prompt'),
+
+  /**
+   * Auxiliary computed array that holds `content` array
+   * values and their labels. Used only in the blockless version.
+   *
+   * @private
+   * @property _optionValues
+   */
+  _optionValues: Ember.computed.map('content', function(obj) {
+    return {
+      value: obj,
+      label: Ember.get(obj, this.get('_labelPath'))
+    };
+  }),
+
+  /**
    * The collection of options for this select box. When options are
    * inserted into the dom, they will register themselves with their
    * containing `x-select`. This is for internal book-keeping only and should
@@ -79,13 +120,24 @@ export default Ember.Component.extend({
     this._super.apply(this, arguments);
 
     this.$().on('change', Ember.run.bind(this, function() {
-      if (this.get('multiple')) {
-        this._updateValueMultiple();
-      } else {
-        this._updateValueSingle();
-      }
+      this._contentDidChange();
     }));
   },
+
+  /**
+   * Triggers an update of the selected options.
+   * Observing `content` ensures that if an element is removed that
+   * is also part of the selection, selection is cleared.
+   *
+   * @private
+   */
+  _contentDidChange: Ember.observer('content.@each', function() {
+    if (this.get('multiple')) {
+      this._updateValueMultiple();
+    } else {
+      this._updateValueSingle();
+    }
+  }),
 
   /**
    * Updates `value` with the object associated with the selected option tag
@@ -146,7 +198,7 @@ export default Ember.Component.extend({
   }),
 
   /**
-   * If this is a mult-select, and the value is not an array, that
+   * If this is a multi-select, and the value is not an array, that
    * probably indicates a misconfiguration somewhere, so we error out.
    *
    * @private
