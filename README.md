@@ -55,64 +55,26 @@ The selections array will be initialized to an empty array if not present.
 > `hasMany` relationships. Just remember, you can't go wrong if you
 > use just a simple array.
 
-## Blockless Form
+### Test Helpers
 
-As of version 1.1.2, `x-select` can be invoked in a blockless form
-which is API compatible with `Ember.SelectView`. While most of the
-time you want to use it in block-form, there are some cases where it
-makes more sense to specify your select on a single line. Also, it
-makes a more incremental approach to migrating from `SelectView` possible.
+Since `emberx-select` uses internal identifiers as the `value` attribute, it
+doesn't integrate with the `fillIn` test helper.
 
-```hbs
-{{x-select action="tagYouAreIt" disabled=isDisabled
-  multiple=true
-  content=folks
-  selection=it
-  optionValuePath="content.id"
-  optionLabelPath="content.name"}}
-```
-
-## Action and Action Arguments
-
-The action that is dispatched by x-select whenever the selected value or values
-change has a function signature of:
-
-
+Instead, select options based on their `text` values. To do so,
+import and invoke the `registerSelectHelper` in your `tests/test-helper.js`:
 
 ```js
-/**
-* @param value {Object} the value selected by the user.
-* @param component {Ember.Component} the x-select component itself
-*/
-function (value, component) {
-  // action body...
-}
+// tests/test-helper.js
+import registerSelectHelper from 'emberx-select/helpers/register-select-helper';
+
+registerSelectHelper();
 ```
 
-Most of the time all you need is the value that has been selected, but
-sometimes your action requires more context than just that. In those
-cases, you can associate arbitrary attributes with the component
-itself and use them later inside your action handler.  For example:
-
-```hbs
-{{#x-select action="didMakeSelection" default=anything}}
-  <option>Nothing</option>
-  {{#x-option value=something}}Something{{/x-option}}
-{{/x-select}}
-```
-then, inside your action handler:
+Then in your test:
 
 ```js
-export default Ember.Route.extend({
-  actions: {
-    didMakeSelection: function(selection, component) {
-      if (selection) {
-        this.set('selection', selection)
-      } else {
-        this.set('selection', component.get('default'))
-      }
-    }
-  }
+andThen(function() {
+  select('.my-drop-down', 'My Option');
 });
 ```
 
@@ -125,7 +87,7 @@ known as emberx. See also:
 
 ## Installation
 
-ember install emberx-select
+ember install:addon emberx-select
 
 ## Running Tests
 
