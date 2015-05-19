@@ -149,7 +149,9 @@ known as emberx. See also:
 
 ## Installation
 
-ember install:addon emberx-select
+```
+ember install emberx-select
+```
 
 ## Running Tests
 
