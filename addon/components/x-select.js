@@ -119,9 +119,7 @@ export default Ember.Component.extend({
   didInsertElement: function() {
     this._super.apply(this, arguments);
 
-    this.$().on('change', Ember.run.bind(this, function() {
-      this._contentDidChange();
-    }));
+    this.$().on('change', Ember.run.bind(this, this._contentDidChange));
   },
 
   /**
@@ -144,7 +142,7 @@ export default Ember.Component.extend({
    *
    * @private
    */
-  _updateValueSingle: function(){
+  _updateValueSingle() {
     var option = this.get('options').find(function(option) {
       return option.$().is(':selected');
     });
@@ -161,10 +159,8 @@ export default Ember.Component.extend({
    *
    * @private
    */
-  _updateValueMultiple: function() {
-    var options = this.get('options').filter(function(option) {
-      return option.$().is(':selected');
-    });
+  _updateValueMultiple() {
+    var options = this.get('options').filter((option) => option.$().is(':selected'));
 
     var newValues = options.mapBy('value');
 
@@ -179,8 +175,8 @@ export default Ember.Component.extend({
   /**
    * @override
    */
-  willDestroyElement: function() {
-    this._super.apply(this, arguments);
+  willDestroyElement() {
+    this._super(...arguments);
 
     this.$().off('change');
     // might be overkill, but make sure options can get gc'd
@@ -213,14 +209,14 @@ export default Ember.Component.extend({
   /**
    * @private
    */
-  registerOption: function(option) {
+  registerOption(option) {
     this.get('options').addObject(option);
   },
 
   /**
    * @private
    */
-  unregisterOption: function(option) {
+  unregisterOption(option) {
     this.get('options').removeObject(option);
   }
 });

@@ -1,2 +1,1 @@
-import XOption from 'emberx-select/components/x-option';
-export default XOption;
+export { default } from 'emberx-select/components/x-option';
