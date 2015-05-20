@@ -2,11 +2,11 @@ import Ember from 'ember';
 import Folks from 'dummy/mixins/folks';
 
 export default Ember.Route.extend(Folks, {
-  model: function() {
+  model() {
     return this.get('bastion');
   },
-  setupController: function(controller, model) {
-    this._super.apply(this, arguments);
+  setupController(controller, model) {
+    this._super(...arguments);
     controller.set('it', model);
   }
 });
