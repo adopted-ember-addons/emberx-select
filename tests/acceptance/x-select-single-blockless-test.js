@@ -10,16 +10,16 @@ import { bastion, stanley, charles } from 'dummy/mixins/folks';
 var App;
 
 describe('XSelect: Single Selection Blockless', function() {
-  var select, controller;
+  var component, controller;
   beforeEach(function() {
     App = startApp();
     visit("/blockless-single");
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    select = Ember.View.views[el.attr('id')];
+    component = Ember.View.views[el.attr('id')];
     this.$ = function() {
-      return select.$.apply(select, arguments);
+      return component.$.apply(component, arguments);
     };
     controller = App.__container__.lookup('controller:blocklessSingle');
   });

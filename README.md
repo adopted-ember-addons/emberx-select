@@ -60,21 +60,25 @@ The selections array will be initialized to an empty array if not present.
 Since `emberx-select` uses internal identifiers as the `value` attribute, it
 doesn't integrate with the `fillIn` test helper.
 
-Instead, select options based on their `text` values. To do so,
-import and invoke the `registerSelectHelper` in your `tests/test-helper.js`:
-
-```js
-// tests/test-helper.js
-import registerSelectHelper from 'emberx-select/helpers/register-select-helper';
-
-registerSelectHelper();
-```
+### TODO: Rewrite these docs to be better
+- Note there's a generator now added for jshint stuff
+- Note we inject the helper now
+- Note that it now works with multiselects
 
 Then in your test:
+
+Single select:
 
 ```js
 andThen(function() {
   select('.my-drop-down', 'My Option');
+  });
+```
+
+Multiselect
+```js
+andThen(function() {
+  select('.my-drop-down', 'My Option', 'My Option Two', 'My Option Three');
   });
 ```
 
