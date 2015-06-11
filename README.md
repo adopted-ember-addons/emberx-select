@@ -58,29 +58,31 @@ The selections array will be initialized to an empty array if not present.
 ### Test Helpers
 
 Since `emberx-select` uses internal identifiers as the `value` attribute, it
-doesn't integrate with the `fillIn` test helper.
+doesn't integrate with the `fillIn` test helper. But don't fret, we've automatically
+injected the test helper into your app.
 
-### TODO: Rewrite these docs to be better
-- Note there's a generator now added for jshint stuff
-- Note we inject the helper now
-- Note that it now works with multiselects
+#### Using the test helper
 
-Then in your test:
-
-Single select:
+As of version 1.1.3 we support both multiselects and regular selects. To use you
+need to specify the class on the on the select as the first argument and the rest
+of the arguments are the options you'd like to select. For example:
 
 ```js
-andThen(function() {
+//... Single select
   select('.my-drop-down', 'My Option');
-  });
+//...
 ```
 
 Multiselect
 ```js
-andThen(function() {
+//... Multiselect
   select('.my-drop-down', 'My Option', 'My Option Two', 'My Option Three');
-  });
+//...
 ```
+
+#### Why am I getting a JSHint error?
+
+You need to run the generator: `ember g emberx-select`
 
 ## Blockless Form
 
@@ -150,6 +152,7 @@ emberx-select is part of the "missing components of ember" collectively
 known as emberx. See also:
 
 * [emberx-slider](https://github.com/thefrontside/emberx-slider)
+* [emberx-files](https://github.com/thefrontside/emberx-files)
 
 ## Installation
 
