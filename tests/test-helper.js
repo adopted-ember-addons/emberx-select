@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import resolver from './helpers/resolver';
 import { setResolver } from 'ember-mocha';
-import registerSelectHelper from 'emberx-select/helpers/register-select-helper';
+import registerSelectHelper from './helpers/register-select-helper';
 registerSelectHelper();
 
 

@@ -8,7 +8,7 @@ module.exports = {
   afterInstall: function() {
     // Import statement
     var firstFile = 'tests/test-helper.js';
-    var firstText = "import registerSelectHelper from 'emberx-select/helpers/register-select-helper';";
+    var firstText = "import registerSelectHelper from './helpers/register-select-helper';";
     var afterFirstText = "import resolver from './helpers/resolver';" + EOL;
 
     // Execution of registration function
@@ -21,11 +21,5 @@ module.exports = {
     }.bind(this)).then( function() {
       return this.insertIntoFile('tests/.jshintrc', '    "select",', { after: '"click",' + EOL});
     }.bind(this));
-
-    // return this.insertIntoFile(firstFile, firstText, { after: afterFirstText}).then(function() {
-    //   return this.insertIntoFile(secondFile, secondText, { after: afterSecondText});
-    // }.bind(this).then(function() {
-    //   return this.insertIntoFile('tests/.jshintrc', '    "select",', { after: '"click",' + EOL});
-    // }.bind(this)));
   }
 };
