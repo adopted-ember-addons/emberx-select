@@ -84,6 +84,16 @@ Multiselect
 
 You need to run the generator: `ember g emberx-select`
 
+#### Why am I getting a "Can't find variable: select" error?
+
+You need to either run the generator (`ember g emberx-select`) or import the test helper into your
+`test-helper.js` file:
+
+```js
+import registerSelectHelper from './helpers/register-select-helper';
+registerSelectHelper();
+```
+
 ## Blockless Form
 
 As of version 1.1.2, `x-select` can be invoked in a blockless form
@@ -92,7 +102,7 @@ time you want to use it in block-form, there are some cases where it
 makes more sense to specify your select on a single line. Also, it
 makes a more incremental approach to migrating from `SelectView` possible.
 
-```hbs
+```handlebars
 {{x-select action="tagYouAreIt" disabled=isDisabled
   multiple=true
   content=folks
@@ -123,7 +133,7 @@ sometimes your action requires more context than just that. In those
 cases, you can associate arbitrary attributes with the component
 itself and use them later inside your action handler.  For example:
 
-```hbs
+```handlebars
 {{#x-select action="didMakeSelection" default=anything}}
   <option>Nothing</option>
   {{#x-option value=something}}Something{{/x-option}}
