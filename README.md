@@ -58,24 +58,40 @@ The selections array will be initialized to an empty array if not present.
 ### Test Helpers
 
 Since `emberx-select` uses internal identifiers as the `value` attribute, it
-doesn't integrate with the `fillIn` test helper.
+doesn't integrate with the `fillIn` test helper. But don't fret, we've automatically
+injected the test helper into your app.
 
-Instead, select options based on their `text` values. To do so,
-import and invoke the `registerSelectHelper` in your `tests/test-helper.js`:
+#### Using the test helper
+
+As of version 1.1.3 we support both multiselects and regular selects. To use you
+need to specify the class on the on the select as the first argument and the rest
+of the arguments are the options you'd like to select. For example:
 
 ```js
-// tests/test-helper.js
-import registerSelectHelper from 'emberx-select/helpers/register-select-helper';
-
-registerSelectHelper();
+//... Single select
+  select('.my-drop-down', 'My Option');
+//...
 ```
 
-Then in your test:
+Multiselect
+```js
+//... Multiselect
+  select('.my-drop-down', 'My Option', 'My Option Two', 'My Option Three');
+//...
+```
+
+#### Why am I getting a JSHint error?
+
+You need to run the generator: `ember g emberx-select`
+
+#### Why am I getting a "Can't find variable: select" error?
+
+You need to either run the generator (`ember g emberx-select`) or import the test helper into your
+`test-helper.js` file:
 
 ```js
-andThen(function() {
-  select('.my-drop-down', 'My Option');
-  });
+import registerSelectHelper from './helpers/register-select-helper';
+registerSelectHelper();
 ```
 
 ## Blockless Form
@@ -86,7 +102,7 @@ time you want to use it in block-form, there are some cases where it
 makes more sense to specify your select on a single line. Also, it
 makes a more incremental approach to migrating from `SelectView` possible.
 
-```hbs
+```handlebars
 {{x-select action="tagYouAreIt" disabled=isDisabled
   multiple=true
   content=folks
@@ -117,7 +133,7 @@ sometimes your action requires more context than just that. In those
 cases, you can associate arbitrary attributes with the component
 itself and use them later inside your action handler.  For example:
 
-```hbs
+```handlebars
 {{#x-select action="didMakeSelection" default=anything}}
   <option>Nothing</option>
   {{#x-option value=something}}Something{{/x-option}}
@@ -146,6 +162,7 @@ emberx-select is part of the "missing components of ember" collectively
 known as emberx. See also:
 
 * [emberx-slider](https://github.com/thefrontside/emberx-slider)
+* [emberx-files](https://github.com/thefrontside/emberx-files)
 
 ## Installation
 

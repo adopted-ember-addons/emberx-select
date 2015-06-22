@@ -10,16 +10,16 @@ import { bastion, stanley, charles } from 'dummy/mixins/folks';
 var App;
 
 describe('XSelect: Multiple Selection', function() {
-  var select, controller;
+  var component, controller;
   beforeEach(function() {
     App = startApp();
     visit("/blockless-multiple");
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    select = Ember.View.views[el.attr('id')];
+    component = Ember.View.views[el.attr('id')];
     this.$ = function() {
-      return select.$.apply(select, arguments);
+      return component.$.apply(component, arguments);
     };
     controller = App.__container__.lookup('controller:blocklessMultiple');
   });
@@ -39,7 +39,7 @@ describe('XSelect: Multiple Selection', function() {
 
   describe('choosing the last option', function() {
     beforeEach(function() {
-      this.$().prop('selectedIndex', 2).trigger('change');
+      select('.x-select', 'Stanley');
     });
 
     it('invokes action', function() {
