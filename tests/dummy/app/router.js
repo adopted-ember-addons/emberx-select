@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('single');
   this.route('multiple');
   this.route('blockless-single');
+  this.route('blockless-single-option-value');
   this.route('blockless-multiple');
 });
 

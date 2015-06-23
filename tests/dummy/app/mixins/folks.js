@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
-export var bastion = {name: 'Bastion'};
+export var bastion = {name: 'Bastion', cowboy: 'nope'};
 
-export var charles = {name: 'Charles'};
+export var charles = {name: 'Charles', cowboy: 'yep'};
 
-export var stanley = {name: 'Stanley'};
+export var stanley = {name: 'Stanley', cowboy: 'maybe'};
 
 export default Ember.Mixin.create({
   bastion: bastion,
