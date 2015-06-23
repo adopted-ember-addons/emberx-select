@@ -88,6 +88,7 @@ describe('XSelect: Single Selection', function() {
       controller.setProperties({
         attrName: 'person-select',
         attrForm: 'person-form',
+        title: 'person title',
         attrSize: '3',
         isRequired: true,
         hasAutofocus: true
@@ -98,6 +99,9 @@ describe('XSelect: Single Selection', function() {
     });
     it('renders the form attribute', function() {
       expect(this.$().attr('form')).to.equal('person-form');
+    });
+    it('renders the title attribute', function() {
+      expect(this.$().attr('title')).to.equal('person title');
     });
     it('renders the size attribute', function() {
       expect(this.$().attr('size')).to.equal('3');

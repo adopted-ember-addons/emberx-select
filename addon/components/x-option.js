@@ -13,7 +13,7 @@ var isArray = Ember.isArray;
  */
 export default Ember.Component.extend({
   tagName: 'option',
-  attributeBindings: ['selected', 'name', 'disabled', 'value'],
+  attributeBindings: ['selected', 'name', 'disabled', 'value', 'title'],
   classNameBindings: [':x-option'],
 
   /**
