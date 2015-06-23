@@ -52,10 +52,12 @@ export default Ember.Component.extend({
   didInsertElement: function() {
     this._super.apply(this, arguments);
 
-    var select = this.nearestOfType(XSelectComponent);
-    Ember.assert("x-option component declared without enclosing x-select", !!select);
-    this.set('select', select);
-    select.registerOption(this);
+    Ember.run.scheduleOnce('afterRender', () => {
+      var select = this.nearestOfType(XSelectComponent);
+      Ember.assert("x-option component declared without enclosing x-select", !!select);
+      this.set('select', select);
+      select.registerOption(this);
+    });
   },
 
   /**
