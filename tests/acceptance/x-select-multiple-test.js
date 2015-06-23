@@ -17,7 +17,7 @@ describe('XSelect: Multiple Selection', function() {
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    component = Ember.View.views[el.attr('id')];
+    component = getComponentById(el.attr('id'));
     this.$ = function() {
       return component.$.apply(component, arguments);
     };
