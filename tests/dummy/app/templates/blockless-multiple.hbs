@@ -7,7 +7,7 @@
 </p>
 <p>Selected:</p>
 <ul>
-{{#each selection in model}}
+{{#each model as |selection|}}
   <li>{{selection.name}}</li>
 {{else}}
   <li>(None)</li>
@@ -15,7 +15,7 @@
 </ul>
 <p>All options:</p>
 <ul>
-{{#each folk in folks}}
+{{#each folks as |folk|}}
   <li>{{folk.name}} - <a href="#" {{action "removeFolk" folk}}>Remove Folk</a></li>
 {{else}}
   <li>(None)</li>
