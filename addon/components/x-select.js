@@ -63,6 +63,17 @@ export default Ember.Component.extend({
   _labelPath: Ember.computed('optionLabelPath', function() {
     return this.get('optionLabelPath').replace(/^content\.?/, '');
   }),
+  
+  /**
+   * Auxiliary computed property that replaces `content.`
+   * in `optionValuePath`.
+   *
+   * @private
+   * @property _ValuePath
+   */
+  _ValuePath: Ember.computed('optionValuePath', function() {
+    return this.get('optionValuePath').replace(/^content\.?/, '');
+  }),
 
   /**
    * Alias to `value`.
@@ -89,7 +100,7 @@ export default Ember.Component.extend({
    */
   _optionValues: Ember.computed.map('content', function(obj) {
     return {
-      value: obj,
+      value: Ember.get(obj, this.get('_ValuePath')),
       label: Ember.get(obj, this.get('_labelPath'))
     };
   }),
