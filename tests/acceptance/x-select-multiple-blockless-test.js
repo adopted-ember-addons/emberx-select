@@ -10,8 +10,8 @@ import { shouldBindAttrs } from './shared/attr-test';
 
 var App;
 
-describe.only('XSelect: Multiple Selection Blockless', function() {
-  var component, controller;
+describe('XSelect: Multiple Selection Blockless', function() {
+  var component;
   beforeEach(function() {
     App = startApp();
     visit("/blockless-multiple");
@@ -28,8 +28,6 @@ describe.only('XSelect: Multiple Selection Blockless', function() {
   afterEach(function() {
     Ember.run(App, 'destroy');
   });
-
-  shouldBindAttrs(this.controller);
 
   it("does not fire any actions on didInsertElement", function() {
     expect(this.controller.get('changedSelections')).not.to.be.ok();
@@ -85,5 +83,20 @@ describe.only('XSelect: Multiple Selection Blockless', function() {
       expect(this.exception.message).to.match(/enumerable/);
     });
 
+  });
+
+  describe('native select element attributes', function() {
+    beforeEach(function() {
+      this.controller.setProperties({
+        attrName: 'person-select',
+        attrForm: 'person-form',
+        title: 'person title',
+        attrSize: '3',
+        isRequired: true,
+        hasAutofocus: true
+      });
+    });
+
+    shouldBindAttrs(this.controller);
   });
 });
