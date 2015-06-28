@@ -156,7 +156,7 @@ export default Ember.Component.extend({
     if (option) {
       this.set('value', option.get('value'));
     } else {
-      this.set('value', undefined);
+      this.set('value', null);
     }
   },
 

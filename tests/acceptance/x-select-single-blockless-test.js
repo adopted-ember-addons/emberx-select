@@ -84,7 +84,7 @@ describe('XSelect: Single Selection Blockless', function() {
       this.$().prop('selectedIndex', 4).trigger('change');
     });
     it("has no value", function() {
-      expect(controller.get('tagged')).to.equal(undefined);
+      expect(controller.get('tagged')).to.equal(null);
     });
   });
 
