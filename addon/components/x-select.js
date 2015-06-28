@@ -130,36 +130,18 @@ export default Ember.Component.extend({
   }),
 
   /**
-   * Listen for change events on the native <select> element, which
-   * indicates that the user has chosen a new option from the
-   * dropdown. If there is an associated `x-option` component that is
-   * selected, then the overall value of `x-select` becomes the value
-   * of that option.
-   *
-   * @override
+   * When the select DOM event fires on the element, trigger the
+   * component's action with the current value.
    */
-  didInsertElement: function() {
-    this._super.apply(this, arguments);
-
-    this.$().on('change', Ember.run.bind(this, function() {
-      this._contentDidChange();
-    }));
-  },
-
-  /**
-   * Triggers an update of the selected options.
-   * Observing `content` ensures that if an element is removed that
-   * is also part of the selection, selection is cleared.
-   *
-   * @private
-   */
-  _contentDidChange: Ember.observer('content.@each', function() {
+  change() {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
       this._updateValueSingle();
     }
-  }),
+
+    this.sendAction('action', this.get('value'), this);
+  },
 
   /**
    * Updates `value` with the object associated with the selected option tag
@@ -195,7 +177,6 @@ export default Ember.Component.extend({
     } else {
       this.set('value', newValues);
     }
-    this.raiseAction();
   },
 
   /**
@@ -204,20 +185,9 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
-    this.$().off('change');
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
   },
-
-  /**
-   * XSelect supports both two-way binding as well as an action. Observe the
-   * `value` property, and when it changes, raise that as an action.
-   *
-   * @private
-   */
-  raiseAction: Ember.observer('value', function() {
-    this.sendAction('action', this.get('value'), this);
-  }),
 
   /**
    * If this is a multi-select, and the value is not an array, that
