@@ -9,7 +9,7 @@ import { bastion, stanley, charles } from 'dummy/mixins/folks';
 
 var App;
 
-describe('XSelect: Multiple Selection', function() {
+describe('XSelect: Multiple Selection (Blockless)', function() {
   var component, controller;
   beforeEach(function() {
     App = startApp();
