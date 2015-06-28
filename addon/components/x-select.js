@@ -24,7 +24,7 @@ var isArray = Ember.isArray;
 export default Ember.Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  attributeBindings: ['disabled', 'tabindex', 'multiple', 'name', 'autofocus', 'form', 'required', 'size'],
+  attributeBindings: ['disabled', 'tabindex', 'multiple', 'name', 'autofocus', 'required', 'size'],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -127,6 +127,10 @@ export default Ember.Component.extend({
    */
   options: Ember.computed(function() {
     return Ember.A();
+  }),
+
+  _setFormAttribute: Ember.on('didRender', function() {
+    this.$().attr('form', this.get('form'));
   }),
 
   /**
