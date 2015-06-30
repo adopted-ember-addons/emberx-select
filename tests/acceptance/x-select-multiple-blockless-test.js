@@ -85,18 +85,5 @@ describe('XSelect: Multiple Selection Blockless', function() {
 
   });
 
-  describe('native select element attributes', function() {
-    beforeEach(function() {
-      this.controller.setProperties({
-        attrName: 'person-select',
-        attrForm: 'person-form',
-        title: 'person title',
-        attrSize: '3',
-        isRequired: true,
-        hasAutofocus: true
-      });
-    });
-
-    shouldBindAttrs(this.controller);
-  });
+  shouldBindAttrs();
 });
