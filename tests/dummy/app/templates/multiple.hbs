@@ -1,5 +1,6 @@
 <p>
-{{#x-select value=selections action="selectionsChanged" disabled=isDisabled multiple=true}}
+{{#x-select value=selections action="selectionsChanged" disabled=isDisabled multiple=true title=title required=isRequired
+    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize}}
   {{#x-option value=charles}}Charles{{/x-option}}
   {{#x-option value=bastion}}Bastion{{/x-option}}
   {{#x-option value=stanley}}Stanley{{/x-option}}
