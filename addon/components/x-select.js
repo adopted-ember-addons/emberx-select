@@ -55,6 +55,21 @@ export default Ember.Component.extend({
 
   /**
    * Auxiliary computed property that replaces `content.`
+   * in `optionValuePath`.
+   *
+   * @private
+   * @property _valuePath
+   */
+  _valuePath: Ember.computed('optionValuePath', function() {
+    var optionValuePath = this.get('optionValuePath');
+    if (optionValuePath) {
+      return optionValuePath.replace(/^content\.?/, '');
+    }
+    return null;
+  }),
+
+  /**
+   * Auxiliary computed property that replaces `content.`
    * in `optionLabelPath`.
    *
    * @private
@@ -88,8 +103,15 @@ export default Ember.Component.extend({
    * @property _optionValues
    */
   _optionValues: Ember.computed.map('content', function(obj) {
+    var value     = obj;
+    var valuePath = this.get('_valuePath');
+
+    if (valuePath) {
+      value = Ember.get(obj, valuePath);
+    }
+
     return {
-      value: obj,
+      value: value,
       label: Ember.get(obj, this.get('_labelPath'))
     };
   }),

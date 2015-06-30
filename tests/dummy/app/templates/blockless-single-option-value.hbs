@@ -1,0 +1,17 @@
+<p>
+{{x-select action="tagYouAreIt" disabled=isDisabled
+  content=folks
+  selection=selectionValue
+  optionValuePath="content.cowboy"
+  optionLabelPath="content.name"
+  prompt="choose one"}}
+</p>
+<p>Cowboy? {{selectionValue}}</p>
+<p>All options:</p>
+<ul>
+{{#each folks as |folk|}}
+  <li>{{folk.name}} - <a href="#" {{action "removeFolk" folk}}>Remove Folk</a></li>
+{{else}}
+  <li>(None)</li>
+{{/each}}
+</ul>
