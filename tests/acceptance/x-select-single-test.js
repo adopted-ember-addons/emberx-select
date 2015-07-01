@@ -11,16 +11,15 @@ import { shouldBindAttrs } from './shared/attr-test';
 var App;
 
 describe('XSelect: Single Selection', function() {
-  var component;
   beforeEach(function() {
     App = startApp();
     visit("/single");
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    component = Ember.View.views[el.attr('id')];
+    this.component = Ember.View.views[el.attr('id')];
     this.$ = function() {
-      return component.$.apply(component, arguments);
+      return this.component.$.apply(this.component, arguments);
     };
     this.controller = App.__container__.lookup('controller:single');
   });
@@ -81,19 +80,6 @@ describe('XSelect: Single Selection', function() {
     });
     it("has no value", function() {
       expect(this.controller.get('tagged')).to.equal(undefined);
-    });
-  });
-
-  describe('tabindex', function() {
-    it('has no tabindex by default', function() {
-      expect(this.$().attr('tabindex')).to.equal('0');
-    });
-
-    it('uses a passed-in tabindex if one is given', function() {
-      Ember.run(function() {
-        component.set('tabindex', 2);
-      });
-      expect(this.$().attr('tabindex')).to.equal('2');
     });
   });
 
