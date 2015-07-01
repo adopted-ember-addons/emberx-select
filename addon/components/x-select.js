@@ -76,7 +76,11 @@ export default Ember.Component.extend({
    * @property _labelPath
    */
   _labelPath: Ember.computed('optionLabelPath', function() {
-    return this.get('optionLabelPath').replace(/^content\.?/, '');
+    var optionLabelPath = this.get('optionLabelPath');
+    if (optionLabelPath) {
+      return optionLabelPath.replace(/^content\.?/, '');
+    }
+    return null;
   }),
 
   /**
