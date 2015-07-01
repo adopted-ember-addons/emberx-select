@@ -11,16 +11,15 @@ import { shouldBindAttrs } from './shared/attr-test';
 var App;
 
 describe('XSelect: Multiple Selection', function() {
-  var component;
   beforeEach(function() {
     App = startApp();
     visit("/multiple");
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    component = Ember.View.views[el.attr('id')];
+    this.component = Ember.View.views[el.attr('id')];
     this.$ = function() {
-      return component.$.apply(component, arguments);
+      return this.component.$.apply(this.component, arguments);
     };
     this.controller = App.__container__.lookup('controller:multiple');
   });

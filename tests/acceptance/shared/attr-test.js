@@ -34,5 +34,18 @@ export function shouldBindAttrs() {
     it('renders the autofocus attribute', function() {
       expect(this.$().attr('autofocus')).to.equal('autofocus');
     });
+    it('renders the tabindex attribute with 0', function() {
+      expect(this.$().attr('tabindex')).to.equal('0');
+    });
+
+    describe('setting tabindex', function() {
+      beforeEach(function() {
+        this.component.set('tabindex', 2);
+      });
+
+      it('has the correct tabindex value', function() {
+        expect(this.$().attr('tabindex')).to.equal('2');
+      });
+    });
   });
 }

@@ -11,16 +11,15 @@ import { shouldBindAttrs } from './shared/attr-test';
 var App;
 
 describe('XSelect: Single Selection Blockless', function() {
-  var component;
   beforeEach(function() {
     App = startApp();
     visit("/blockless-single");
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    component = Ember.View.views[el.attr('id')];
+    this.component = Ember.View.views[el.attr('id')];
     this.$ = function() {
-      return component.$.apply(component, arguments);
+      return this.component.$.apply(this.component, arguments);
     };
     this.controller = App.__container__.lookup('controller:blocklessSingle');
   });
