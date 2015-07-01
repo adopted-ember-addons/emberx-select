@@ -86,13 +86,13 @@ describe('XSelect: Single Selection', function() {
 
   describe('tabindex', function() {
     it('has no tabindex by default', function() {
-      expect(this.$().attr('tabindex')).to.be.not.ok();
+      expect(this.$().attr('tabindex')).to.equal('0');
     });
 
     it('uses a passed-in tabindex if one is given', function() {
       Ember.run(function() {
         component.set('tabindex', 2);
-      }.bind(this));
+      });
       expect(this.$().attr('tabindex')).to.equal('2');
     });
   });
