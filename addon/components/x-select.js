@@ -51,7 +51,7 @@ export default Ember.Component.extend({
    * @type Integer
    * @ default 1
    */
-  tabindex: 1,
+  tabindex: null,
 
   /**
    * Auxiliary computed property that replaces `content.`
