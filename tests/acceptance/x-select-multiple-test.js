@@ -29,7 +29,7 @@ describe('XSelect: Multiple Selection', function() {
   });
 
   it("does not fire any actions on didInsertElement", function() {
-    expect(this.controller.get('changedSelections')).not.to.be.ok();
+    expect(this.controller.get('changedSelections')).not.to.be.ok;
   });
 
   it('marks all selected values', function() {

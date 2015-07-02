@@ -29,7 +29,7 @@ describe('XSelect: Single Selection Blockless w/ Option Value', function() {
   });
 
   it("does not fire any actions on didInsertElement", function() {
-    expect(controller.get('tagged')).not.to.be.ok();
+    expect(controller.get('tagged')).not.to.be.ok;
   });
 
   it('is enabled by default', function() {
