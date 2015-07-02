@@ -93,4 +93,13 @@ describe('XSelect: Single Selection Blockless w/ Option Value', function() {
     });
   });
 
+  describe('setting optionLabelPath to null', function() {
+    beforeEach(function() {
+      controller.set('optionLabelPath', null);
+    });
+
+    it('should not break the page', function() {
+      expect(this.$()).to.exist;
+    });
+  });
 });

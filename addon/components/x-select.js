@@ -77,6 +77,7 @@ export default Ember.Component.extend({
    */
   _labelPath: Ember.computed('optionLabelPath', function() {
     var optionLabelPath = this.get('optionLabelPath');
+
     if (optionLabelPath) {
       return optionLabelPath.replace(/^content\.?/, '');
     }
@@ -106,18 +107,29 @@ export default Ember.Component.extend({
    * @private
    * @property _optionValues
    */
-  _optionValues: Ember.computed.map('content', function(obj) {
-    var value     = obj;
-    var valuePath = this.get('_valuePath');
+  _optionValues: Ember.computed('_labelPath', '_valuePath', 'content.[]', function() {
+    var content = this.get('content') || [];
+    return content.map((object) => {
+      var label;
+      var value = object;
+      var valuePath = this.get('_valuePath');
+      var labelPath = this.get('_labelPath');
 
-    if (valuePath) {
-      value = Ember.get(obj, valuePath);
-    }
+      if (valuePath) {
+        value = Ember.get(object, valuePath);
+      }
 
-    return {
-      value: value,
-      label: Ember.get(obj, this.get('_labelPath'))
-    };
+      if (labelPath) {
+        label = Ember.get(object, labelPath);
+      } else {
+        label = value;
+      }
+
+      return {
+        value: value,
+        label: label
+      };
+    });
   }),
 
   /**
