@@ -24,7 +24,9 @@ var isArray = Ember.isArray;
 export default Ember.Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  attributeBindings: ['disabled', 'tabindex', 'multiple', 'name', 'autofocus', 'form', 'required', 'size', 'title'],
+  //FIXME: add 'form' attribute binding back in when https://github.com/tildeio/htmlbars/pull/353#issuecomment-116187095
+  //is merged.
+  attributeBindings: ['disabled', 'tabindex', 'multiple', 'name', 'autofocus', 'required', 'size', 'title'],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -145,37 +147,23 @@ export default Ember.Component.extend({
     return Ember.A();
   }),
 
-  /**
-   * Listen for change events on the native <select> element, which
-   * indicates that the user has chosen a new option from the
-   * dropdown. If there is an associated `x-option` component that is
-   * selected, then the overall value of `x-select` becomes the value
-   * of that option.
-   *
-   * @override
-   */
-  didInsertElement: function() {
-    this._super.apply(this, arguments);
-
-    this.$().on('change', Ember.run.bind(this, function() {
-      this._contentDidChange();
-    }));
-  },
+  _setFormAttribute: Ember.on('didRender', function() {
+    this.$().attr('form', this.get('form'));
+  }),
 
   /**
-   * Triggers an update of the selected options.
-   * Observing `content` ensures that if an element is removed that
-   * is also part of the selection, selection is cleared.
-   *
-   * @private
+   * When the select DOM event fires on the element, trigger the
+   * component's action with the current value.
    */
-  _contentDidChange: Ember.observer('content.@each', function() {
+  change() {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
       this._updateValueSingle();
     }
-  }),
+
+    this.sendAction('action', this.get('value'), this);
+  },
 
   /**
    * Updates `value` with the object associated with the selected option tag
@@ -190,7 +178,7 @@ export default Ember.Component.extend({
     if (option) {
       this.set('value', option.get('value'));
     } else {
-      this.set('value', undefined);
+      this.set('value', null);
     }
   },
 
@@ -211,7 +199,6 @@ export default Ember.Component.extend({
     } else {
       this.set('value', newValues);
     }
-    this.raiseAction();
   },
 
   /**
@@ -220,20 +207,9 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
-    this.$().off('change');
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
   },
-
-  /**
-   * XSelect supports both two-way binding as well as an action. Observe the
-   * `value` property, and when it changes, raise that as an action.
-   *
-   * @private
-   */
-  raiseAction: Ember.observer('value', function() {
-    this.sendAction('action', this.get('value'), this);
-  }),
 
   /**
    * If this is a multi-select, and the value is not an array, that

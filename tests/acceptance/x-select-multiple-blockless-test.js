@@ -17,7 +17,7 @@ describe('XSelect: Multiple Selection Blockless', function() {
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    this.component = Ember.View.views[el.attr('id')];
+    this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
     };
