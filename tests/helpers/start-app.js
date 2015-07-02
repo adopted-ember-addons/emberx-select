@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';
 import config from '../../config/environment';
+import getComponentById from './get-component-by-id';
 
 export default function startApp(attrs) {
   var application;

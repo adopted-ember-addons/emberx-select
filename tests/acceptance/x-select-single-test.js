@@ -17,7 +17,7 @@ describe('XSelect: Single Selection', function() {
   });
   beforeEach(function() {
     var el = Ember.$('select');
-    this.component = Ember.View.views[el.attr('id')];
+    this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
     };
@@ -79,7 +79,7 @@ describe('XSelect: Single Selection', function() {
       this.$().prop('selectedIndex', 4).trigger('change');
     });
     it("has no value", function() {
-      expect(this.controller.get('tagged')).to.equal(undefined);
+      expect(this.controller.get('tagged')).to.equal(null);
     });
   });
 
