@@ -21,15 +21,18 @@
     "broccoli-asset-rev": "2.0.6",
     "ember-cli": "0.2.7",
     "ember-cli-app-version": "0.4.0",
-    "ember-cli-content-security-policy": "0.3.0",
-    "ember-cli-dependency-checker": "0.0.8",
-    "ember-cli-htmlbars": "0.7.4",
+    "ember-cli-content-security-policy": "0.4.0",
+    "ember-cli-dependency-checker": "^1.0.0",
+    "ember-cli-github-pages": "0.0.6",
+    "ember-cli-htmlbars": "0.7.6",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-mocha": "0.5.0",
+    "ember-cli-mocha": "0.8.0",
     "ember-cli-uglify": "1.0.1",
-    "ember-data": "1.0.0-beta.15",
-    "ember-export-application-global": "^1.0.2"
+    "ember-disable-prototype-extensions": "^1.0.0",
+    "ember-disable-proxy-controllers": "^1.0.0",
+    "ember-export-application-global": "^1.0.2",
+    "ember-try": "0.0.6"
   },
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
@@ -39,6 +42,7 @@
     "select"
   ],
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://thefrontside.github.io/emberx-select"
   }
 }

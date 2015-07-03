@@ -192,6 +192,8 @@ export default Ember.Component.extend({
       return option.$().is(':selected');
     });
 
+    Ember.A(options);
+
     var newValues = options.mapBy('value');
 
     if (isArray(this.get('value'))) {
@@ -217,12 +219,13 @@ export default Ember.Component.extend({
    *
    * @private
    */
-  ensureProperType: Ember.observer('value', function() {
+  ensureProperType: Ember.on('init', Ember.observer('value', function() {
     var value = this.get('value');
+
     if (value != null && this.get('multiple') && !isArray(value)) {
       throw new Error('x-select multiple=true was set, but value "' + value + '" is not enumerable.');
     }
-  }).on('init'),
+  })),
 
   /**
    * @private

@@ -29,7 +29,7 @@ describe('XSelect: Single Selection', function() {
   });
 
   it("does not fire any actions on didInsertElement", function() {
-    expect(this.controller.get('tagged')).not.to.be.ok();
+    expect(this.controller.get('tagged')).not.to.be.ok;
   });
 
   it('is enabled by default', function() {

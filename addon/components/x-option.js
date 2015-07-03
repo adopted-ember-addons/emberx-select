@@ -38,7 +38,9 @@ export default Ember.Component.extend({
    */
   selected: Ember.computed('value', 'select.value', 'select.multiple', function() {
     if (this.get('select.multiple') && isArray(this.get('select.value'))) {
-      return this.get('select.value').contains(this.get('value'));
+      let selectValue = Ember.A(this.get('select.value'));
+
+      return selectValue.contains(this.get('value'));
     } else {
       return this.get('value') === this.get('select.value');
     }
