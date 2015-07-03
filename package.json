@@ -42,6 +42,7 @@
     "select"
   ],
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://thefrontside.github.io/emberx-select"
   }
 }
