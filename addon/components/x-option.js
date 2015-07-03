@@ -32,15 +32,22 @@ export default Ember.Component.extend({
    * `<option>` element. It is aware of the containing `x-select`'s
    * value and will mark itself if it is the same.
    *
+   * If a PromiseObject is passed as the selection value,
+   * the `content` property of that PromiseObject will be evaluated.
+   *
    * @private
    * @property selected
    * @type Boolean
    */
   selected: Ember.computed('value', 'select.value', 'select.multiple', function() {
-    if (this.get('select.multiple') && isArray(this.get('select.value'))) {
-      return this.get('select.value').contains(this.get('value'));
+    var selectValue = this.get('select.value');
+    if(selectValue && selectValue.content) {
+      selectValue = selectValue.content;
+    }
+    if (this.get('select.multiple') && isArray(selectValue)) {
+      return selectValue.contains(this.get('value'));
     } else {
-      return this.get('value') === this.get('select.value');
+      return this.get('value') === selectValue;
     }
   }),
 
