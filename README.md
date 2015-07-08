@@ -106,7 +106,7 @@ makes a more incremental approach to migrating from `SelectView` possible.
 {{x-select action="tagYouAreIt" disabled=isDisabled
   multiple=true
   content=folks
-  selection=it
+  value=it
   optionValuePath="content.id"
   optionLabelPath="content.name"}}
 ```
