@@ -14,6 +14,7 @@ export function shouldBindAttrs() {
         isRequired: true,
         hasAutofocus: true
       });
+      this.component.rerender();
     });
 
     it('renders the name attribute', function() {
