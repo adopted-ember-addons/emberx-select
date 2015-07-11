@@ -28,6 +28,15 @@ export default Ember.Component.extend({
   value: null,
 
   /**
+   * The value of the parent `x-select`
+   *
+   * @property x-select
+   * @type XSelectComponent
+   * @default null
+   */
+  select: null,
+
+  /**
    * Property bound to the `selected` attribute of the native
    * `<option>` element. It is aware of the containing `x-select`'s
    * value and will mark itself if it is the same.
@@ -55,9 +64,9 @@ export default Ember.Component.extend({
     this._super.apply(this, arguments);
 
     Ember.run.scheduleOnce('afterRender', () => {
-      var select = this.nearestOfType(XSelectComponent);
+      /* Use an assigned select, or search for one nearby */
+      var select = this.get('select') || this.nearestOfType(XSelectComponent);
       Ember.assert("x-option component declared without enclosing x-select", !!select);
-      this.set('select', select);
       select.registerOption(this);
     });
   },
