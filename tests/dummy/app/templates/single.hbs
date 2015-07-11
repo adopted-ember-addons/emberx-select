@@ -1,9 +1,9 @@
 <p>
 {{#x-select value=it action="tagYouAreIt" disabled=isDisabled title=title required=isRequired
-    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize}}
-  {{#x-option value=charles}}Charles{{/x-option}}
-  {{#x-option value=bastion}}Bastion{{/x-option}}
-  {{#x-option value=stanley}}Stanley{{/x-option}}
+    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize as |select|}}
+  {{#x-option value=charles select=select}}Charles{{/x-option}}
+  {{#x-option value=bastion select=select}}Bastion{{/x-option}}
+  {{#x-option value=stanley select=select}}Stanley{{/x-option}}
   <option>Nobody</option>
 {{/x-select}}
 </p>

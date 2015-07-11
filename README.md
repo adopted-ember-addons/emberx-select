@@ -21,9 +21,9 @@ and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
 ```handlebars
-{{#x-select value=bob action="selectPerson"}}
-  {{#x-option value=fred}}Fred Flintstone{{/x-option}}
-  {{#x-option value=bob}}Bob Newhart{{/x-option}}
+{{#x-select value=bob action="selectPerson" as |select|}}
+  {{#x-option value=fred select=select}}Fred Flintstone{{/x-option}}
+  {{#x-option value=bob select=select}}Bob Newhart{{/x-option}}
 {{/x-select}}
 ```
 
@@ -40,10 +40,10 @@ option. This means you can pass an array as its value, and it will set
 its selections directly on that array.
 
 ```handlebars
-{{#x-select value=selections multiple=true action="selectionsChanged"}}
- {{#x-option value=fred}}Fred Flintstone{{/x-option}}
- {{#x-option value=bob}}Bob Newhart{{/x-option}}
- {{#x-option value=andrew}}Andrew WK{{/x-option}}
+{{#x-select value=selections multiple=true action="selectionsChanged" as |select|}}
+ {{#x-option value=fred select=select}}Fred Flintstone{{/x-option}}
+ {{#x-option value=bob select=select}}Bob Newhart{{/x-option}}
+ {{#x-option value=andrew select=select}}Andrew WK{{/x-option}}
 {{/x-select}}
 ```
 
@@ -134,9 +134,9 @@ cases, you can associate arbitrary attributes with the component
 itself and use them later inside your action handler.  For example:
 
 ```handlebars
-{{#x-select action="didMakeSelection" default=anything}}
+{{#x-select action="didMakeSelection" default=anything as |select|}}
   <option>Nothing</option>
-  {{#x-option value=something}}Something{{/x-option}}
+  {{#x-option value=something select=select}}Something{{/x-option}}
 {{/x-select}}
 ```
 then, inside your action handler:
