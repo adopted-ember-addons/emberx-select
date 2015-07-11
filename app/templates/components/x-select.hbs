@@ -1,10 +1,10 @@
 {{#if hasBlock}}
-  {{yield}}
+  {{yield this}}
 {{else}}
   {{#if placeholder}}
     <option>{{placeholder}}</option>
   {{/if}}
   {{#each _optionValues as |option|}}
-    {{#x-option value=option.value}}{{option.label}}{{/x-option}}
+    {{#x-option value=option.value select=this}}{{option.label}}{{/x-option}}
   {{/each}}
 {{/if}}
