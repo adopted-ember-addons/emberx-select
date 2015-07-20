@@ -1,0 +1,16 @@
+<p>
+  Anything that is valid within a <code>&lt;select&gt;</code> is also valid within <code>&lt;x-select&gt;</code>:
+  <button {{action "populate"}}>Populate</button>
+</p>
+<p>
+  {{#x-select value=thing}}
+    <option>Choose one of the following zaney options! ...</option>
+    {{#each groupsOfZanyThings as |group|}}
+      <optgroup label={{group.label}}>
+        {{#each group.things as |thing|}}
+          {{#x-option value=thing}}{{thing.description}}{{/x-option}}
+        {{/each}}
+      </optgroup>
+    {{/each}}
+  {{/x-select}}
+</p>

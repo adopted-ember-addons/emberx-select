@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('blockless-single');
   this.route('blockless-single-option-value');
   this.route('blockless-multiple');
+  this.route('zany-embedded-html');
 });
 
 export default Router;
