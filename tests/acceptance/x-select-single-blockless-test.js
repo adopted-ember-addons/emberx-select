@@ -5,7 +5,7 @@ import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import { it } from 'ember-mocha';
 import { beforeEach, afterEach, describe } from '../test-helper';
-import { bastion, stanley, charles } from 'dummy/mixins/folks';
+import { charles } from 'dummy/mixins/folks';
 import { shouldBindAttrs } from './shared/attr-test';
 
 var App;
