@@ -5,7 +5,7 @@ import Ember from 'ember';
  * to trigger this bug in ember:
  * https://github.com/emberjs/ember.js/pull/11266/files
  *
- * After initialization, it atumotically triggers a re-render by
+ * After initialization, it automatically triggers a re-render by
  * updating the groups to be rendered. This will fail on ember
  * 1.13.{0,3}.
  *
