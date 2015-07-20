@@ -1,6 +1,6 @@
 /*global expect */
 /*global it */
-import { beforeEach, afterEach, describe } from '../../test-helper';
+import { beforeEach, describe } from '../../test-helper';
 import { it } from 'ember-mocha';
 
 export function shouldBindAttrs() {
