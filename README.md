@@ -6,16 +6,17 @@
 
 A Select component based on the native html select.
 
-## Installation
-
-```
-ember install emberx-select
-```
 
 Why a select component? Because `Ember.Select` is hard to use, and
 really, all you want to do is just use a `<select>` tag dammit. The
 only difference is that you want value of the options to be any object
 and not just a string.
+
+## Installation
+
+```
+ember install emberx-select
+```
 
 By allowing arbitrary html to appear in the template of the select
 element, you can use it just like you would normally. This means
