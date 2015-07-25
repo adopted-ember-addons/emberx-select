@@ -6,6 +6,12 @@
 
 A Select component based on the native html select.
 
+## Installation
+
+```
+ember install emberx-select
+```
+
 Why a select component? Because `Ember.Select` is hard to use, and
 really, all you want to do is just use a `<select>` tag dammit. The
 only difference is that you want value of the options to be any object
@@ -162,13 +168,8 @@ emberx-select is part of the "missing components of ember" collectively
 known as emberx. See also:
 
 * [emberx-slider](https://github.com/thefrontside/emberx-slider)
-* [emberx-files](https://github.com/thefrontside/emberx-files)
+* [emberx-file-input](https://github.com/thefrontside/emberx-file-input)
 
-## Installation
-
-```
-ember install emberx-select
-```
 
 ## Running Tests
 
