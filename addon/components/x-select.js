@@ -56,37 +56,6 @@ export default Ember.Component.extend({
   tabindex: 0,
 
   /**
-   * Auxiliary computed property that replaces `content.`
-   * in `optionValuePath`.
-   *
-   * @private
-   * @property _valuePath
-   */
-  _valuePath: Ember.computed('optionValuePath', function() {
-    var optionValuePath = this.get('optionValuePath');
-    if (optionValuePath) {
-      return optionValuePath.replace(/^content\.?/, '');
-    }
-    return null;
-  }),
-
-  /**
-   * Auxiliary computed property that replaces `content.`
-   * in `optionLabelPath`.
-   *
-   * @private
-   * @property _labelPath
-   */
-  _labelPath: Ember.computed('optionLabelPath', function() {
-    var optionLabelPath = this.get('optionLabelPath');
-
-    if (optionLabelPath) {
-      return optionLabelPath.replace(/^content\.?/, '');
-    }
-    return null;
-  }),
-
-  /**
    * Alias to `value`.
    * This way we accept `value` or `selection` properties.
    *
@@ -101,38 +70,6 @@ export default Ember.Component.extend({
    * @property placeholder
    */
   placeholder: Ember.computed.alias('prompt'),
-
-  /**
-   * Auxiliary computed array that holds `content` array
-   * values and their labels. Used only in the blockless version.
-   *
-   * @private
-   * @property _optionValues
-   */
-  _optionValues: Ember.computed('_labelPath', '_valuePath', 'content.[]', function() {
-    var content = this.get('content') || [];
-    return content.map((object) => {
-      var label;
-      var value = object;
-      var valuePath = this.get('_valuePath');
-      var labelPath = this.get('_labelPath');
-
-      if (valuePath) {
-        value = Ember.get(object, valuePath);
-      }
-
-      if (labelPath) {
-        label = Ember.get(object, labelPath);
-      } else {
-        label = value;
-      }
-
-      return {
-        value: value,
-        label: label
-      };
-    });
-  }),
 
   /**
    * The collection of options for this select box. When options are
