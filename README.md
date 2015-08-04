@@ -70,8 +70,8 @@ injected the test helper into your app.
 
 #### Using the test helper
 
-As of version 1.1.3 we support both multiselects and regular selects. To use you
-need to specify the class on the on the select as the first argument and the rest
+As of version 1.1.3 we support both multiselects and regular selects. To use, you
+need to specify the class on the select as the first argument and the rest
 of the arguments are the options you'd like to select. For example:
 
 ```js
