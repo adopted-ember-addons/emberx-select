@@ -87,6 +87,16 @@ describe('XSelect: Single Selection Blockless w/ Option Value', function() {
     beforeEach(function() {
       this.$().prop('selectedIndex', 4).trigger('change');
     });
+    it("has default value", function() {
+      expect(controller.get('tagged')).to.equal('nope');
+    });
+  });
+
+  describe("when no option is selected with no default", function() {
+    beforeEach(function() {
+      controller.set('selectionValue', undefined);
+      this.$().prop('selectedIndex', 4).trigger('change');
+    });
     it("has no value", function() {
       expect(controller.get('tagged')).to.equal(null);
     });
