@@ -78,8 +78,8 @@ describe('XSelect: Single Selection', function() {
     beforeEach(function() {
       this.$().prop('selectedIndex', 4).trigger('change');
     });
-    it("has no value", function() {
-      expect(this.controller.get('tagged')).to.equal(null);
+    it("has default value", function() {
+      expect(this.controller.get('tagged').cowboy).to.equal('nope');
     });
   });
 
