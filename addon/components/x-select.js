@@ -26,7 +26,7 @@ export default Ember.Component.extend({
   classNameBindings: [":x-select"],
   //FIXME: add 'form' attribute binding back in when https://github.com/tildeio/htmlbars/pull/353#issuecomment-116187095
   //is merged.
-  attributeBindings: ['disabled', 'tabindex', 'multiple', 'name', 'autofocus', 'required', 'size', 'title'],
+  attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -145,10 +145,6 @@ export default Ember.Component.extend({
    */
   options: Ember.computed(function() {
     return Ember.A();
-  }),
-
-  _setFormAttribute: Ember.on('didRender', function() {
-    this.$().attr('form', this.get('form'));
   }),
 
   /**
