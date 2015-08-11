@@ -125,15 +125,7 @@ export default Ember.Component.extend({
       return option.$().is(':selected');
     });
 
-    Ember.A(options);
-
-    var newValues = options.mapBy('value');
-
-    if (isArray(this.get('value'))) {
-      this.get('value').setObjects(newValues);
-    } else {
-      this.set('value', newValues);
-    }
+    this.set('value', Ember.A(options).mapBy('value'));
   },
 
   /**
