@@ -104,7 +104,7 @@ registerSelectHelper();
 ## Blockless Form
 
 As of version 1.1.2, `x-select` can be invoked in a blockless form
-which is API compatible with `Ember.SelectView`. While most of the
+which is *mostly* API compatible with `Ember.SelectView`. While most of the
 time you want to use it in block-form, there are some cases where it
 makes more sense to specify your select on a single line. Also, it
 makes a more incremental approach to migrating from `SelectView` possible.
@@ -113,10 +113,12 @@ makes a more incremental approach to migrating from `SelectView` possible.
 {{x-select action="tagYouAreIt" disabled=isDisabled
   multiple=true
   content=folks
-  selection=it
+  value=it
   optionValuePath="content.id"
   optionLabelPath="content.name"}}
 ```
+**A note about selection vs. value**
+When using Ember.Select, one would set either the **value** or **selection** property in order to bind a selected option to a property.  X-Select departs from Ember.Select and does not support the **selection** option.  Instead, only use the **value** option when binding to properties.
 
 ## Action and Action Arguments
 
