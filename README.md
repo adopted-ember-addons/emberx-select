@@ -56,11 +56,48 @@ its selections directly on that array.
 
 The selections array will be initialized to an empty array if not present.
 
-> Heads Up! This will mutate the contents of your value array as the
-> user changes their selections. This can lead to strange behavior and
-> inconsistencies if you are using computed arrays and/or ember-data
-> `hasMany` relationships. Just remember, you can't go wrong if you
-> use just a simple array.
+
+## Action and Action Arguments
+
+The action that is dispatched by x-select whenever the selected value or values
+change has a function signature of:
+
+```js
+/**
+* @param value {Object} the value selected by the user.
+* @param component {Ember.Component} the x-select component itself
+*/
+function (value, component) {
+  // action body...
+}
+```
+
+Most of the time all you need is the value that has been selected, but
+sometimes your action requires more context than just that. In those
+cases, you can associate arbitrary attributes with the component
+itself and use them later inside your action handler.  For example:
+
+```handlebars
+{{#x-select action="didMakeSelection" default=anything}}
+  <option>Nothing</option>
+  {{#x-option value=something}}Something{{/x-option}}
+{{/x-select}}
+```
+then, inside your action handler:
+
+```js
+export default Ember.Route.extend({
+  actions: {
+    didMakeSelection: function(selection, component) {
+      if (selection) {
+        this.set('selection', selection)
+      } else {
+        this.set('selection', component.get('default'))
+      }
+    }
+  }
+});
+```
 
 ### Test Helpers
 
@@ -100,68 +137,6 @@ You need to either run the generator (`ember g emberx-select`) or import the tes
 import registerSelectHelper from './helpers/register-select-helper';
 registerSelectHelper();
 ```
-
-## Blockless Form
-
-As of version 1.1.2, `x-select` can be invoked in a blockless form
-which is API compatible with `Ember.SelectView`. While most of the
-time you want to use it in block-form, there are some cases where it
-makes more sense to specify your select on a single line. Also, it
-makes a more incremental approach to migrating from `SelectView` possible.
-
-```handlebars
-{{x-select action="tagYouAreIt" disabled=isDisabled
-  multiple=true
-  content=folks
-  selection=it
-  optionValuePath="content.id"
-  optionLabelPath="content.name"}}
-```
-
-## Action and Action Arguments
-
-The action that is dispatched by x-select whenever the selected value or values
-change has a function signature of:
-
-
-
-```js
-/**
-* @param value {Object} the value selected by the user.
-* @param component {Ember.Component} the x-select component itself
-*/
-function (value, component) {
-  // action body...
-}
-```
-
-Most of the time all you need is the value that has been selected, but
-sometimes your action requires more context than just that. In those
-cases, you can associate arbitrary attributes with the component
-itself and use them later inside your action handler.  For example:
-
-```handlebars
-{{#x-select action="didMakeSelection" default=anything}}
-  <option>Nothing</option>
-  {{#x-option value=something}}Something{{/x-option}}
-{{/x-select}}
-```
-then, inside your action handler:
-
-```js
-export default Ember.Route.extend({
-  actions: {
-    didMakeSelection: function(selection, component) {
-      if (selection) {
-        this.set('selection', selection)
-      } else {
-        this.set('selection', component.get('default'))
-      }
-    }
-  }
-});
-```
-
 
 ## EmberX
 
