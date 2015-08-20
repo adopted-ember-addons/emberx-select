@@ -51,7 +51,8 @@ export default Ember.Component.extend({
    *
    * @override
    */
-  didRender() {
+  didInsertElement() {
+    this._super();
     Ember.run.scheduleOnce('afterRender', this, 'registerWithXSelect');
   },
 
