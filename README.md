@@ -141,11 +141,11 @@ registerSelectHelper();
 ## EmberX
 
 emberx-select is part of the "missing components of ember" collectively
-known as emberx. See also:
+known as emberx:
 
+* [emberx-select](https://github.com/thefrontside/emberx-select)
 * [emberx-slider](https://github.com/thefrontside/emberx-slider)
 * [emberx-file-input](https://github.com/thefrontside/emberx-file-input)
-
 
 ## Running Tests
 
