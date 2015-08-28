@@ -38,7 +38,17 @@ the options are always up to date, so that when the object bound to
 `value` changes, the corresponding option becomes selected.
 
 Whenever the select tag receives a change event, it will fire
-`action`
+`action`.
+
+If you're just changing a model's property, you don't need `action`. For example,
+if you have a model with a `status` field with an integer, you can do this:
+
+```handlebars
+{{#x-select value=model.status }}
+  {{#x-option value=1}}Active{{/x-option}}
+  {{#x-option value=2}}Inactive{{/x-option}}
+{{/x-select}}
+```
 
 ### Multiselect
 
