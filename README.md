@@ -157,6 +157,10 @@ known as emberx:
 * [emberx-slider](https://github.com/thefrontside/emberx-slider)
 * [emberx-file-input](https://github.com/thefrontside/emberx-file-input)
 
+## Other Resources
+
+* [EmberScreencasts video on creating select boxes with vanilla Ember and emberx-select](https://www.emberscreencasts.com/posts/54-select-boxes-in-ember-20)
+
 ## Running Tests
 
 * `ember test`
