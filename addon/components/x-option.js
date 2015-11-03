@@ -70,6 +70,9 @@ export default Ember.Component.extend({
    */
   willDestroyElement: function() {
     this._super.apply(this, arguments);
-    this.get('select').unregisterOption(this);
+    let select = this.get('select');
+    if(select) {
+      select.unregisterOption(this);
+    }
   }
 });
