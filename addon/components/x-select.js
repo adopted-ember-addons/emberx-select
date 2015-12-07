@@ -24,8 +24,6 @@ var isArray = Ember.isArray;
 export default Ember.Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  //FIXME: add 'form' attribute binding back in when https://github.com/tildeio/htmlbars/pull/353#issuecomment-116187095
-  //is merged.
   attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
 
   /**
