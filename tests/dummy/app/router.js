@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('single');
+  this.route('default-value');
   this.route('multiple');
   this.route('zany-embedded-html');
 });
