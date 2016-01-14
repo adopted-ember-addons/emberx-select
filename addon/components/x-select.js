@@ -24,8 +24,6 @@ var isArray = Ember.isArray;
 export default Ember.Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  //FIXME: add 'form' attribute binding back in when https://github.com/tildeio/htmlbars/pull/353#issuecomment-116187095
-  //is merged.
   attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
 
   /**
@@ -54,22 +52,6 @@ export default Ember.Component.extend({
    * @ default 0
    */
   tabindex: 0,
-
-  /**
-   * Alias to `value`.
-   * This way we accept `value` or `selection` properties.
-   *
-   * @property selection
-   */
-  selection: Ember.computed.alias('value'),
-
-  /**
-   * Alias to `prompt`.
-   * This way we accept `prompt` or `placeholder` properties.
-   *
-   * @property placeholder
-   */
-  placeholder: Ember.computed.alias('prompt'),
 
   /**
    * The collection of options for this select box. When options are
