@@ -1,5 +1,4 @@
 /*global expect */
-/*global it */
 import { beforeEach, describe } from '../../test-helper';
 import { it } from 'ember-mocha';
 
