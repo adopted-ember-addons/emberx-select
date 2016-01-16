@@ -137,8 +137,22 @@ export default Ember.Component.extend({
   /**
    * @private
    */
+   setDefaultValue: function(){
+     var options = this.get('options');
+     if(Ember.isEmpty(this.get('value'))&&!this.get('multiple')){
+       let value = options[0].get('value');
+       this.set('value', value);
+     }
+   },
+
+  /**
+   * @private
+   */
   registerOption: function(option) {
     this.get('options').addObject(option);
+    if(this.get('options').length === 1) {
+      this.setDefaultValue();
+    }
   },
 
   /**
