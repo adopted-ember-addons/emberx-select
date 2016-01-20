@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('single');
   this.route('multiple');
   this.route('zany-embedded-html');
+  this.route('default-value');
 });
 
 export default Router;

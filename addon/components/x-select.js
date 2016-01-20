@@ -111,6 +111,22 @@ export default Ember.Component.extend({
   },
 
   /**
+   * If no explicit value is set, apply default values based on selected=true in
+   * the template.
+   *
+   * @private
+   */
+  _setDefaultValues: function() {
+    if( !this.get('value')){
+      if (this.get('multiple')) {
+        this._updateValueMultiple();
+      } else {
+        this._updateValueSingle();
+      }
+    }
+  },
+
+  /**
    * @override
    */
   willDestroyElement: function() {
@@ -139,6 +155,7 @@ export default Ember.Component.extend({
    */
   registerOption: function(option) {
     this.get('options').addObject(option);
+    this._setDefaultValues();
   },
 
   /**
@@ -146,5 +163,6 @@ export default Ember.Component.extend({
    */
   unregisterOption: function(option) {
     this.get('options').removeObject(option);
+    this._updateValueSingle();
   }
 });

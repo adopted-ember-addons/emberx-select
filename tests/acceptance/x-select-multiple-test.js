@@ -80,7 +80,6 @@ describe('XSelect: Multiple Selection', function() {
       expect(this.exception).not.to.be.undefined;
       expect(this.exception.message).to.match(/enumerable/);
     });
-
   });
 
   shouldBindAttrs();

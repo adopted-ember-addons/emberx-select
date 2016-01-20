@@ -1,0 +1,65 @@
+<p>This example shows how you can set default values for your selections by setting the selected=true property on an option and how these defaults are impacted by changes to the dynamic content in your list of options.</p>
+<hr>
+<h2>Select a Car Make</h2>
+<p>Default set to option two (Honda)</p>
+<p>
+  {{#x-select value=(mut make) action=(action "setMake") class="spec-car-make"}}
+    {{#x-option value=ford}}Ford{{/x-option}}
+    {{#x-option value=honda selected=true}}Honda{{/x-option}}
+    {{#x-option value=toyota}}Toyota{{/x-option}}
+    <option>Not Selected</option>
+  {{/x-select}}
+</p>
+<p class="spec-selected-make">Selected Make: {{make.name}}</p>
+<hr>
+
+<h2>Select a Car Model</h2>
+<p>Default set to the first option in the dynamic list</p>
+<p>
+  {{#x-select value=(mut carModel) action=(action "setCarModel") class="spec-car-model"}}
+    {{#each make.models as |carModel index|}}
+      {{#if index}}
+        {{#x-option value=carModel}}{{carModel.name}}{{/x-option}}
+      {{else}}
+        {{#x-option value=carModel selected=true}}{{carModel.name}}{{/x-option}}
+      {{/if}}
+    {{/each}}
+    <option>Not Selected</option>
+  {{/x-select}}
+</p>
+<p class="spec-selected-model">Selected Model: {{carModel.name}}</p>
+<hr>
+
+<h2>Select a Car Trim Option</h2>
+<p>Default set to the first option in the dynamic list</p>
+<p>
+  {{#x-select value=(mut trim) action=(action "setTrim") class="spec-car-trim"}}
+    {{#each carModel.trimOptions as |trim index|}}
+      {{#if index}}
+        {{#x-option value=trim}}{{trim.name}}{{/x-option}}
+      {{else}}
+        {{#x-option value=trim selected=true}}{{trim.name}}{{/x-option}}
+      {{/if}}
+    {{/each}}
+    <option>Not Selected</option>
+  {{/x-select}}
+</p>
+<p class="spec-selected-trim">Selected Trim: {{trim.name}}</p>
+<hr>
+
+<p>An explicit value overrides any defaults.</p>
+<p>Here, the model (initialized as Ford) is overriding the default to select the first option in the list (Toyota).</p>
+<p>
+  {{#x-select value=(mut model) action=(action "updateField") class="spec-autopopulated-make-field"}}
+    {{#each makes as |make index|}}
+      {{#if index}}
+        {{#x-option value=make}}{{make.name}}{{/x-option}}
+      {{else}}
+        {{! Would default to the first option if model is not set}}
+        {{#x-option value=make selected=true}}{{make.name}}{{/x-option}}
+      {{/if}}
+    {{/each}}
+    <option>Not Selected</option>
+  {{/x-select}}
+</p>
+<p class="spec-selected-make-from-model">Selected Make: {{model.name}}</p>
