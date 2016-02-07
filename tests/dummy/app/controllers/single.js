@@ -12,6 +12,14 @@ export default Ember.Controller.extend(Folks, {
   actions: {
     tagYouAreIt: function(object) {
       this.tagged = object;
+    },
+
+    selectBlur(event) {
+      this.set('eventType', event.type);
+    },
+
+    selectClick(event) {
+      this.set('eventType', event.type);
     }
   }
 });

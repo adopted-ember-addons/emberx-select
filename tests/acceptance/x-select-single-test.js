@@ -56,6 +56,27 @@ describe('XSelect: Single Selection', function() {
     });
   });
 
+  describe("clicking the select", function() {
+    beforeEach(function() {
+      return click('.x-select');
+    });
+
+    it("fires the click action", function() {
+      expect($('.spec-event').text().trim()).to.equal('click');
+    });
+
+    describe("removing focus from the select", function() {
+      beforeEach(function() {
+        this.$().trigger('blur');
+      });
+
+      it("fires the blur action", function() {
+        expect($('.spec-event').text().trim()).to.equal('blur');
+      });
+    });
+  });
+
+
   describe('manually setting the selected binding', function() {
     beforeEach(function() {
       this.controller.set('it', this.controller.get('charles'));

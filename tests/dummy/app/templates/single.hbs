@@ -1,6 +1,6 @@
 <p>
 {{#x-select value=it action="tagYouAreIt" disabled=isDisabled title=title required=isRequired
-    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize}}
+    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize on-blur="selectBlur" on-click="selectClick"}}
   {{#x-option value=charles}}Charles{{/x-option}}
   {{#x-option value=bastion}}Bastion{{/x-option}}
   {{#x-option value=stanley}}Stanley{{/x-option}}
@@ -8,3 +8,4 @@
 {{/x-select}}
 </p>
 <p>Selected: {{it.name}}</p>
+<p class="spec-event">{{eventType}}</p>

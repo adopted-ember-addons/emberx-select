@@ -77,7 +77,24 @@ export default Ember.Component.extend({
       this._updateValueSingle();
     }
 
-    this.sendAction('action', this.get('value'), this);
+    this.sendAction('action', this.get('value'), this); // should we deprecate `action` in favor of `on-change`?
+    this.sendAction('on-change', this.get('value'), this);
+  },
+
+  /**
+   * When the click DOM event fires on the element, trigger the
+   * component's action with the jQuery event.
+   */
+  click(event) {
+    this.sendAction('on-click', event);
+  },
+
+  /**
+   * When the blur DOM event fires on the element, trigger the
+   * component's action with the jQuery event.
+   */
+  blur(event) {
+    this.sendAction('on-blur', event);
   },
 
   /**
@@ -129,11 +146,23 @@ export default Ember.Component.extend({
   /**
    * @override
    */
+  didInsertElement() {
+    this._super.apply(this, arguments);
+
+    this.$().on('blur', (event) => {
+      this.blur(event);
+    });
+  },
+
+  /**
+   * @override
+   */
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
+    this.$().off('blur');
   },
 
   /**
@@ -143,10 +172,10 @@ export default Ember.Component.extend({
    * @private
    */
   ensureProperType: Ember.on('init', Ember.observer('value', function() {
-    var value = this.get('value');
+    let value = this.get('value');
 
     if (value != null && this.get('multiple') && !isArray(value)) {
-      throw new Error('x-select multiple=true was set, but value "' + value + '" is not enumerable.');
+      throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
     }
   })),
 
