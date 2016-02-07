@@ -83,18 +83,18 @@ export default Ember.Component.extend({
 
   /**
    * When the click DOM event fires on the element, trigger the
-   * component's action with the jQuery event.
+   * component's action with the jQuery event, x-select value, and the component.
    */
   click(event) {
-    this.sendAction('on-click', event);
+    this.sendAction('on-click', event, this.get('value'), this);
   },
 
   /**
    * When the blur DOM event fires on the element, trigger the
-   * component's action with the jQuery event.
+   * component's action with the jQuery event, x-select value, and the component.
    */
   blur(event) {
-    this.sendAction('on-blur', event);
+    this.sendAction('on-blur', event, this.get('value'), this);
   },
 
   /**
