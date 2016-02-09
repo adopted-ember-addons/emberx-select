@@ -1,11 +1,41 @@
-<p>
-{{#x-select value=it action="tagYouAreIt" disabled=isDisabled title=title required=isRequired
-    autofocus=hasAutofocus name=attrName form=attrForm size=attrSize on-blur="selectBlur" on-click="selectClick"}}
-  {{#x-option value=charles}}Charles{{/x-option}}
-  {{#x-option value=bastion}}Bastion{{/x-option}}
-  {{#x-option value=stanley}}Stanley{{/x-option}}
-  <option>Nobody</option>
-{{/x-select}}
-</p>
+<p>Event types:</p>
+<a href="#" {{action "triggerEventSelect" "selectBlur"}} class="spec-trigger-blur">On Blur</a> |
+<a href="#" {{action "triggerEventSelect" "selectClick"}} class="spec-trigger-click">On Click</a> |
+<a href="#" {{action "triggerEventSelect" "selectFocus"}} class="spec-trigger-focus-out">On Focus Out</a>
+
+{{#if selectBlur}}
+  <p>
+    {{#x-select value=it action="tagYouAreIt" disabled=isDisabled title=title required=isRequired
+       autofocus=hasAutofocus name=attrName form=attrForm size=attrSize on-blur="selectBlur"}}
+      {{#x-option value=charles}}Charles{{/x-option}}
+      {{#x-option value=bastion}}Bastion{{/x-option}}
+      {{#x-option value=stanley}}Stanley{{/x-option}}
+      <option>Nobody</option>
+    {{/x-select}}
+  </p>
+{{/if}}
+
+{{#if selectClick}}
+  <p>
+    {{#x-select value=it on-click="selectClick"}}
+      {{#x-option value=charles}}Charles{{/x-option}}
+      {{#x-option value=bastion}}Bastion{{/x-option}}
+      {{#x-option value=stanley}}Stanley{{/x-option}}
+      <option>Nobody</option>
+    {{/x-select}}
+  </p>
+{{/if}}
+
+{{#if selectFocus}}
+  <p>
+    {{#x-select value=it on-focus-out="selectFocusOut"}}
+      {{#x-option value=charles}}Charles{{/x-option}}
+      {{#x-option value=bastion}}Bastion{{/x-option}}
+      {{#x-option value=stanley}}Stanley{{/x-option}}
+      <option>Nobody</option>
+    {{/x-select}}
+  </p>
+{{/if}}
+
 <p>Selected: {{it.name}}</p>
 <p class="spec-event">{{eventType}}</p>

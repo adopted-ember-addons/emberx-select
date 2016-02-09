@@ -70,31 +70,39 @@ export default Ember.Component.extend({
    * When the select DOM event fires on the element, trigger the
    * component's action with the current value.
    */
-  change() {
+  change(event) {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
       this._updateValueSingle();
     }
 
-    this.sendAction('action', this.get('value'), this); // should we deprecate `action` in favor of `on-change`?
-    this.sendAction('on-change', this.get('value'), this);
+    this.sendAction('action', this.get('value'), this);
+    this.sendAction('on-change', this, this.get('value'), event);
   },
 
   /**
    * When the click DOM event fires on the element, trigger the
-   * component's action with the jQuery event, x-select value, and the component.
+   * component's action with the component, x-select value, and the jQuery event.
    */
   click(event) {
-    this.sendAction('on-click', event, this.get('value'), this);
+    this.sendAction('on-click', this, this.get('value'), event);
   },
 
   /**
    * When the blur DOM event fires on the element, trigger the
-   * component's action with the jQuery event, x-select value, and the component.
+   * component's action with the component, x-select value, and the jQuery event.
    */
   blur(event) {
-    this.sendAction('on-blur', event, this.get('value'), this);
+    this.sendAction('on-blur', this, this.get('value'), event);
+  },
+
+  /**
+   * When the focusOut DOM event fires on the element, trigger the
+   * component's action with the component, x-select value, and the jQuery event.
+   */
+  focusOut(event) {
+    this.sendAction('on-focus-out', this, this.get('value'), event);
   },
 
   /**
