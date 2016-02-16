@@ -70,7 +70,7 @@ The selections array will be initialized to an empty array if not present.
 ## Action and Action Arguments
 
 The action that is dispatched by x-select whenever the selected value or values
-change has a function signature of:
+change (change event) has a function signature of:
 
 ```js
 /**
@@ -108,6 +108,28 @@ export default Ember.Route.extend({
   }
 });
 ```
+
+#### Other Actions
+
+x-select also provides other actions that fire on different event
+types.
+
+**on-blur**
+
+`on-blur` fires anytime the `blur` event is triggered on the x-select
+component. When the action fires it sends three arguments: the
+component, the value, and the jQuery event.
+
+**on-focus-out**
+
+`on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
+component. When the action fires it sends three arguments: the
+component, the value, and the jQuery event.
+
+**on-click**
+
+`on-click` fires when x-select is clicked. When the action fires it
+sends three arguments: the component, the value, and the jQuery event.
 
 ### Test Helpers
 
