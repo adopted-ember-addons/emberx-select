@@ -56,40 +56,6 @@ describe('XSelect: Single Selection', function() {
     });
   });
 
-  describe("clicking the select", function() {
-    beforeEach(function() {
-      click('.spec-trigger-click');
-      return click('.x-select');
-    });
-
-    it("fires the click action", function() {
-      expect($('.spec-event').text().trim()).to.equal('click');
-    });
-  });
-
-  describe.skip("triggering focusOut on the select", function() { //why??
-    //The action doesn't fire in tests but works IRL.
-    beforeEach(function() {
-      click('.spec-trigger-focus-out');
-      this.$().trigger('focusout');
-    });
-
-    it("fires the focusOut action", function() {
-      expect($('.spec-event').text().trim()).to.equal('focusout');
-    });
-  });
-
-  describe("triggering blur on the select", function() {
-    beforeEach(function() {
-      click('.spec-trigger-blur');
-      this.$().trigger('blur');
-    });
-
-    it("fires the blur action", function() {
-      expect($('.spec-event').text().trim()).to.equal('blur');
-    });
-  });
-
   describe('manually setting the selected binding', function() {
     beforeEach(function() {
       this.controller.set('it', this.controller.get('charles'));
