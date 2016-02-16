@@ -8,7 +8,6 @@ export default Ember.Controller.extend(Folks, {
   attrName: null,
   attrForm: null,
   attrSize: null,
-  selectBlur: true,
 
   actions: {
     tagYouAreIt: function(object) {
