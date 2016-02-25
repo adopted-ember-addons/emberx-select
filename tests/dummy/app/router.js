@@ -10,6 +10,11 @@ Router.map(function() {
   this.route('multiple');
   this.route('zany-embedded-html');
   this.route('default-value');
+  this.route('events', { path: '/e' }, function() {
+    this.route('blur');
+    this.route('click');
+    this.route('focus-out');
+  });
 });
 
 export default Router;

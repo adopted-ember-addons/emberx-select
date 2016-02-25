@@ -70,7 +70,7 @@ export default Ember.Component.extend({
    * When the select DOM event fires on the element, trigger the
    * component's action with the current value.
    */
-  change() {
+  change(event) {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
@@ -78,6 +78,31 @@ export default Ember.Component.extend({
     }
 
     this.sendAction('action', this.get('value'), this);
+    this.sendAction('onchange', this, this.get('value'), event);
+  },
+
+  /**
+   * When the click DOM event fires on the element, trigger the
+   * component's action with the component, x-select value, and the jQuery event.
+   */
+  click(event) {
+    this.sendAction('onclick', this, this.get('value'), event);
+  },
+
+  /**
+   * When the blur DOM event fires on the element, trigger the
+   * component's action with the component, x-select value, and the jQuery event.
+   */
+  blur(event) {
+    this.sendAction('onblur', this, this.get('value'), event);
+  },
+
+  /**
+   * When the focusOut DOM event fires on the element, trigger the
+   * component's action with the component, x-select value, and the jQuery event.
+   */
+  focusOut(event) {
+    this.sendAction('onfocusout', this, this.get('value'), event);
   },
 
   /**
@@ -129,11 +154,23 @@ export default Ember.Component.extend({
   /**
    * @override
    */
+  didInsertElement() {
+    this._super.apply(this, arguments);
+
+    this.$().on('blur', (event) => {
+      this.blur(event);
+    });
+  },
+
+  /**
+   * @override
+   */
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
+    this.$().off('blur');
   },
 
   /**
@@ -143,10 +180,10 @@ export default Ember.Component.extend({
    * @private
    */
   ensureProperType: Ember.on('init', Ember.observer('value', function() {
-    var value = this.get('value');
+    let value = this.get('value');
 
     if (value != null && this.get('multiple') && !isArray(value)) {
-      throw new Error('x-select multiple=true was set, but value "' + value + '" is not enumerable.');
+      throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
     }
   })),
 
