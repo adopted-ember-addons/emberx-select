@@ -200,6 +200,10 @@ export default Ember.Component.extend({
    */
   unregisterOption: function(option) {
     this.get('options').removeObject(option);
-    this._updateValueSingle();
+
+    // We don't want to update the value if we're tearing the component down.
+    if (!this.get('isDestroying')) {
+      this._updateValueSingle();
+    }
   }
 });
