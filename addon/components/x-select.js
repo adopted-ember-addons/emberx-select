@@ -71,11 +71,7 @@ export default Ember.Component.extend({
    * component's action with the current value.
    */
   change(event) {
-    if (this.get('multiple')) {
-      this._updateValueMultiple();
-    } else {
-      this._updateValueSingle();
-    }
+    this._updateValue();
 
     this.sendAction('action', this.get('value'), this);
     this.sendAction('onchange', this, this.get('value'), event);
@@ -136,18 +132,29 @@ export default Ember.Component.extend({
   },
 
   /**
+   * A utility method to determine if the select is multiple or single and call
+   * its respective method to update the value.
+   *
+   * @private
+   * @utility
+   */
+  _updateValue() {
+    if (this.get('multiple')) {
+      this._updateValueMultiple();
+    } else {
+      this.updateValueSingle();
+    }
+  },
+
+  /**
    * If no explicit value is set, apply default values based on selected=true in
    * the template.
    *
    * @private
    */
   _setDefaultValues: function() {
-    if( !this.get('value')){
-      if (this.get('multiple')) {
-        this._updateValueMultiple();
-      } else {
-        this._updateValueSingle();
-      }
+    if (!this.get('value')) {
+      this._updateValue();
     }
   },
 
@@ -203,7 +210,7 @@ export default Ember.Component.extend({
 
     // We don't want to update the value if we're tearing the component down.
     if (!this.get('isDestroying')) {
-      this._updateValueSingle();
+      this._updateValue();
     }
   }
 });
