@@ -138,11 +138,11 @@ export default Ember.Component.extend({
    * @private
    * @utility
    */
-  _updateValue() {
+  _updateValue: function() {
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
-      this.updateValueSingle();
+      this._updateValueSingle();
     }
   },
 
