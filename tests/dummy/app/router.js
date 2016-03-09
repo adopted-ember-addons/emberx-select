@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('click');
     this.route('focus-out');
   });
+  this.route('ember-data');
 });
 
 export default Router;

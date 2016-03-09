@@ -2,7 +2,7 @@
   "name": "emberx-select",
   "dependencies": {
     "ember": "1.13.7",
-    "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
+    "ember-cli-shims": "ember-cli/ember-cli-shims#0.1.0",
     "ember-cli-test-loader": "ember-cli-test-loader#0.1.3",
     "ember-mocha": "0.8.8",
     "chai-jquery": "~2.0.0",

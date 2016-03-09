@@ -4,3 +4,7 @@ a {
 a.active {
   color: blue;
 }
+
+div {
+  margin: 10px 0;
+}
