@@ -2,6 +2,9 @@
 
 ### Ember Version / Ember CLI Version:
 
+**Ember Version:**
+**Ember CLI Version:**
+
 ### Expected Behavior
 
 (Describe how things should work.)
