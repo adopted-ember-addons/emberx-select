@@ -56,14 +56,13 @@ export default Ember.Component.extend({
     Ember.run.scheduleOnce('afterRender', this, 'registerWithXSelect');
   },
 
-  parentXSelect: Ember.computed(function() {
+  select: Ember.computed(function() {
     return this.nearestOfType(XSelectComponent);
   }),
 
   registerWithXSelect() {
-    const select = this.get('parentXSelect');
+    const select = this.get('select');
     Ember.assert("x-option component declared without enclosing x-select", !!select);
-    this.set('select', select);
     select.registerOption(this);
   },
 
