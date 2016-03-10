@@ -5,6 +5,24 @@ module.exports = {
       dependencies: { }
     },
     {
+      name: 'ember-1-13',
+      dependencies: {
+        "ember": "^1.13",
+      },
+      resolutions: {
+        "ember": "^1.13"
+      }
+    },
+    {
+      name: 'ember-2-before-contextual-components',
+      dependencies: {
+        "ember": "~2.2.0",
+      },
+      resolutions: {
+        "ember": "~2.2.0"
+      }
+    },
+    {
       name: 'ember-release',
       dependencies: {
         'ember': 'components/ember#release'
