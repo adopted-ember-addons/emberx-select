@@ -7,10 +7,10 @@
 A Select component based on the native html select.
 
 
-Why a select component? Because `Ember.Select` is hard to use, and
-really, all you want to do is just use a `<select>` tag dammit. The
-only difference is that you want value of the options to be any object
-and not just a string.
+Why a select component? Because we've done the hard work and built a
+select component for you. Sometimes all you want to do is just use a
+`<select>` tag dammit. The only difference is that you want value of
+the options to be any object and not just a string.
 
 ## Installation
 
