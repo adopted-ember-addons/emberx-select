@@ -6,10 +6,9 @@
 
 A Select component based on the native html select.
 
-There are a lot of options out there for fancy dropdowns, but after
-spending many months writing them, we've learned you can't beat a
-native `<select>` for reliability, accessibility, and low cost of
-maintenance. `<x-select>` is a drop-in component to let you use any
+We've tried other select components, and were missing the reliability, 
+maintainability, and accessbility of the native html `<select>`. 
+`<x-select>` is a drop-in component to let you use any
 object for your selectable options. You can use it out of the box, or
 as a building block of something more ambitious.
 
