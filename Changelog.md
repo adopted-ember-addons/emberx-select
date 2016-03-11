@@ -1,5 +1,40 @@
 # Change Log
 
+## [v2.1.0](https://github.com/thefrontside/emberx-select/tree/v2.1.0) (2016-03-11)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.0.2...v2.1.0)
+
+**Implemented enhancements:**
+
+- Any way to attach to blur event? [\#84](https://github.com/thefrontside/emberx-select/issues/84)
+- Default value not applied [\#81](https://github.com/thefrontside/emberx-select/issues/81)
+- \[feature\] add contextual components support [\#101](https://github.com/thefrontside/emberx-select/pull/101) ([fivetanley](https://github.com/fivetanley))
+- Adding `on-click` and `on-blur` actions [\#92](https://github.com/thefrontside/emberx-select/pull/92) ([Robdel12](https://github.com/Robdel12))
+- Update register code to set default option [\#90](https://github.com/thefrontside/emberx-select/pull/90) ([lydiaguarino](https://github.com/lydiaguarino))
+
+**Fixed bugs:**
+
+- Attempts to set property after model is deleted/rolled back [\#94](https://github.com/thefrontside/emberx-select/issues/94)
+
+**Closed issues:**
+
+- Icons not displayed \(optgroups\) [\#95](https://github.com/thefrontside/emberx-select/issues/95)
+- Is it possible to set a default value? [\#78](https://github.com/thefrontside/emberx-select/issues/78)
+- Issues with promise values? [\#69](https://github.com/thefrontside/emberx-select/issues/69)
+- Selection not selected when component rerendered [\#54](https://github.com/thefrontside/emberx-select/issues/54)
+- dynamically hide options [\#98](https://github.com/thefrontside/emberx-select/issues/98)
+- Remove dead placeholder / prompt param [\#85](https://github.com/thefrontside/emberx-select/issues/85)
+- update readme to remove reference to Ember.select [\#73](https://github.com/thefrontside/emberx-select/issues/73)
+
+**Merged pull requests:**
+
+- Update README.md [\#104](https://github.com/thefrontside/emberx-select/pull/104) ([flexyford](https://github.com/flexyford))
+- Add explicit places for ember/cli versions [\#100](https://github.com/thefrontside/emberx-select/pull/100) ([Robdel12](https://github.com/Robdel12))
+- Add issue template [\#96](https://github.com/thefrontside/emberx-select/pull/96) ([Robdel12](https://github.com/Robdel12))
+- Remove dead properties leftover from x-select-blockless [\#86](https://github.com/thefrontside/emberx-select/pull/86) ([Robdel12](https://github.com/Robdel12))
+- Add keywords to `package.json` [\#103](https://github.com/thefrontside/emberx-select/pull/103) ([Robdel12](https://github.com/Robdel12))
+- Fix the README description [\#102](https://github.com/thefrontside/emberx-select/pull/102) ([Robdel12](https://github.com/Robdel12))
+- Don't update value if tearing component down [\#97](https://github.com/thefrontside/emberx-select/pull/97) ([Robdel12](https://github.com/Robdel12))
+
 ## [v2.0.2](https://github.com/thefrontside/emberx-select/tree/v2.0.2) (2015-11-04)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.0.1...v2.0.2)
 
@@ -34,6 +69,10 @@
 
 - Update Ember CLI & Ember [\#60](https://github.com/thefrontside/emberx-select/issues/60)
 
+**Fixed bugs:**
+
+- x-option declared without x-select error [\#44](https://github.com/thefrontside/emberx-select/issues/44)
+
 **Closed issues:**
 
 - Deprecation in 1.13.8 [\#66](https://github.com/thefrontside/emberx-select/issues/66)
@@ -64,6 +103,7 @@
 
 **Implemented enhancements:**
 
+- Add demo to package.json [\#39](https://github.com/thefrontside/emberx-select/issues/39)
 - test against canary [\#18](https://github.com/thefrontside/emberx-select/issues/18)
 
 **Closed issues:**
@@ -75,7 +115,6 @@
 **Merged pull requests:**
 
 - Update Ember-CLI / Remove prototype extensions [\#40](https://github.com/thefrontside/emberx-select/pull/40) ([Robdel12](https://github.com/Robdel12))
-- Clean up some Glimmer deprecations [\#33](https://github.com/thefrontside/emberx-select/pull/33) ([jamesarosen](https://github.com/jamesarosen))
 
 ## [v1.1.3](https://github.com/thefrontside/emberx-select/tree/v1.1.3) (2015-07-02)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.1.2...v1.1.3)
@@ -83,6 +122,7 @@
 **Closed issues:**
 
 - Block less not supporting ValuePath [\#34](https://github.com/thefrontside/emberx-select/issues/34)
+- Add Title AttributeBinding [\#30](https://github.com/thefrontside/emberx-select/issues/30)
 - Add `tmp` dir to the .npmignore. [\#23](https://github.com/thefrontside/emberx-select/issues/23)
 - How does this work with `fillIn` test helper? [\#13](https://github.com/thefrontside/emberx-select/issues/13)
 
@@ -90,8 +130,13 @@
 
 - Don't break when optionLabelPath is missing [\#38](https://github.com/thefrontside/emberx-select/pull/38) ([tp](https://github.com/tp))
 - use a null default tabindex so that the select is tabbable in a form... [\#37](https://github.com/thefrontside/emberx-select/pull/37) ([joshuaconner](https://github.com/joshuaconner))
+- Clean up some Glimmer deprecations [\#33](https://github.com/thefrontside/emberx-select/pull/33) ([jamesarosen](https://github.com/jamesarosen))
 - Add title attr binding [\#32](https://github.com/thefrontside/emberx-select/pull/32) ([Robdel12](https://github.com/Robdel12))
 - Adds optionValuePath [\#31](https://github.com/thefrontside/emberx-select/pull/31) ([jeremywrowe](https://github.com/jeremywrowe))
+- Use block params [\#28](https://github.com/thefrontside/emberx-select/pull/28) ([AVCEngineering](https://github.com/AVCEngineering))
+- Robust test helper [\#27](https://github.com/thefrontside/emberx-select/pull/27) ([Robdel12](https://github.com/Robdel12))
+- add tmp dir to npmignore fix \#23 [\#24](https://github.com/thefrontside/emberx-select/pull/24) ([odoe](https://github.com/odoe))
+- Use correct syntax for installing addon [\#17](https://github.com/thefrontside/emberx-select/pull/17) ([harianus](https://github.com/harianus))
 
 ## [v1.1.2](https://github.com/thefrontside/emberx-select/tree/v1.1.2) (2015-05-01)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.1.1...v1.1.2)
@@ -100,30 +145,55 @@
 
 - Binding options [\#16](https://github.com/thefrontside/emberx-select/issues/16)
 - Add support for missing attributes [\#11](https://github.com/thefrontside/emberx-select/issues/11)
-- \[FEATURE\] - Support Ember.SelectView style API [\#8](https://github.com/thefrontside/emberx-select/issues/8)
+
+**Merged pull requests:**
+
+- Update installation in readme [\#15](https://github.com/thefrontside/emberx-select/pull/15) ([abulrim](https://github.com/abulrim))
+- Introduce `registerSelectHelper` [\#14](https://github.com/thefrontside/emberx-select/pull/14) ([seanpdoyle](https://github.com/seanpdoyle))
+- fix README formatting [\#12](https://github.com/thefrontside/emberx-select/pull/12) ([fivetanley](https://github.com/fivetanley))
+- add blockless version. closes \#8 [\#9](https://github.com/thefrontside/emberx-select/pull/9) ([miguelcobain](https://github.com/miguelcobain))
 
 ## [v1.1.1](https://github.com/thefrontside/emberx-select/tree/v1.1.1) (2015-04-07)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.1.0...v1.1.1)
 
 **Closed issues:**
 
+- \[FEATURE\] - Support Ember.SelectView style API [\#8](https://github.com/thefrontside/emberx-select/issues/8)
 - support multiple selection [\#5](https://github.com/thefrontside/emberx-select/issues/5)
+
+**Merged pull requests:**
+
+- - add name to attribute bindings to specify a form element name [\#10](https://github.com/thefrontside/emberx-select/pull/10) ([enspandi](https://github.com/enspandi))
 
 ## [v1.1.0](https://github.com/thefrontside/emberx-select/tree/v1.1.0) (2015-03-20)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.0.3...v1.1.0)
 
+**Merged pull requests:**
+
+- Add multiple selection feature [\#7](https://github.com/thefrontside/emberx-select/pull/7) ([miguelcobain](https://github.com/miguelcobain))
+- update to ember-cli 0.2.0 [\#6](https://github.com/thefrontside/emberx-select/pull/6) ([miguelcobain](https://github.com/miguelcobain))
+
 ## [v1.0.3](https://github.com/thefrontside/emberx-select/tree/v1.0.3) (2015-03-17)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.0.2...v1.0.3)
+
+**Merged pull requests:**
+
+- some fixes + cleanup [\#4](https://github.com/thefrontside/emberx-select/pull/4) ([stefanpenner](https://github.com/stefanpenner))
 
 ## [v1.0.2](https://github.com/thefrontside/emberx-select/tree/v1.0.2) (2015-03-09)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.0.1...v1.0.2)
 
-**Closed issues:**
+**Merged pull requests:**
 
-- SyntaxError: Unexpected token [\#1](https://github.com/thefrontside/emberx-select/issues/1)
+- Fix README typo [\#3](https://github.com/thefrontside/emberx-select/pull/3) ([mitchlloyd](https://github.com/mitchlloyd))
+- Update package.json [\#2](https://github.com/thefrontside/emberx-select/pull/2) ([kategengler](https://github.com/kategengler))
 
 ## [v1.0.1](https://github.com/thefrontside/emberx-select/tree/v1.0.1) (2015-02-23)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.0.0...v1.0.1)
+
+**Closed issues:**
+
+- SyntaxError: Unexpected token [\#1](https://github.com/thefrontside/emberx-select/issues/1)
 
 ## [v1.0.0](https://github.com/thefrontside/emberx-select/tree/v1.0.0) (2015-02-16)
 
