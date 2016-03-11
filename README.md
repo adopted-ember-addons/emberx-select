@@ -50,6 +50,25 @@ if you have a model with a `status` field with an integer, you can do this:
 {{/x-select}}
 ```
 
+### Contextual Components
+
+As of version 2.1.0, `emberx-select` takes advantage of Ember's
+[contextual components](http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components)
+feature. Using contextual components allows `emberx-select` to skip some
+potentially expensive DOM traversals. This feature works with **Ember
+2.3.0 and above!** If you're using such a version, we highly recommend
+you use it:
+
+```handlebars
+{{#x-select value=model.status as |xs|}}
+  {{#xs.option value=1}}Active{{/xs.option}}
+  {{#xs.option value=2}}Inactive{{/xs.option}}
+{{/x-select}}
+```
+
+If you're using a lower version of Ember, `emberx-select` will continue
+to work without block params for the forseeable future.
+
 ### Multiselect
 
 As of version 1.1.0, `emberx-select` supports the `multiple`
