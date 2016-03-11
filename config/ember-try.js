@@ -14,12 +14,22 @@ module.exports = {
       }
     },
     {
-      name: 'ember-2-before-contextual-components',
+      // ember 2 before contextual components
+      name: 'ember-2-2',
       dependencies: {
         "ember": "~2.2.0",
       },
       resolutions: {
         "ember": "~2.2.0"
+      }
+    },
+    {
+      name: 'ember-2-3',
+      dependencies: {
+        "ember": "~2.3.0",
+      },
+      resolutions: {
+        "ember": "~2.3.0"
       }
     },
     {

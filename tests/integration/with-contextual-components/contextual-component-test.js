@@ -5,7 +5,7 @@ import Ember from 'ember';
 const integration = true;
 
 function hasContextualComponents() {
-  return !Ember.VERSION.match(/^2\.[0-3]/) && !Ember.VERSION.match(/^1/);
+  return !Ember.VERSION.match(/^2\.[0-2]\./) && !Ember.VERSION.match(/^1/);
 }
 
 describeComponent('x-select', 'X-Select - Contextual Component', {integration}, function() {
