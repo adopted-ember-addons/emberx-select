@@ -39,7 +39,11 @@
   },
   "keywords": [
     "ember-addon",
-    "select"
+    "select",
+    "ember select",
+    "emberx-select",
+    "select box",
+    "ember select component"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.3",
