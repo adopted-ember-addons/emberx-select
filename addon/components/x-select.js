@@ -33,7 +33,7 @@ export default Ember.Component.extend({
    * @type Boolean
    * @default false
    */
-  disabled: false,
+  disabled: null,
 
   /**
    * Bound to the `multiple` attribute on the native <select> tag.
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
    * @type Boolean
    * @default false
    */
-  multiple: false,
+  multiple: null,
 
   /**
    * Bound to the `tabindex` attribute on the native <select> tag.
