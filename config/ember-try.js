@@ -7,17 +7,35 @@ module.exports = {
     {
       name: 'ember-1-13',
       dependencies: {
-        "ember": "^1.13",
+        "ember": "^1.13.4" //1.13.0-1.13.3 is broken with x-select
       },
       resolutions: {
-        "ember": "^1.13"
+        "ember": "^1.13.4"
+      }
+    },
+    {
+      name: 'ember-2-0',
+      dependencies: {
+        "ember": "~2.0.0"
+      },
+      resolutions: {
+        "ember": "~2.0.0"
+      }
+    },
+    {
+      name: 'ember-2-1',
+      dependencies: {
+        "ember": "~2.1.0"
+      },
+      resolutions: {
+        "ember": "~2.1.0"
       }
     },
     {
       // ember 2 before contextual components
       name: 'ember-2-2',
       dependencies: {
-        "ember": "~2.2.0",
+        "ember": "~2.2.0"
       },
       resolutions: {
         "ember": "~2.2.0"
@@ -26,7 +44,7 @@ module.exports = {
     {
       name: 'ember-2-3',
       dependencies: {
-        "ember": "~2.3.0",
+        "ember": "~2.3.0"
       },
       resolutions: {
         "ember": "~2.3.0"
