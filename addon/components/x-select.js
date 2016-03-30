@@ -31,7 +31,7 @@ export default Ember.Component.extend({
    *
    * @property disabled
    * @type Boolean
-   * @default false
+   * @default null
    */
   disabled: null,
 
@@ -40,7 +40,7 @@ export default Ember.Component.extend({
    *
    * @property multiple
    * @type Boolean
-   * @default false
+   * @default null
    */
   multiple: null,
 
