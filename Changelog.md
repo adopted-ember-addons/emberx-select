@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.1.1](https://github.com/thefrontside/emberx-select/tree/v2.1.1) (2016-03-30)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.0...v2.1.1)
+
+**Closed issues:**
+
+- Can you use native HTML attributes within x-option [\#105](https://github.com/thefrontside/emberx-select/issues/105)
+
+**Merged pull requests:**
+
+- Intialize defaults to `null` rather than false [\#106](https://github.com/thefrontside/emberx-select/pull/106) ([Robdel12](https://github.com/Robdel12))
+
 ## [v2.1.0](https://github.com/thefrontside/emberx-select/tree/v2.1.0) (2016-03-11)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.0.2...v2.1.0)
 
