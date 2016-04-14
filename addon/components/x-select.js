@@ -139,6 +139,10 @@ export default Ember.Component.extend({
    * @utility
    */
   _updateValue: function() {
+    if (this.isDestroying || this.isDestroyed) {
+      return;
+    }
+    
     if (this.get('multiple')) {
       this._updateValueMultiple();
     } else {
