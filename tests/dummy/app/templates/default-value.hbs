@@ -63,3 +63,20 @@
   {{/x-select}}
 </p>
 <p class="spec-selected-make-from-model">Selected Make: {{model.name}}</p>
+
+<p>An explicit value overrides any defaults.</p>
+<p>Here, the selectedQuantity (initially 0) is overriding the default to select the first option in the list (5).</p>
+<p>
+  {{#x-select value=(mut selectedQuantity) action=(action "updateSelectedQuantity") class="spec-autopopulated-quantity-field"}}
+    {{#each quantities as |quantity index|}}
+      {{#if index}}
+        {{#x-option value=quantity}}{{quantity}}{{/x-option}}
+      {{else}}
+      {{! Would default to the first option if quantity is not set}}
+        {{#x-option value=quantity selected=true}}{{quantity}}{{/x-option}}
+      {{/if}}
+    {{/each}}
+    <option>Not Selected</option>
+  {{/x-select}}
+</p>
+<p class="spec-selected-quantity">Selected Quantity: {{selectedQuantity}}</p>

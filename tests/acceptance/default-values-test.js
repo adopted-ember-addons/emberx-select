@@ -53,6 +53,13 @@ describe('XSelect: Default Values', function() {
       expect($(".spec-autopopulated-make-field option:contains('Toyota')")).not.to.be.selected;
     });
 
+    it('sets the selected property to the explicitly set value', function() {
+      expect($(".spec-autopopulated-quantity-field option:contains('0')")).to.be.selected;
+    });
+
+    it('initializes with the correct explicit value if one is present even if that value is falsy', function() {
+      expect($(".spec-selected-quantity:contains('Selected Quantity: 0')")).to.exist;
+    });
 
     describe("Changing the value on fields with default values", function() {
       beforeEach(function() {
