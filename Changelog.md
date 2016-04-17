@@ -1,5 +1,25 @@
 # Change Log
 
+## [v2.1.2](https://github.com/thefrontside/emberx-select/tree/v2.1.2) (2016-04-17)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.1...v2.1.2)
+
+**Fixed bugs:**
+
+- Unexpected behavior when initially selected value is falsy [\#112](https://github.com/thefrontside/emberx-select/issues/112)
+
+**Closed issues:**
+
+- How to customize class names for the select tag. [\#110](https://github.com/thefrontside/emberx-select/issues/110)
+- x-select to support attributes similar to ember select [\#109](https://github.com/thefrontside/emberx-select/issues/109)
+- x-option declared without x-select error [\#99](https://github.com/thefrontside/emberx-select/issues/99)
+
+**Merged pull requests:**
+
+- Add more ember-try scenarios [\#108](https://github.com/thefrontside/emberx-select/pull/108) ([Robdel12](https://github.com/Robdel12))
+- corrected @default annotation value for disabled and multiple props. [\#107](https://github.com/thefrontside/emberx-select/pull/107) ([stopfstedt](https://github.com/stopfstedt))
+- Update ember-try and allow canary to fail [\#114](https://github.com/thefrontside/emberx-select/pull/114) ([Robdel12](https://github.com/Robdel12))
+- check state before updating value [\#111](https://github.com/thefrontside/emberx-select/pull/111) ([cmccand](https://github.com/cmccand))
+
 ## [v2.1.1](https://github.com/thefrontside/emberx-select/tree/v2.1.1) (2016-03-30)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.0...v2.1.1)
 
