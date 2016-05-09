@@ -18,6 +18,6 @@
 2.
 3.
 
-### JSBin / Ember Twiddle / Example repo / Failing test:
+### Ember Twiddle / Example repo / Failing test:
 
-(This is extremely helpful and speeds up the debugging process.)
+_Please create a reproduction of your [bug with this ember-twiddle](https://ember-twiddle.com/278fcd6b13e8b9a06d09e7023f178496). This is extremely helpful and speeds up the debugging process._
