@@ -1,5 +1,26 @@
 # Change Log
 
+## [v2.2.0](https://github.com/thefrontside/emberx-select/tree/v2.2.0) (2016-07-14)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.2...v2.2.0)
+
+**Implemented enhancements:**
+
+- Add option to remove two way data binding in 2.x [\#121](https://github.com/thefrontside/emberx-select/issues/121)
+- Use versionCompatibility config from ember-try [\#115](https://github.com/thefrontside/emberx-select/pull/115) ([Robdel12](https://github.com/Robdel12))
+- Add the ability to disable two way data binding [\#125](https://github.com/thefrontside/emberx-select/pull/125) ([Robdel12](https://github.com/Robdel12))
+
+**Closed issues:**
+
+- Possibility to insert glyphicons in select options [\#119](https://github.com/thefrontside/emberx-select/issues/119)
+- Emberx Select flashes/blinks on first click [\#116](https://github.com/thefrontside/emberx-select/issues/116)
+- Remove testem.json file [\#124](https://github.com/thefrontside/emberx-select/issues/124)
+
+**Merged pull requests:**
+
+- Add twiddle to issue template [\#117](https://github.com/thefrontside/emberx-select/pull/117) ([Robdel12](https://github.com/Robdel12))
+- Remove dead testem.json file [\#126](https://github.com/thefrontside/emberx-select/pull/126) ([Robdel12](https://github.com/Robdel12))
+- Update ember-cli to 2.6.2 [\#122](https://github.com/thefrontside/emberx-select/pull/122) ([Robdel12](https://github.com/Robdel12))
+
 ## [v2.1.2](https://github.com/thefrontside/emberx-select/tree/v2.1.2) (2016-04-17)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.1...v2.1.2)
 
