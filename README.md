@@ -6,8 +6,8 @@
 
 A Select component based on the native html select.
 
-We've tried other select components, and were missing the reliability, 
-maintainability, and accessbility of the native html `<select>`. 
+We've tried other select components, and were missing the reliability,
+maintainability, and accessbility of the native html `<select>`.
 `<x-select>` is a drop-in component to let you use any
 object for your selectable options. You can use it out of the box, or
 as a building block of something more ambitious.
@@ -90,6 +90,23 @@ its selections directly on that array.
 
 The selections array will be initialized to an empty array if not present.
 
+## Disabling two way data binding
+
+In x-select v2.2.0 we introduced a way to disable two way data
+binding, which is enabled by default. If you would like to only mutate
+the value of x-select through actions you can pass an attribute called
+`oneWay` and set it to `true`. This will disable two way data binding.
+
+```hbs
+{{#x-select value=willNotChangeOnSelection oneWay=true}}
+  {{#x-option value="hello" selected=true}}Hello{{/x-option}}
+  {{#x-option value="world"}}World{{/x-option}}
+{{/x-select}}
+```
+
+If you select the `World` option in the example above, it will not
+change the value (`willNotChangeOnSelection`) to `world`. Without
+`oneWay=true` it would change the value.
 
 ## Action and Action Arguments
 
