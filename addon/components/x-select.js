@@ -58,11 +58,11 @@ export default Ember.Component.extend({
    * value of x-select will not be updated when changing options, you
    * would need to do mutate the value through an action.
    *
-   * @property oneWay
+   * @property one-way
    * @type Boolean
    * @ default false
    */
-  oneWay: false,
+  'one-way': false,
 
   /**
    * The collection of options for this select box. When options are
@@ -83,7 +83,7 @@ export default Ember.Component.extend({
    */
   change(event) {
 
-    if(!this.get('oneWay')) {
+    if(!this.get('one-way')) {
       this._updateValue();
     }
 

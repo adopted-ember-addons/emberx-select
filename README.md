@@ -95,10 +95,10 @@ The selections array will be initialized to an empty array if not present.
 In x-select v2.2.0 we introduced a way to disable two way data
 binding, which is enabled by default. If you would like to only mutate
 the value of x-select through actions you can pass an attribute called
-`oneWay` and set it to `true`. This will disable two way data binding.
+`one-way` and set it to `true`. This will disable two way data binding.
 
 ```hbs
-{{#x-select value=willNotChangeOnSelection oneWay=true}}
+{{#x-select value=willNotChangeOnSelection one-way=true}}
   {{#x-option value="hello" selected=true}}Hello{{/x-option}}
   {{#x-option value="world"}}World{{/x-option}}
 {{/x-select}}
@@ -106,7 +106,9 @@ the value of x-select through actions you can pass an attribute called
 
 If you select the `World` option in the example above, it will not
 change the value (`willNotChangeOnSelection`) to `world`. Without
-`oneWay=true` it would change the value.
+`one-way=true` it would change the value.
+
+> Note: In x-select 3.x one way binding will be the default.
 
 ## Action and Action Arguments
 
