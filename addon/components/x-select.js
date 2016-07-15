@@ -49,18 +49,22 @@ export default Ember.Component.extend({
    *
    * @property tabindex
    * @type Integer
-   * @ default 0
+   * @default 0
    */
   tabindex: 0,
 
   /**
    * Determies if one way data binding is enabled. If set to true the
-   * value of x-select will not be updated when changing options, you
-   * would need to do mutate the value through an action.
+   * value of x-select will not be updated when changing options. Instead, you
+   * would consume the new value through an action. E.g.
+   *
+   * {{#x-select value=someVal one-way=true action=(action "selectionChanged")}}
+   *   {{!options here ....}}
+   * {{/x-select}}
    *
    * @property oneWay
    * @type Boolean
-   * @ default false
+   * @default false
    */
   oneWay: false,
 
