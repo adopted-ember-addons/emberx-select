@@ -62,11 +62,11 @@ export default Ember.Component.extend({
    *   {{!options here ....}}
    * {{/x-select}}
    *
-   * @property oneWay
+   * @property one-way
    * @type Boolean
    * @default false
    */
-  oneWay: false,
+  'one-way': false,
 
   /**
    * The collection of options for this select box. When options are
@@ -87,7 +87,7 @@ export default Ember.Component.extend({
    */
   change(event) {
 
-    if(!this.get('oneWay')) {
+    if(!this.get('one-way')) {
       this._updateValue();
     }
 

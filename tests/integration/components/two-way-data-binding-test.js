@@ -15,7 +15,7 @@ describeComponent(
       beforeEach(function() {
         this.set('make', 'ford');
         this.render(hbs`
-          {{#x-select value=make oneWay=true}}
+          {{#x-select value=make one-way=true}}
             {{#x-option value="ford"}}Ford{{/x-option}}
             {{#x-option value="chevy"}}Chevy{{/x-option}}
             {{#x-option value="dodge" class="spec-dodge-option"}}Dodge{{/x-option}}
