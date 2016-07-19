@@ -1,11 +1,31 @@
 # Change Log
 
+## [v2.2.1](https://github.com/thefrontside/emberx-select/tree/v2.2.1) (2016-07-19)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.0...v2.2.1)
+
+**Implemented enhancements:**
+
+- Convert to component integration test [\#93](https://github.com/thefrontside/emberx-select/issues/93)
+- Add option to remove two way data binding in 2.x [\#121](https://github.com/thefrontside/emberx-select/issues/121)
+
+**Fixed bugs:**
+
+- Using the oneWay option doesn't ever send the correct value. [\#131](https://github.com/thefrontside/emberx-select/issues/131)
+
+**Closed issues:**
+
+- how we can write integration test for x-select? [\#87](https://github.com/thefrontside/emberx-select/issues/87)
+
+**Merged pull requests:**
+
+- fix the one-way binding attribute. [\#132](https://github.com/thefrontside/emberx-select/pull/132) ([cowboyd](https://github.com/cowboyd))
+- add some documentation tweaks. [\#130](https://github.com/thefrontside/emberx-select/pull/130) ([cowboyd](https://github.com/cowboyd))
+
 ## [v2.2.0](https://github.com/thefrontside/emberx-select/tree/v2.2.0) (2016-07-14)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.1.2...v2.2.0)
 
 **Implemented enhancements:**
 
-- Add option to remove two way data binding in 2.x [\#121](https://github.com/thefrontside/emberx-select/issues/121)
 - Use versionCompatibility config from ember-try [\#115](https://github.com/thefrontside/emberx-select/pull/115) ([Robdel12](https://github.com/Robdel12))
 - Add the ability to disable two way data binding [\#125](https://github.com/thefrontside/emberx-select/pull/125) ([Robdel12](https://github.com/Robdel12))
 
@@ -18,6 +38,7 @@
 **Merged pull requests:**
 
 - Add twiddle to issue template [\#117](https://github.com/thefrontside/emberx-select/pull/117) ([Robdel12](https://github.com/Robdel12))
+- Update changelog [\#127](https://github.com/thefrontside/emberx-select/pull/127) ([Robdel12](https://github.com/Robdel12))
 - Remove dead testem.json file [\#126](https://github.com/thefrontside/emberx-select/pull/126) ([Robdel12](https://github.com/Robdel12))
 - Update ember-cli to 2.6.2 [\#122](https://github.com/thefrontside/emberx-select/pull/122) ([Robdel12](https://github.com/Robdel12))
 
