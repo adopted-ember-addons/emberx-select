@@ -67,6 +67,7 @@ export default Ember.Component.extend({
    * @default false
    */
   'one-way': false,
+  'oneWay': Ember.computed.alias('one-way'),
 
   /**
    * The collection of options for this select box. When options are
