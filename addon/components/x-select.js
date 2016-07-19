@@ -62,11 +62,11 @@ export default Ember.Component.extend({
    *   {{!options here ....}}
    * {{/x-select}}
    *
-   * @property oneWay
+   * @property one-way
    * @type Boolean
    * @default false
    */
-  oneWay: false,
+  'one-way': false,
 
   /**
    * The collection of options for this select box. When options are
@@ -86,13 +86,14 @@ export default Ember.Component.extend({
    * component's action with the current value.
    */
   change(event) {
+    let nextValue = this._getValue();
 
-    if(!this.get('oneWay')) {
-      this._updateValue();
+    if (!this.get('one-way')) {
+      this.set('value', nextValue);
     }
 
-    this.sendAction('action', this.get('value'), this);
-    this.sendAction('onchange', this, this.get('value'), event);
+    this.sendAction('action', nextValue, this);
+    this.sendAction('onchange', this, nextValue, event);
   },
 
   /**
@@ -120,52 +121,36 @@ export default Ember.Component.extend({
   },
 
   /**
-   * Updates `value` with the object associated with the selected option tag
+   * Reads the current selection from this select's options.
+   *
+   * If this is a multi-select, then the value will be an
+   * array. Otherwise, it will be a single value which could be null.
    *
    * @private
+   * @return {Array|Object} the current selection
    */
-  _updateValueSingle: function(){
-    var option = this.get('options').find(function(option) {
+  _getValue() {
+    let options = this.get('options').filter(function(option) {
       return option.$().is(':selected');
     });
 
-    if (option) {
-      this.set('value', option.get('value'));
+    if (this.get('multiple')) {
+      return Ember.A(options).mapBy('value');
     } else {
-      this.set('value', null);
+      let option = options[0];
+      return option ? option.get('value') : null;
     }
   },
 
   /**
-   * Updates `value` with an array of objects associated with the selected option tags
-   *
+   * Reads the current value and sets it.
    * @private
-   */
-  _updateValueMultiple: function() {
-    var options = this.get('options').filter(function(option) {
-      return option.$().is(':selected');
-    });
-
-    this.set('value', Ember.A(options).mapBy('value'));
-  },
-
-  /**
-   * A utility method to determine if the select is multiple or single and call
-   * its respective method to update the value.
-   *
-   * @private
-   * @utility
    */
   _updateValue: function() {
     if (this.isDestroying || this.isDestroyed) {
       return;
     }
-
-    if (this.get('multiple')) {
-      this._updateValueMultiple();
-    } else {
-      this._updateValueSingle();
-    }
+    this.set('value', this._getValue());
   },
 
   /**
