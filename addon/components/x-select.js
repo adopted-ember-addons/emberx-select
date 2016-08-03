@@ -67,6 +67,13 @@ export default Ember.Component.extend({
    * @default false
    */
   'one-way': false,
+
+  /**
+   * oneWay alias is a backward-compatible attribute for a release that existed
+   * for a short time
+   *
+   * @deprecated
+   */
   'oneWay': Ember.computed.alias('one-way'),
 
   /**
@@ -162,7 +169,11 @@ export default Ember.Component.extend({
    */
   _setDefaultValues: function() {
     if (this.get('value') == null) {
-      this._updateValue();
+      if (!this.get('one-way')) {
+        this._updateValue();
+      }
+
+      this.sendAction('action', this._getValue());
     }
   },
 
