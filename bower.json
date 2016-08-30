@@ -3,7 +3,7 @@
   "dependencies": {
     "ember-mocha": "0.8.8",
     "chai-jquery": "~2.0.0",
-    "ember": "~2.7.0",
+    "ember": "~2.0.0",
     "ember-cli-shims": "0.1.1"
   }
 }
