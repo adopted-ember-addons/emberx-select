@@ -1,4 +1,5 @@
 import { it, describeComponent } from 'ember-mocha';
+import { expect } from 'chai';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
 
@@ -23,4 +24,3 @@ describeComponent('x-select', 'X-Select - Contextual Component', {integration}, 
     });
   }
 });
-
