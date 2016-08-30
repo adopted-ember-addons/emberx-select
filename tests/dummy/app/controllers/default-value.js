@@ -22,19 +22,16 @@ export default Ember.Controller.extend(Cars, {
 
   actions: {
     setMake: function(object) {
-      if (object) {
-        console.log('You selected Make:', object.name);
+      if(object) {
+        this.set('carModel', object.models[0]);
+        this.set('make', object);
       }
     },
     setCarModel: function(object) {
-      if (object) {
-        console.log('You selected Model:', object.name);
-      }
+      this.set('carModel', object);
     },
     setTrim: function(object) {
-      if (object) {
-        console.log('You selected Trim:', object.name);
-      }
+      this.set('trim', object);
     },
     updateField: function(object) {
       if (object) {
