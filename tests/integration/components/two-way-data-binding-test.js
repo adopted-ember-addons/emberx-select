@@ -63,10 +63,10 @@ describeComponent(
         });
 
         this.render(hbs`
-          {{#x-select value=make one-way=true action=(action selectAction)}}
-            {{#x-option value="ford" class="spec-ford-option"}}Ford{{/x-option}}
-            {{#x-option value="chevy"}}Chevy{{/x-option}}
-            {{#x-option value="dodge" class="spec-dodge-option"}}Dodge{{/x-option}}
+          {{#x-select value=make one-way=true action=selectAction}}
+            {{#x-option value="fordValue" class="spec-ford-option"}}Ford{{/x-option}}
+            {{#x-option value="chevyValue"}}Chevy{{/x-option}}
+            {{#x-option value="dodgeValue" class="spec-dodge-option"}}Dodge{{/x-option}}
           {{/x-select}}
         `);
       });
@@ -76,7 +76,7 @@ describeComponent(
       });
 
       it("sets the default value to the first element", function() {
-        expect(this.get('make')).to.equal("ford");
+        expect(this.get('make')).to.equal("fordValue");
       });
 
       it("invokes the select action on init", function() {
