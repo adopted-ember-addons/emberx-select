@@ -54,37 +54,6 @@ export default Ember.Component.extend({
   tabindex: 0,
 
   /**
-   * Determies if one way data binding is enabled. If set to true the
-   * value of x-select will not be updated when changing options. Instead, you
-   * would consume the new value through an action. E.g.
-   *
-   * {{#x-select value=someVal one-way=true action=(action "selectionChanged")}}
-   *   {{!options here ....}}
-   * {{/x-select}}
-   *
-   * @property one-way
-   * @type Boolean
-   * @default false
-   */
-  'one-way': false,
-
-  /**
-   * oneWay alias is a backward-compatible attribute for a release that existed
-   * for a short time
-   *
-   * @deprecated
-   */
-  'oneWay': Ember.computed.alias('one-way'),
-
-  /**
-   * Set to true when `willDestroyElement` is called.
-   *
-   * @private
-   * @property isXSelectDestroying
-   */
-  isXSelectDestroying: false,
-
-  /**
    * The collection of options for this select box. When options are
    * inserted into the dom, they will register themselves with their
    * containing `x-select`. This is for internal book-keeping only and should
@@ -103,10 +72,6 @@ export default Ember.Component.extend({
    */
   change(event) {
     let nextValue = this._getValue();
-
-    if (!this.get('one-way')) {
-      this.set('value', nextValue);
-    }
 
     this.sendAction('action', nextValue, this);
     this.sendAction('onchange', this, nextValue, event);
@@ -159,17 +124,6 @@ export default Ember.Component.extend({
   },
 
   /**
-   * Reads the current value and sets it.
-   * @private
-   */
-  _updateValue: function() {
-    if (this.isDestroying || this.isDestroyed) {
-      return;
-    }
-    this.set('value', this._getValue());
-  },
-
-  /**
    * If no explicit value is set, apply default values based on selected=true in
    * the template.
    *
@@ -177,10 +131,6 @@ export default Ember.Component.extend({
    */
   _setDefaultValues: function() {
     if (this.get('value') == null) {
-      if (!this.get('one-way')) {
-        this._updateValue();
-      }
-
       this.sendAction('action', this._getValue());
     }
   },
@@ -236,10 +186,6 @@ export default Ember.Component.extend({
    */
   unregisterOption: function(option) {
     this.get('options').removeObject(option);
-
-    // We don't want to update the value if we're tearing the component down.
-    if (!this.get('isXSelectDestroying')) {
-      this._updateValue();
-    }
+    this._setDefaultValues();
   }
 });

@@ -3,7 +3,7 @@
 <h2>Select a Car Make</h2>
 <p>Default set to option two (Honda)</p>
 <p>
-  {{#x-select value=(mut make) action=(action "setMake") class="spec-car-make"}}
+  {{#x-select value=make action="setMake" class="spec-car-make"}}
     {{#x-option value=ford}}Ford{{/x-option}}
     {{#x-option value=honda selected=true}}Honda{{/x-option}}
     {{#x-option value=toyota}}Toyota{{/x-option}}
@@ -16,7 +16,7 @@
 <h2>Select a Car Model</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=(mut carModel) action=(action "setCarModel") class="spec-car-model"}}
+  {{#x-select value=carModel action="setCarModel" class="spec-car-model"}}
     {{#each make.models as |carModel index|}}
       {{#if index}}
         {{#x-option value=carModel}}{{carModel.name}}{{/x-option}}
@@ -33,7 +33,7 @@
 <h2>Select a Car Trim Option</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=(mut trim) action=(action "setTrim") class="spec-car-trim"}}
+  {{#x-select value=trim action="setTrim" class="spec-car-trim"}}
     {{#each carModel.trimOptions as |trim index|}}
       {{#if index}}
         {{#x-option value=trim}}{{trim.name}}{{/x-option}}
@@ -50,7 +50,7 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the model (initialized as Ford) is overriding the default to select the first option in the list (Toyota).</p>
 <p>
-  {{#x-select value=(mut model) action=(action "updateField") class="spec-autopopulated-make-field"}}
+  {{#x-select value=model action="updateField" class="spec-autopopulated-make-field"}}
     {{#each makes as |make index|}}
       {{#if index}}
         {{#x-option value=make}}{{make.name}}{{/x-option}}
@@ -67,7 +67,7 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the selectedQuantity (initially 0) is overriding the default to select the first option in the list (5).</p>
 <p>
-  {{#x-select value=(mut selectedQuantity) action=(action "updateSelectedQuantity") class="spec-autopopulated-quantity-field"}}
+  {{#x-select value=selectedQuantity action="updateSelectedQuantity" class="spec-autopopulated-quantity-field"}}
     {{#each quantities as |quantity index|}}
       {{#if index}}
         {{#x-option value=quantity}}{{quantity}}{{/x-option}}
