@@ -54,19 +54,6 @@ export default Ember.Component.extend({
   tabindex: 0,
 
   /**
-   * The collection of options for this select box. When options are
-   * inserted into the dom, they will register themselves with their
-   * containing `x-select`. This is for internal book-keeping only and should
-   * not be changed from outside.
-   *
-   * @private
-   * @property options
-   */
-  options: Ember.computed(function() {
-    return Ember.A();
-  }),
-
-  /**
    * When the select DOM event fires on the element, trigger the
    * component's action with the current value.
    */
@@ -111,7 +98,8 @@ export default Ember.Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    let options = this.get('options').filter(function(option) {
+    // TODO: childViews is a private property. Find something else.
+    let options = this.childViews.filter(function(option) {
       return option.$().is(':selected');
     });
 
@@ -130,7 +118,7 @@ export default Ember.Component.extend({
    * @private
    */
   _setDefaultValues: function() {
-    if (this.get('value') == null) {
+    if (this.get('value') === null) {
       this.sendAction('action', this._getValue());
     }
   },
@@ -141,6 +129,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
+    Ember.run.scheduleOnce('afterRender', this, '_setDefaultValues');
     this.$().on('blur', (event) => {
       this.blur(event);
     });
@@ -152,8 +141,6 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
-    // might be overkill, but make sure options can get gc'd
-    this.get('options').clear();
     this.$().off('blur');
   },
 
@@ -169,20 +156,5 @@ export default Ember.Component.extend({
     if (value != null && this.get('multiple') && !isArray(value)) {
       throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
     }
-  })),
-
-  /**
-   * @private
-   */
-  registerOption: function(option) {
-    this.get('options').addObject(option);
-    this._setDefaultValues();
-  },
-
-  /**
-   * @private
-   */
-  unregisterOption: function(option) {
-    this.get('options').removeObject(option);
-  }
+  }))
 });

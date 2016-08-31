@@ -8,18 +8,6 @@ module.exports = {
       }
     },
     {
-      // x-select is broken with 1.13.0.-1.13.3
-      name: 'ember-1.13',
-      bower: {
-        dependencies: {
-          'ember': '~1.13.4'
-        },
-        resolutions: {
-          'ember': '~1.13.4'
-        }
-      }
-    },
-    {
       name: 'ember-release',
       bower: {
         dependencies: {

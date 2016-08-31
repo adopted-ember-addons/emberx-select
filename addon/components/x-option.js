@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import XSelectComponent from './x-select';
 
 var isArray = Ember.isArray;
 
@@ -53,17 +52,6 @@ export default Ember.Component.extend({
    */
   didInsertElement() {
     this._super.apply(this, arguments);
-    Ember.run.scheduleOnce('afterRender', this, 'registerWithXSelect');
-  },
-
-  select: Ember.computed(function() {
-    return this.nearestOfType(XSelectComponent);
-  }),
-
-  registerWithXSelect() {
-    const select = this.get('select');
-    Ember.assert("x-option component declared without enclosing x-select", !!select);
-    select.registerOption(this);
   },
 
   /**
@@ -73,9 +61,5 @@ export default Ember.Component.extend({
    */
   willDestroyElement: function() {
     this._super.apply(this, arguments);
-    let select = this.get('select');
-    if(select) {
-      select.unregisterOption(this);
-    }
   }
 });
