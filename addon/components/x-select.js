@@ -168,11 +168,28 @@ export default Ember.Component.extend({
   })),
 
   actions: {
+
+    /**
+     * Registers a new option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is inserted into the DOM.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
     registerOption(option) {
       this.get('options').push(option);
       this._setDefaultValues();
     },
 
+    /**
+     * Removes a the passed option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is begining teardown.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
     unregisterOption(option) {
       this.get('options').removeObject(option);
       this._setDefaultValues();
