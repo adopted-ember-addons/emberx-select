@@ -1,8 +1,8 @@
 <div>
-  {{#x-select value=model.name}}
-    {{#x-option value="Larry"}}Larry{{/x-option}}
-    {{#x-option value="Ollie"}}Ollie{{/x-option}}
-    {{#x-option value="Wally"}}Wally{{/x-option}}
+  {{#x-select value=model.name as |xs|}}
+    {{#xs.option value="Larry"}}Larry{{/xs.option}}
+    {{#xs.option value="Ollie"}}Ollie{{/xs.option}}
+    {{#xs.option value="Wally"}}Wally{{/xs.option}}
   {{/x-select}}
 
   <p>Model: {{model.name}}</p>

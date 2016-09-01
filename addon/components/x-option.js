@@ -52,6 +52,10 @@ export default Ember.Component.extend({
    */
   didInsertElement() {
     this._super.apply(this, arguments);
+
+    Ember.run.scheduleOnce('afterRender', () => {
+      this.get('register')(this);
+    });
   },
 
   /**
@@ -60,6 +64,7 @@ export default Ember.Component.extend({
    * @override
    */
   willDestroyElement: function() {
+    this.get('unregister')(this);
     this._super.apply(this, arguments);
   }
 });

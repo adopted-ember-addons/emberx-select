@@ -45,6 +45,17 @@ export default Ember.Component.extend({
   multiple: null,
 
   /**
+   * The collection of options for this select box. When options are
+   * rendered as a child from x-select, they will register themselves with their
+   * containing `x-select`. This is for internal book-keeping only and should
+   * not be changed from outside.
+   *
+   * @private
+   * @property options
+   */
+  options: Ember.A([]),
+
+  /**
    * Bound to the `tabindex` attribute on the native <select> tag.
    *
    * @property tabindex
@@ -98,8 +109,7 @@ export default Ember.Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    // TODO: childViews is a private property. Find something else.
-    let options = this.childViews.filter(function(option) {
+    let options = this.get('options').filter(function(option) {
       return option.$().is(':selected');
     });
 
@@ -129,7 +139,6 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    Ember.run.scheduleOnce('afterRender', this, '_setDefaultValues');
     this.$().on('blur', (event) => {
       this.blur(event);
     });
@@ -156,5 +165,17 @@ export default Ember.Component.extend({
     if (value != null && this.get('multiple') && !isArray(value)) {
       throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
     }
-  }))
+  })),
+
+  actions: {
+    registerOption(option) {
+      this.get('options').push(option);
+      this._setDefaultValues();
+    },
+
+    unregisterOption(option) {
+      this.get('options').removeObject(option);
+      this._setDefaultValues();
+    }
+  }
 });
