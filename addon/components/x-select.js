@@ -45,6 +45,17 @@ export default Ember.Component.extend({
   multiple: null,
 
   /**
+   * The collection of options for this select box. When options are
+   * rendered as a child from x-select, they will register themselves with their
+   * containing `x-select`. This is for internal book-keeping only and should
+   * not be changed from outside.
+   *
+   * @private
+   * @property options
+   */
+  options: Ember.A([]),
+
+  /**
    * Bound to the `tabindex` attribute on the native <select> tag.
    *
    * @property tabindex
@@ -52,19 +63,6 @@ export default Ember.Component.extend({
    * @default 0
    */
   tabindex: 0,
-
-  /**
-   * The collection of options for this select box. When options are
-   * inserted into the dom, they will register themselves with their
-   * containing `x-select`. This is for internal book-keeping only and should
-   * not be changed from outside.
-   *
-   * @private
-   * @property options
-   */
-  options: Ember.computed(function() {
-    return Ember.A();
-  }),
 
   /**
    * When the select DOM event fires on the element, trigger the
@@ -130,7 +128,7 @@ export default Ember.Component.extend({
    * @private
    */
   _setDefaultValues: function() {
-    if (this.get('value') == null) {
+    if (this.get('value') === null) {
       this.sendAction('action', this._getValue());
     }
   },
@@ -152,10 +150,6 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
-    this.set('isXSelectDestroying', true);
-
-    // might be overkill, but make sure options can get gc'd
-    this.get('options').clear();
     this.$().off('blur');
   },
 
@@ -173,19 +167,32 @@ export default Ember.Component.extend({
     }
   })),
 
-  /**
-   * @private
-   */
-  registerOption: function(option) {
-    this.get('options').addObject(option);
-    this._setDefaultValues();
-  },
+  actions: {
 
-  /**
-   * @private
-   */
-  unregisterOption: function(option) {
-    this.get('options').removeObject(option);
-    this._setDefaultValues();
+    /**
+     * Registers a new option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is inserted into the DOM.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
+    registerOption(option) {
+      this.get('options').push(option);
+      this._setDefaultValues();
+    },
+
+    /**
+     * Removes a the passed option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is begining teardown.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
+    unregisterOption(option) {
+      this.get('options').removeObject(option);
+      this._setDefaultValues();
+    }
   }
 });

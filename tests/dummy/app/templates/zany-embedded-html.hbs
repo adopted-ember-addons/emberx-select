@@ -3,12 +3,12 @@
   <button {{action "populate"}}>Populate</button>
 </p>
 <p>
-  {{#x-select value=thing}}
+  {{#x-select value=thing as |xs|}}
     <option>Choose one of the following zaney options! ...</option>
     {{#each groupsOfZanyThings as |group|}}
       <optgroup label={{group.label}}>
         {{#each group.things as |thing|}}
-          {{#x-option value=thing}}{{thing.description}}{{/x-option}}
+          {{#xs.option value=thing}}{{thing.description}}{{/xs.option}}
         {{/each}}
       </optgroup>
     {{/each}}
