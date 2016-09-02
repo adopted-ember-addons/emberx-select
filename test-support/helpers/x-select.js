@@ -1,8 +1,13 @@
 import Ember from 'ember';
 import jQuery from 'jquery';
 
-// TODO:
-// Rename the file / move the select function?
+/**
+ * Picks an option from the select and sets it to be `selected` in the DOM.
+ *
+ * @method select
+ * @param {string|<jQuery>} selector - selector for the select to pick from.
+ * @param {string} texts - text of the option you are picking
+ */
 export function select(selector, ...texts) {
   let $select = selector instanceof jQuery ? selector : Ember.$(selector);
   let $options = $select.find(`option`);
