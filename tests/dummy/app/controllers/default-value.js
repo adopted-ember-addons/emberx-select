@@ -28,10 +28,14 @@ export default Ember.Controller.extend(Cars, {
       }
     },
     setCarModel: function(object) {
-      this.set('carModel', object);
+      if(object) {
+        this.set('carModel', object);
+      }
     },
     setTrim: function(object) {
-      this.set('trim', object);
+      if(object) {
+        this.set('trim', object);
+      }
     },
     updateField: function(object) {
       if (object) {

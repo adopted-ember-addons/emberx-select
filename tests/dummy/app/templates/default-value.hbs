@@ -3,10 +3,10 @@
 <h2>Select a Car Make</h2>
 <p>Default set to option two (Honda)</p>
 <p>
-  {{#x-select value=make action="setMake" class="spec-car-make"}}
-    {{#x-option value=ford}}Ford{{/x-option}}
-    {{#x-option value=honda selected=true}}Honda{{/x-option}}
-    {{#x-option value=toyota}}Toyota{{/x-option}}
+  {{#x-select value=make action="setMake" class="spec-car-make" as |xs|}}
+    {{#xs.option value=ford}}Ford{{/xs.option}}
+    {{#xs.option value=honda selected=true}}Honda{{/xs.option}}
+    {{#xs.option value=toyota}}Toyota{{/xs.option}}
     <option>Not Selected</option>
   {{/x-select}}
 </p>
@@ -16,12 +16,12 @@
 <h2>Select a Car Model</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=carModel action="setCarModel" class="spec-car-model"}}
+  {{#x-select value=carModel action="setCarModel" class="spec-car-model" as |xs|}}
     {{#each make.models as |carModel index|}}
       {{#if index}}
-        {{#x-option value=carModel}}{{carModel.name}}{{/x-option}}
+        {{#xs.option value=carModel}}{{carModel.name}}{{/xs.option}}
       {{else}}
-        {{#x-option value=carModel selected=true}}{{carModel.name}}{{/x-option}}
+        {{#xs.option value=carModel selected=true}}{{carModel.name}}{{/xs.option}}
       {{/if}}
     {{/each}}
     <option>Not Selected</option>
@@ -33,12 +33,12 @@
 <h2>Select a Car Trim Option</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=trim action="setTrim" class="spec-car-trim"}}
+  {{#x-select value=trim action="setTrim" class="spec-car-trim" as |xs|}}
     {{#each carModel.trimOptions as |trim index|}}
       {{#if index}}
-        {{#x-option value=trim}}{{trim.name}}{{/x-option}}
+        {{#xs.option value=trim}}{{trim.name}}{{/xs.option}}
       {{else}}
-        {{#x-option value=trim selected=true}}{{trim.name}}{{/x-option}}
+        {{#xs.option value=trim selected=true}}{{trim.name}}{{/xs.option}}
       {{/if}}
     {{/each}}
     <option>Not Selected</option>
@@ -50,13 +50,13 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the model (initialized as Ford) is overriding the default to select the first option in the list (Toyota).</p>
 <p>
-  {{#x-select value=model action="updateField" class="spec-autopopulated-make-field"}}
+  {{#x-select value=model action="updateField" class="spec-autopopulated-make-field" as |xs|}}
     {{#each makes as |make index|}}
       {{#if index}}
-        {{#x-option value=make}}{{make.name}}{{/x-option}}
+        {{#xs.option value=make}}{{make.name}}{{/xs.option}}
       {{else}}
         {{! Would default to the first option if model is not set}}
-        {{#x-option value=make selected=true}}{{make.name}}{{/x-option}}
+        {{#xs.option value=make selected=true}}{{make.name}}{{/xs.option}}
       {{/if}}
     {{/each}}
     <option>Not Selected</option>
@@ -67,13 +67,13 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the selectedQuantity (initially 0) is overriding the default to select the first option in the list (5).</p>
 <p>
-  {{#x-select value=selectedQuantity action="updateSelectedQuantity" class="spec-autopopulated-quantity-field"}}
+  {{#x-select value=selectedQuantity action="updateSelectedQuantity" class="spec-autopopulated-quantity-field" as |xs|}}
     {{#each quantities as |quantity index|}}
       {{#if index}}
-        {{#x-option value=quantity}}{{quantity}}{{/x-option}}
+        {{#xs.option value=quantity}}{{quantity}}{{/xs.option}}
       {{else}}
       {{! Would default to the first option if quantity is not set}}
-        {{#x-option value=quantity selected=true}}{{quantity}}{{/x-option}}
+        {{#xs.option value=quantity selected=true}}{{quantity}}{{/xs.option}}
       {{/if}}
     {{/each}}
     <option>Not Selected</option>

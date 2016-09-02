@@ -20,10 +20,10 @@ describeComponent(
         this.set('onBlur', (x, value)=> this.blur = value);
 
         this.render(hbs`
-          {{#x-select value=make one-way=true action=capture onclick=onClick onfocusout=onFocusOut onblur=onBlur}}
-            {{#x-option value="ford"}}Ford{{/x-option}}
-            {{#x-option value="chevy"}}Chevy{{/x-option}}
-            {{#x-option value="dodge" class="spec-dodge-option"}}Dodge{{/x-option}}
+          {{#x-select value=make one-way=true action=capture onclick=onClick onfocusout=onFocusOut onblur=onBlur as |xs|}}
+            {{#xs.option value="ford"}}Ford{{/xs.option}}
+            {{#xs.option value="chevy"}}Chevy{{/xs.option}}
+            {{#xs.option value="dodge" class="spec-dodge-option"}}Dodge{{/xs.option}}
           {{/x-select}}
         `);
       });
@@ -63,10 +63,10 @@ describeComponent(
         });
 
         this.render(hbs`
-          {{#x-select value=make one-way=true action=selectAction}}
-            {{#x-option value="fordValue" class="spec-ford-option"}}Ford{{/x-option}}
-            {{#x-option value="chevyValue"}}Chevy{{/x-option}}
-            {{#x-option value="dodgeValue" class="spec-dodge-option"}}Dodge{{/x-option}}
+          {{#x-select value=make one-way=true action=selectAction as |xs|}}
+            {{#xs.option value="fordValue" class="spec-ford-option"}}Ford{{/xs.option}}
+            {{#xs.option value="chevyValue"}}Chevy{{/xs.option}}
+            {{#xs.option value="dodgeValue" class="spec-dodge-option"}}Dodge{{/xs.option}}
           {{/x-select}}
         `);
       });
