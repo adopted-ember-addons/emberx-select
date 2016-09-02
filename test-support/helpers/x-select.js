@@ -1,11 +1,11 @@
 import Ember from 'ember';
+import jQuery from 'jquery';
 
 // TODO:
-// Can you pass an object instead of a string?
-// Can you make it not case sensastive?
 // Rename the file / move the select function?
 export function select(selector, ...texts) {
-  let $options = Ember.$(`${selector} option`);
+  let $select = selector instanceof jQuery ? selector : Ember.$(selector);
+  let $options = $select.find(`option`);
 
   if (!$options.length) {
     throw `No options found in ${selector}` ;
@@ -15,12 +15,16 @@ export function select(selector, ...texts) {
     let $option = Ember.$(this);
 
     Ember.run(() => {
-      this.selected = texts.some(text => $option.is(`:contains('${text}')`));
+      this.selected = texts.some((text) => {
+        // uppercase both texts so the helper isn't case sensastive.
+        let optionText = $option.text().trim().toUpperCase();
+
+        return optionText === text.toUpperCase();
+      });
 
       if(this.selected) {
         $option.prop('selected', true).trigger('change');
       }
-
     });
   });
 }

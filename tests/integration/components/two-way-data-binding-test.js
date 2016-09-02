@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { describeComponent, it } from 'ember-mocha';
 import { describe, beforeEach } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
-import { select } from 'dummy/tests/helpers/register-select-helper';
+import { select } from 'dummy/tests/helpers/x-select';
 
 describeComponent(
   'two-way-data-binding',
@@ -30,7 +30,7 @@ describeComponent(
       });
 
       beforeEach(function() {
-        select('.x-select', 'Dodge');
+        select(this.$(), 'Dodge');
       });
 
       it("doesn't mutate the value", function() {
