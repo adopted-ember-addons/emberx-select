@@ -152,9 +152,10 @@ injected the test helper into your app.
 
 #### Using the test helper
 
-As of version 1.1.3 we support both multiselects and regular selects. To use, you
-need to specify the class on the select as the first argument and the rest
-of the arguments are the options you'd like to select. For example:
+We support both multiselects and regular selects. To use, you
+need to specify the class on the select (or a jquery object) as the
+first argument and the rest of the arguments are the options you'd
+like to select. For example:
 
 ```js
 //... Single select
@@ -165,9 +166,21 @@ of the arguments are the options you'd like to select. For example:
 Multiselect
 ```js
 //... Multiselect
-  select('.my-drop-down', 'My Option', 'My Option Two', 'My Option Three');
+  select(Ember.$('.my-drop-down'), 'My Option', 'My Option Two', 'My Option Three');
 //...
 ```
+
+##### Component Integration tests
+
+To use the select helper in component integration
+tests you have to import the select function into your test:
+
+``` javascript
+  import { select } from 'yourappname/tests/helpers/x-select';
+```
+
+And then you can use the helper like you would normally.
+
 
 #### Why am I getting a JSHint error?
 
@@ -179,8 +192,8 @@ You need to either run the generator (`ember g emberx-select`) or import the tes
 `test-helper.js` file:
 
 ```js
-import registerSelectHelper from './helpers/register-select-helper';
-registerSelectHelper();
+import xSelectHelper from './helpers/x-select';
+xSelectHelper();
 ```
 
 ## EmberX
