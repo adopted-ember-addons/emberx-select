@@ -77,6 +77,14 @@ export default Ember.Component.extend({
   'oneWay': Ember.computed.alias('one-way'),
 
   /**
+   * Set to true when `willDestroyElement` is called.
+   *
+   * @private
+   * @property isXSelectDestroying
+   */
+  isXSelectDestroying: false,
+
+  /**
    * The collection of options for this select box. When options are
    * inserted into the dom, they will register themselves with their
    * containing `x-select`. This is for internal book-keeping only and should
@@ -194,6 +202,8 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
+    this.set('isXSelectDestroying', true);
+
     // might be overkill, but make sure options can get gc'd
     this.get('options').clear();
     this.$().off('blur');
@@ -228,7 +238,7 @@ export default Ember.Component.extend({
     this.get('options').removeObject(option);
 
     // We don't want to update the value if we're tearing the component down.
-    if (!this.get('isDestroying')) {
+    if (!this.get('isXSelectDestroying')) {
       this._updateValue();
     }
   }
