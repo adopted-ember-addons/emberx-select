@@ -45,6 +45,17 @@ export default Ember.Component.extend({
   multiple: null,
 
   /**
+   * The collection of options for this select box. When options are
+   * rendered as a child from x-select, they will register themselves with their
+   * containing `x-select`. This is for internal book-keeping only and should
+   * not be changed from outside.
+   *
+   * @private
+   * @property options
+   */
+  options: Ember.A([]),
+
+  /**
    * Bound to the `tabindex` attribute on the native <select> tag.
    *
    * @property tabindex
@@ -54,59 +65,11 @@ export default Ember.Component.extend({
   tabindex: 0,
 
   /**
-   * Determies if one way data binding is enabled. If set to true the
-   * value of x-select will not be updated when changing options. Instead, you
-   * would consume the new value through an action. E.g.
-   *
-   * {{#x-select value=someVal one-way=true action=(action "selectionChanged")}}
-   *   {{!options here ....}}
-   * {{/x-select}}
-   *
-   * @property one-way
-   * @type Boolean
-   * @default false
-   */
-  'one-way': false,
-
-  /**
-   * oneWay alias is a backward-compatible attribute for a release that existed
-   * for a short time
-   *
-   * @deprecated
-   */
-  'oneWay': Ember.computed.alias('one-way'),
-
-  /**
-   * Set to true when `willDestroyElement` is called.
-   *
-   * @private
-   * @property isXSelectDestroying
-   */
-  isXSelectDestroying: false,
-
-  /**
-   * The collection of options for this select box. When options are
-   * inserted into the dom, they will register themselves with their
-   * containing `x-select`. This is for internal book-keeping only and should
-   * not be changed from outside.
-   *
-   * @private
-   * @property options
-   */
-  options: Ember.computed(function() {
-    return Ember.A();
-  }),
-
-  /**
    * When the select DOM event fires on the element, trigger the
    * component's action with the current value.
    */
   change(event) {
     let nextValue = this._getValue();
-
-    if (!this.get('one-way')) {
-      this.set('value', nextValue);
-    }
 
     this.sendAction('action', nextValue, this);
     this.sendAction('onchange', this, nextValue, event);
@@ -159,28 +122,13 @@ export default Ember.Component.extend({
   },
 
   /**
-   * Reads the current value and sets it.
-   * @private
-   */
-  _updateValue: function() {
-    if (this.isDestroying || this.isDestroyed) {
-      return;
-    }
-    this.set('value', this._getValue());
-  },
-
-  /**
    * If no explicit value is set, apply default values based on selected=true in
    * the template.
    *
    * @private
    */
   _setDefaultValues: function() {
-    if (this.get('value') == null) {
-      if (!this.get('one-way')) {
-        this._updateValue();
-      }
-
+    if (this.get('value') === null) {
       this.sendAction('action', this._getValue());
     }
   },
@@ -202,10 +150,6 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
 
-    this.set('isXSelectDestroying', true);
-
-    // might be overkill, but make sure options can get gc'd
-    this.get('options').clear();
     this.$().off('blur');
   },
 
@@ -223,23 +167,32 @@ export default Ember.Component.extend({
     }
   })),
 
-  /**
-   * @private
-   */
-  registerOption: function(option) {
-    this.get('options').addObject(option);
-    this._setDefaultValues();
-  },
+  actions: {
 
-  /**
-   * @private
-   */
-  unregisterOption: function(option) {
-    this.get('options').removeObject(option);
+    /**
+     * Registers a new option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is inserted into the DOM.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
+    registerOption(option) {
+      this.get('options').push(option);
+      this._setDefaultValues();
+    },
 
-    // We don't want to update the value if we're tearing the component down.
-    if (!this.get('isXSelectDestroying')) {
-      this._updateValue();
+    /**
+     * Removes a the passed option that is contained within x-select.
+     *
+     * This is called whenever an x-option component is begining teardown.
+     *
+     * @param {<x-option>} option - x-option component.
+     * @private
+     */
+    unregisterOption(option) {
+      this.get('options').removeObject(option);
+      this._setDefaultValues();
     }
   }
 });

@@ -52,7 +52,7 @@ describe('XSelect: Single Selection', function() {
     });
 
     it('invokes action', function() {
-      expect(this.controller.get('tagged')).to.equal(stanley);
+      expect(this.controller.get('it')).to.equal(stanley);
     });
   });
 
@@ -79,7 +79,7 @@ describe('XSelect: Single Selection', function() {
       this.$().prop('selectedIndex', 4).trigger('change');
     });
     it("has no value", function() {
-      expect(this.controller.get('tagged')).to.equal(null);
+      expect(this.controller.get('it')).to.equal(null);
     });
   });
 

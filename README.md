@@ -1,5 +1,5 @@
 # emberx-select
-
+[![Ember Badge](https://embadge.io/b/7.svg)](https://embadge.io/badges/7)
 [![npm version](https://badge.fury.io/js/emberx-select.svg)](http://badge.fury.io/js/emberx-select)
 [![Ember Observer Score](http://emberobserver.com/badges/emberx-select.svg)](http://emberobserver.com/addons/emberx-select)
 [![Build Status](https://travis-ci.org/thefrontside/emberx-select.svg?branch=master)](https://travis-ci.org/thefrontside/emberx-select)
@@ -33,9 +33,9 @@ and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
 ```handlebars
-{{#x-select value=bob action="selectPerson"}}
-  {{#x-option value=fred}}Fred Flintstone{{/x-option}}
-  {{#x-option value=bob}}Bob Newhart{{/x-option}}
+{{#x-select value=bob action="selectPerson" as |xs|}}
+  {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
+  {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
 {{/x-select}}
 ```
 
@@ -45,24 +45,14 @@ the options are always up to date, so that when the object bound to
 Whenever the select tag receives a change event, it will fire
 `action`.
 
-If you're just changing a model's property, you don't need `action`. For example,
-if you have a model with a `status` field with an integer, you can do this:
-
-```handlebars
-{{#x-select value=model.status }}
-  {{#x-option value=1}}Active{{/x-option}}
-  {{#x-option value=2}}Inactive{{/x-option}}
-{{/x-select}}
-```
 
 ### Contextual Components
 
-As of version 2.1.0, `emberx-select` takes advantage of Ember's
-[contextual components](http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components)
-feature. Using contextual components allows `emberx-select` to skip some
-potentially expensive DOM traversals. This feature works with **Ember
-2.3.0 and above!** If you're using such a version, we highly recommend
-you use it:
+As of version 3.0.0, `emberx-select` will only support contextual
+components. This means you will have to use Ember 2.3 or higher. Using
+contextual components allows `emberx-select` to skip some
+potentially expensive DOM traversals. Now the options can register
+through data rather than through the DOM.
 
 ```handlebars
 {{#x-select value=model.status as |xs|}}
@@ -81,32 +71,14 @@ option. This means you can pass an array as its value, and it will set
 its selections directly on that array.
 
 ```handlebars
-{{#x-select value=selections multiple=true action="selectionsChanged"}}
- {{#x-option value=fred}}Fred Flintstone{{/x-option}}
- {{#x-option value=bob}}Bob Newhart{{/x-option}}
- {{#x-option value=andrew}}Andrew WK{{/x-option}}
+{{#x-select value=selections multiple=true action="selectionsChanged" as |xs|}}
+ {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
+ {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
+ {{#xs.option value=andrew}}Andrew WK{{/xs.option}}
 {{/x-select}}
 ```
 
 The selections array will be initialized to an empty array if not present.
-
-## Disabling two way data binding
-
-In x-select v2.2.0 we introduced a way to disable two way data
-binding, which is enabled by default. If you would like to only mutate
-the value of x-select through actions you can pass an attribute called
-`one-way` and set it to `true`. This will disable two way data binding.
-
-```hbs
-{{#x-select value=willNotChangeOnSelection one-way=true}}
-  {{#x-option value="hello" selected=true}}Hello{{/x-option}}
-  {{#x-option value="world"}}World{{/x-option}}
-{{/x-select}}
-```
-
-If you select the `World` option in the example above, it will not
-change the value (`willNotChangeOnSelection`) to `world`. Without
-`one-way=true` it would change the value.
 
 ## Action and Action Arguments
 
@@ -129,9 +101,9 @@ cases, you can associate arbitrary attributes with the component
 itself and use them later inside your action handler.  For example:
 
 ```handlebars
-{{#x-select action="didMakeSelection" default=anything}}
+{{#x-select action="didMakeSelection" default=anything as |xs|}}
   <option>Nothing</option>
-  {{#x-option value=something}}Something{{/x-option}}
+  {{#xs.option value=something}}Something{{/xs.option}}
 {{/x-select}}
 ```
 then, inside your action handler:
@@ -180,9 +152,10 @@ injected the test helper into your app.
 
 #### Using the test helper
 
-As of version 1.1.3 we support both multiselects and regular selects. To use, you
-need to specify the class on the select as the first argument and the rest
-of the arguments are the options you'd like to select. For example:
+We support both multiselects and regular selects. To use, you
+need to specify the class on the select (or a jquery object) as the
+first argument and the rest of the arguments are the options you'd
+like to select. For example:
 
 ```js
 //... Single select
@@ -193,9 +166,21 @@ of the arguments are the options you'd like to select. For example:
 Multiselect
 ```js
 //... Multiselect
-  select('.my-drop-down', 'My Option', 'My Option Two', 'My Option Three');
+  select(Ember.$('.my-drop-down'), 'My Option', 'My Option Two', 'My Option Three');
 //...
 ```
+
+##### Component Integration tests
+
+To use the select helper in component integration
+tests you have to import the select function into your test:
+
+``` javascript
+  import { select } from 'yourappname/tests/helpers/x-select';
+```
+
+And then you can use the helper like you would normally.
+
 
 #### Why am I getting a JSHint error?
 
@@ -207,8 +192,8 @@ You need to either run the generator (`ember g emberx-select`) or import the tes
 `test-helper.js` file:
 
 ```js
-import registerSelectHelper from './helpers/register-select-helper';
-registerSelectHelper();
+import xSelectHelper from './helpers/x-select';
+xSelectHelper();
 ```
 
 ## EmberX

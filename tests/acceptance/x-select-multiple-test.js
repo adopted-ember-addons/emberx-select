@@ -43,7 +43,7 @@ describe('XSelect: Multiple Selection', function() {
 
     it('invokes action', function() {
       expect(this.controller.get('currentSelections.length')).to.equal(1);
-      expect(this.controller.get('currentSelections.firstObject.name')).to.deep.equal('Stanley');
+      expect(this.controller.get('currentSelections')[0].name).to.deep.equal('Stanley');
     });
   });
 
@@ -61,6 +61,7 @@ describe('XSelect: Multiple Selection', function() {
     beforeEach(function() {
       this.$().prop('selectedIndex', 3).trigger('change');
     });
+
     it("has the empty array as a value", function() {
       expect(this.controller.get('currentSelections.length')).to.equal(0);
     });

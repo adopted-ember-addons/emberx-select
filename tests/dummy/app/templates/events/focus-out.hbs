@@ -1,9 +1,9 @@
 <h2>Focus Out</h2>
 
-{{#x-select value=it onfocusout="focusOut"}}
-  {{#x-option value=charles}}Charles{{/x-option}}
-  {{#x-option value=bastion}}Bastion{{/x-option}}
-  {{#x-option value=stanley}}Stanley{{/x-option}}
+{{#x-select value=it onfocusout="focusOut" as |xs|}}
+  {{#xs.option value=charles}}Charles{{/xs.option}}
+  {{#xs.option value=bastion}}Bastion{{/xs.option}}
+  {{#xs.option value=stanley}}Stanley{{/xs.option}}
   <option>Nobody</option>
 {{/x-select}}
 

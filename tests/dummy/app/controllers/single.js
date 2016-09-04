@@ -11,7 +11,7 @@ export default Ember.Controller.extend(Folks, {
 
   actions: {
     tagYouAreIt: function(object) {
-      this.tagged = object;
+      this.set('it', object);
     }
   }
 });
