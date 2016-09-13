@@ -45,6 +45,11 @@ export default Ember.Component.extend({
     }
   }),
 
+  // TODO, I don't want to use an observer. And the name isn't great..
+  disableToggle: Ember.observer('disabled', function() {
+    this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+  }),
+
   /**
    * Register this x-option with the containing `x-select`
    *
