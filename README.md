@@ -144,6 +144,12 @@ component, the value, and the jQuery event.
 `onclick` fires when x-select is clicked. When the action fires it
 sends three arguments: the component, the value, and the jQuery event.
 
+**on-disable** (x-option)
+
+`on-disable` fires when x-option detects a change to its `disabled`
+attribute. When the action fires it sends two arguments: the value
+and if it is disabled (boolean).
+
 ### Test Helpers
 
 Since `emberx-select` uses internal identifiers as the `value` attribute, it

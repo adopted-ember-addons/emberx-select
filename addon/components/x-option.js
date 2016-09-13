@@ -45,6 +45,19 @@ export default Ember.Component.extend({
     }
   }),
 
+  didReceiveAttrs({oldAttrs}) {
+    this._super.apply(...arguments);
+
+    if(oldAttrs && !!oldAttrs.disabled) {
+      // Undefined also means the option is not disabled.
+      let oldDisabled = !!oldAttrs.disabled.value;
+
+      if(this.get('disabled') !== oldDisabled) {
+        this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+      }
+    }
+  },
+
   /**
    * Register this x-option with the containing `x-select`
    *
