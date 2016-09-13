@@ -48,8 +48,12 @@ export default Ember.Component.extend({
   didReceiveAttrs({oldAttrs}) {
     this._super.apply(...arguments);
 
-    if(oldAttrs && this.get('disabled') !== !!oldAttrs.disabled.value) {
-      this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+    if(oldAttrs && !!oldAttrs.disabled) {
+      let oldDisabled = !!oldAttrs.disabled.value;
+
+      if(this.get('disabled') !== oldDisabled) {
+        this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+      }
     }
   },
 

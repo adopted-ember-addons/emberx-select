@@ -5,7 +5,7 @@ import { beforeEach, describe } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 
-describeComponent.only(
+describeComponent(
   'x-select-actions',
   'Integration: XSelectActionsComponent',
   {
