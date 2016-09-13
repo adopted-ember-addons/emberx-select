@@ -49,6 +49,7 @@ export default Ember.Component.extend({
     this._super.apply(...arguments);
 
     if(oldAttrs && !!oldAttrs.disabled) {
+      // Undefined also means the option is not disabled.
       let oldDisabled = !!oldAttrs.disabled.value;
 
       if(this.get('disabled') !== oldDisabled) {
