@@ -14,7 +14,6 @@ describeComponent.only(
   function() {
     describe("x-option actions", function() {
       beforeEach(function() {
-        this.set('disabledProp', false);
         this.set('handleDisable', sinon.spy());
 
         this.render(hbs`
@@ -24,10 +23,15 @@ describeComponent.only(
             {{/xs.option}}
           {{/x-select}}
         `);
+        this.set('disabledProp', false);
       });
 
       it('the option is not disabled', function() {
         expect(this.$('.test-xs-option').prop('disabled')).to.equal(false);
+      });
+
+      it("does not fire the action", function() {
+        expect(this.get('handleDisable')).to.not.have.been.called;
       });
 
       describe("disabling an option", function() {
@@ -46,6 +50,19 @@ describeComponent.only(
         it("has the correct arguments passed to the action", function() {
           expect(this.get('handleDisable').args[0][0]).to.equal('Hello', 'First argument should be the value');
           expect(this.get('handleDisable').args[0][1]).to.equal(true, 'Second argument should be the disabled boolean');
+        });
+
+        describe("setting the same value", function() {
+          beforeEach(function() {
+            this.set('disabledProp', true);
+          });
+
+          it("doesn't fire the action twice", function() {
+            // Once because this spy has already been called in the
+            // parent describe
+            expect(this.get('handleDisable')).to.have.been.calledOnce;
+          });
+
         });
 
       });
