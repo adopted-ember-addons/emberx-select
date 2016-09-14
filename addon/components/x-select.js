@@ -133,6 +133,10 @@ export default Ember.Component.extend({
    * @private
    */
   _setDefaultValues: function() {
+    Ember.run.once(this, this.__setDefaultValues);
+  },
+
+  __setDefaultValues: function() {
     if (this.get('value') === null) {
       this.sendAction('action', this._getValue());
     }
