@@ -148,9 +148,8 @@ export default Ember.Component.extend({
    * @override
    */
   willDestroyElement: function() {
-    this._super.apply(this, arguments);
-
     this.$().off('blur');
+    this._super.apply(this, arguments);
   },
 
   /**
