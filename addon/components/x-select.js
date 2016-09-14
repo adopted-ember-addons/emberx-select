@@ -5,6 +5,8 @@ const {
   computed,
 } = Ember;
 
+const isSelectedOption = (option) => option.$().is(':selected');
+
 /**
  * Wraps a native <select> element so that it can be object and
  * binding aware. It is used in conjuction with the
@@ -114,16 +116,30 @@ export default Ember.Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    let options = this.get('options').filter(function(option) {
-      return option.$().is(':selected');
-    });
+    return this.get('multiple') ? this._findMultipleValues() : this._findSingleValue();
+  },
 
-    if (this.get('multiple')) {
-      return Ember.A(options).mapBy('value');
-    } else {
-      let option = options[0];
-      return option ? option.get('value') : null;
-    }
+  /**
+   * Finds all selected values from all `x-option`
+   * children. Used when this.get('multiple') === true
+   *
+   * @private
+   * @return {Array} all the values from selected x-options
+  */
+  _findMultipleValues() {
+    return this.get('options').filter(isSelectedOption).map(option => option.get('value'));
+  },
+
+  /**
+   * Returns the value of the first selected `x-option`.
+   * Used when `this.get('multiple') !== true`
+   *
+   * @private
+   * @return {Object} the value of the first select `x-option`, or null
+  */
+  _findSingleValue() {
+    const selectedValue = this.get('options').find(isSelectedOption);
+    return selectedValue ? selectedValue.get('value') : null;
   },
 
   /**
