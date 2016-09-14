@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
-var isArray = Ember.isArray;
+const {
+  isArray,
+  computed,
+} = Ember;
 
 /**
  * Wraps a native <select> element so that it can be object and
@@ -53,7 +56,9 @@ export default Ember.Component.extend({
    * @private
    * @property options
    */
-  options: Ember.A([]),
+  options: computed(function() {
+    return Ember.A([]);
+  }),
 
   /**
    * Bound to the `tabindex` attribute on the native <select> tag.
