@@ -8,7 +8,7 @@ export default Ember.Controller.extend(Cars, {
 
   carModel: null,
 
-  trim: null,
+  trim: undefined,
 
   selectedQuantity: 0,
 
