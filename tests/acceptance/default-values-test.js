@@ -61,6 +61,14 @@ describe('XSelect: Default Values', function() {
       expect($(".spec-selected-quantity:contains('Selected Quantity: 0')")).to.exist;
     });
 
+    it('sets the selected property on the correct default option', function() {
+      expect($(".spec-car-trim option:contains('Sport')")).to.be.selected;
+    });
+
+    it('initializes with the correct explicit value if one is present even if that value is undefined', function() {
+      expect($(".spec-selected-trim:contains('Selected Trim: Sport')")).to.exist;
+    });
+
     describe("Changing the value on fields with default values", function() {
       beforeEach(function() {
         select('.spec-car-make', 'Toyota');
