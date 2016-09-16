@@ -153,7 +153,8 @@ export default Ember.Component.extend({
   },
 
   __setDefaultValues: function() {
-    if (this.get('value') == null) {
+    const canSet = !this.isDestroying && !this.isDestroyed;
+    if (canSet && this.get('value') == null) {
       this.sendAction('action', this._getValue());
     }
   },
