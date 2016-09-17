@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    locationType: 'hash',
+    locationType: 'auto',
     rootURL: '/',
     EmberENV: {
       FEATURES: {
@@ -40,7 +40,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/emberx-select';
   }
 
   return ENV;
