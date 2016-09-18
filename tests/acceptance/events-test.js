@@ -9,7 +9,7 @@ describe('Acceptance: Events', function() {
 
   beforeEach(function() {
     application = startApp();
-    visit('/e');
+    visit('test-bed/e');
   });
 
   afterEach(function() {

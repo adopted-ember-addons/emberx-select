@@ -10,7 +10,7 @@ describe('Acceptance: EmberData', function() {
 
   beforeEach(function() {
     application = startApp();
-    visit('/ember-data');
+    visit('test-bed/ember-data');
   });
 
   afterEach(function() {
@@ -18,7 +18,7 @@ describe('Acceptance: EmberData', function() {
   });
 
   it('can visit /ember-data', function() {
-    expect(currentPath()).to.equal('ember-data');
+    expect(currentPath()).to.equal('test-bed.ember-data');
   });
 
   describe("selecting a new value", function() {
@@ -32,7 +32,7 @@ describe('Acceptance: EmberData', function() {
       });
 
       it("doesn't blow up", function() {
-        expect(currentPath()).to.equal('single');
+        expect(currentPath()).to.equal('test-bed.single');
       });
 
     });

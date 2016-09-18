@@ -7,16 +7,18 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('single');
-  this.route('multiple');
-  this.route('zany-embedded-html');
-  this.route('default-value');
-  this.route('events', { path: '/e' }, function() {
-    this.route('blur');
-    this.route('click');
-    this.route('focus-out');
+  this.route('test-bed', function() {
+    this.route('single');
+    this.route('multiple');
+    this.route('zany-embedded-html');
+    this.route('default-value');
+    this.route('events', { path: '/e' }, function() {
+      this.route('blur');
+      this.route('click');
+      this.route('focus-out');
+    });
+    this.route('ember-data');
   });
-  this.route('ember-data');
 });
 
 export default Router;
