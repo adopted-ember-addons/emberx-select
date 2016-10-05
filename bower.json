@@ -6,6 +6,8 @@
     "sinon-chai": "~2.8.0",
     "ember": "~2.3.0",
     "ember-cli-shims": "0.1.1",
-    "bootstrap": "v4.0.0-alpha.4"
+    "bootstrap": "v4.0.0-alpha.4",
+    "marked": "^0.3.6",
+    "highlightjs": "^9.6.0"
   }
 }

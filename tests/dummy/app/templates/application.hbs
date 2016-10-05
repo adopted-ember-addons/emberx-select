@@ -1,5 +1,30 @@
 <div class="page-content-border">
   <div class="page-content">
-    {{outlet}}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <ul class="nav nav-pills nav-stacked addon-nav">
+            <li class="nav-item">
+              {{#link-to "introduction" class="nav-link"}}
+                Introduction
+              {{/link-to}}
+            </li>
+            <li class="nav-item">
+              {{#link-to "actions" class="nav-link"}}
+                Actions
+              {{/link-to}}
+            </li>
+            <li class="nav-item">
+              {{#link-to "testing" class="nav-link"}}
+                Testing
+              {{/link-to}}
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-10">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

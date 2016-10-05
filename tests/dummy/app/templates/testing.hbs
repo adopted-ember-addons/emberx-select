@@ -1,0 +1,34 @@
+<h1>Testing</h1>
+{{format-markdown
+  '
+  Since `x-select` uses internal identifiers as the `value` attribute, it
+  doesn\'t integrate with the `fillIn` test helper. But don\'t fret, we\'ve built a
+  test helper for you.
+
+  #### Using the test helper
+
+  To use the select helper in your tests you have to import the select function:
+
+  ``` javascript
+  import { select } from "yourappname/tests/helpers/x-select";
+  ```
+
+  We support both multiselects and regular selects. To use, you
+  need to specify the class on the select (or a jquery object) as the
+  first argument and the rest of the arguments are the options you\'d
+  like to select. For example:
+
+  ```js
+  //... Single select
+  select(".my-drop-down", "My Option");
+  //...
+  ```
+
+  Multiselect
+  ```javascript
+  //... Multiselect
+  select(Ember.$(".my-drop-down"), "My Option", "My Option Two", "My Option Three");
+  //...
+  ```
+  '
+}}

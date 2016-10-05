@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('introduction');
+  this.route('actions');
+  this.route('testing');
+  this.route('examples');
+
   this.route('test-bed', function() {
     this.route('single');
     this.route('multiple');
