@@ -1,6 +1,7 @@
 /* jshint expr:true */
 import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
+import { select } from 'dummy/tests/helpers/x-select';
 import startApp from '../helpers/start-app';
 import Ember from 'ember';
 

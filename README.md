@@ -150,13 +150,19 @@ sends three arguments: the component, the value, and the jQuery event.
 attribute. When the action fires it sends two arguments: the value
 and if it is disabled (boolean).
 
-### Test Helpers
+### Test Helper
 
-Since `emberx-select` uses internal identifiers as the `value` attribute, it
-doesn't integrate with the `fillIn` test helper. But don't fret, we've automatically
-injected the test helper into your app.
+Since `x-select` uses internal identifiers as the `value` attribute, it
+doesn't integrate with the `fillIn` test helper. But don't fret, we've built a
+test helper for you.
 
 #### Using the test helper
+
+To use the select helper in your tests you have to import the select function:
+
+``` javascript
+  import { select } from "yourappname/tests/helpers/x-select";
+```
 
 We support both multiselects and regular selects. To use, you
 need to specify the class on the select (or a jquery object) as the
@@ -165,43 +171,16 @@ like to select. For example:
 
 ```js
 //... Single select
-  select('.my-drop-down', 'My Option');
+  select(".my-drop-down", "My Option");
 //...
 ```
 
 Multiselect
-```js
+```javascript
 //... Multiselect
-  select(Ember.$('.my-drop-down'), 'My Option', 'My Option Two', 'My Option Three');
+  select(Ember.$(".my-drop-down"), "My Option", "My Option Two", "My Option Three");
 //...
 ```
-
-##### Component Integration tests
-
-To use the select helper in component integration
-tests you have to import the select function into your test:
-
-``` javascript
-  import { select } from 'yourappname/tests/helpers/x-select';
-```
-
-And then you can use the helper like you would normally.
-
-
-#### Why am I getting a JSHint error?
-
-You need to run the generator: `ember g emberx-select`
-
-#### Why am I getting a "Can't find variable: select" error?
-
-You need to either run the generator (`ember g emberx-select`) or import the test helper into your
-`test-helper.js` file:
-
-```js
-import xSelectHelper from './helpers/x-select';
-xSelectHelper();
-```
-
 ## EmberX
 
 emberx-select is part of the "missing components of ember" collectively
