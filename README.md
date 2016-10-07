@@ -127,22 +127,22 @@ export default Ember.Route.extend({
 x-select also provides other actions that fire on different event
 types. These actions follow the HTML input event naming convention.
 
-**onblur**
+**on-blur**
 
-`onblur` fires anytime the `blur` event is triggered on the x-select
-component. When the action fires it sends three arguments: the
-component, the value, and the jQuery event.
+`on-blur` fires anytime the `blur` event is triggered on the x-select
+component. When the action fires it sends two arguments: the value,
+and the jQuery event.
 
-**onfocusout**
+**on-focus-out**
 
-`onfocusout` fires anytime the `focusOut` event is triggered on the x-select
-component. When the action fires it sends three arguments: the
-component, the value, and the jQuery event.
+`on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
+component. When the action fires it sends two arguments: the value,
+and the jQuery event.
 
-**onclick**
+**on-click**
 
-`onclick` fires when x-select is clicked. When the action fires it
-sends three arguments: the component, the value, and the jQuery event.
+`on-click` fires when x-select is clicked. When the action fires it
+sends two arguments: the value, and the jQuery event.
 
 **on-disable** (x-option)
 

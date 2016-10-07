@@ -78,8 +78,8 @@ export default Ember.Component.extend({
   change(event) {
     let nextValue = this._getValue();
 
-    this.sendAction('action', nextValue, this);
-    this.sendAction('onchange', this, nextValue, event);
+    this.sendAction('action', nextValue, event);
+    this.sendAction('on-change', nextValue, event);
   },
 
   /**
@@ -87,7 +87,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   click(event) {
-    this.sendAction('onclick', this, this._getValue(), event);
+    this.sendAction('on-click', this._getValue(), event);
   },
 
   /**
@@ -95,7 +95,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   blur(event) {
-    this.sendAction('onblur', this, this._getValue(), event);
+    this.sendAction('on-blur', this._getValue(), event);
   },
 
   /**
@@ -103,7 +103,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   focusOut(event) {
-    this.sendAction('onfocusout', this, this._getValue(), event);
+    this.sendAction('on-focus-out', this._getValue(), event);
   },
 
   /**

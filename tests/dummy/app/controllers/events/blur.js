@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    onBlur(component, value, event) {
+    onBlur(value, event) {
       this.set('eventType', event.type);
     }
   }
