@@ -1,40 +1,40 @@
 import Ember from 'ember';
 
-export var sport = {name: 'Sport'};
+export const sport = {name: 'Sport'};
 
-export var sedan = {name: 'Sedan'};
+export const sedan = {name: 'Sedan'};
 
-export var hatchback = {name: 'Hatchback'};
+export const hatchback = {name: 'Hatchback'};
 
-export var camry = {name: 'Camry', trimOptions: [sport, sedan, hatchback]};
+export const camry = {name: 'Camry', trimOptions: [sport, sedan, hatchback]};
 
-export var corolla = {name: 'Corolla', trimOptions: [sedan]};
+export const corolla = {name: 'Corolla', trimOptions: [sedan]};
 
-export var tacoma = {name: 'Tacoma', trimOptions: []};
+export const tacoma = {name: 'Tacoma', trimOptions: []};
 
-export var fit = {name: 'Fit', trimOptions: [sport, hatchback]};
+export const fit = {name: 'Fit', trimOptions: [sport, hatchback]};
 
-export var civic = {name: 'Civic', trimOptions: [sedan, sport]};
+export const civic = {name: 'Civic', trimOptions: [sedan, sport]};
 
-export var accord = {name: 'Accord', trimOptions: []};
+export const accord = {name: 'Accord', trimOptions: []};
 
-export var focus = {name: 'Focus', trimOptions: [sport, hatchback]};
+export const focus = {name: 'Focus', trimOptions: [sport, hatchback]};
 
-export var fiesta = {name: 'Fiesta', trimOptions: [hatchback, sedan]};
+export const fiesta = {name: 'Fiesta', trimOptions: [hatchback, sedan]};
 
-export var mustang = {name: 'Mustang', trimOptions: [sport]};
+export const mustang = {name: 'Mustang', trimOptions: [sport]};
 
-export var toyotaModels = [camry, corolla, tacoma];
+export const toyotaModels = [camry, corolla, tacoma];
 
-export var hondaModels = [fit, civic, accord];
+export const hondaModels = [fit, civic, accord];
 
-export var fordModels = [focus, fiesta, mustang];
+export const fordModels = [focus, fiesta, mustang];
 
-export var toyota = {name: 'Toyota', models: toyotaModels};
+export const toyota = {name: 'Toyota', models: toyotaModels};
 
-export var honda = {name: 'Honda', models: hondaModels};
+export const honda = {name: 'Honda', models: hondaModels};
 
-export var ford = {name: 'Ford', models: fordModels};
+export const ford = {name: 'Ford', models: fordModels};
 
 export default Ember.Mixin.create({
   makes: [toyota, honda, ford],

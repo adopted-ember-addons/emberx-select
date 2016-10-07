@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var isArray = Ember.isArray;
+const { isArray } = Ember;
 
 /**
  * Used to wrap a native `<option>` tag and associate an object with

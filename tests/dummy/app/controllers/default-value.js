@@ -37,15 +37,7 @@ export default Ember.Controller.extend(Cars, {
         this.set('trim', object);
       }
     },
-    updateField: function(object) {
-      if (object) {
-        console.log('You selected Make:', object.name);
-      }
-    },
-    updateSelectedQuantity: function(object) {
-      if (object != null) {
-        console.log('You selected Quantity:', object);
-      }
-    }
+    updateField: function() {},
+    updateSelectedQuantity: function() {}
   }
 });

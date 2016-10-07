@@ -10,6 +10,8 @@ import startApp from '../helpers/start-app';
 import Ember from 'ember';
 import { select } from 'dummy/tests/helpers/x-select';
 
+const { $ } = Ember;
+
 describe('XSelect: Default Values', function() {
   let application;
 

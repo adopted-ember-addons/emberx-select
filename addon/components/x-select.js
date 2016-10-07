@@ -138,7 +138,7 @@ export default Ember.Component.extend({
    * @return {Object} the value of the first select `x-option`, or null
   */
   _findSingleValue() {
-    const selectedValue = this.get('options').find(isSelectedOption);
+    let selectedValue = this.get('options').find(isSelectedOption);
     return selectedValue ? selectedValue.get('value') : null;
   },
 
@@ -153,7 +153,7 @@ export default Ember.Component.extend({
   },
 
   __setDefaultValues: function() {
-    const canSet = !this.isDestroying && !this.isDestroyed;
+    let canSet = !this.isDestroying && !this.isDestroyed;
     if (canSet && this.get('value') == null) {
       this.sendAction('action', this._getValue());
     }

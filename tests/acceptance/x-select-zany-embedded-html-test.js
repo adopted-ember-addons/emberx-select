@@ -1,4 +1,4 @@
-/*global expect */
+/*global expect, getComponentById */
 /* jshint expr:true */
 
 import Ember from 'ember';
@@ -7,7 +7,7 @@ import { it } from 'ember-mocha';
 import { beforeEach, afterEach, describe } from 'mocha';
 
 
-var App;
+let App;
 
 describe('XSelect: Embedded HTML', function() {
   beforeEach(function() {
@@ -15,7 +15,7 @@ describe('XSelect: Embedded HTML', function() {
     visit("/zany-embedded-html");
   });
   beforeEach(function() {
-    var el = Ember.$('select');
+    let el = Ember.$('select');
     this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
