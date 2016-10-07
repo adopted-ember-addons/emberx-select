@@ -204,7 +204,7 @@ export default Ember.Component.extend({
      */
     registerOption(option) {
       this.get('options').push(option);
-      this._setDefaultValues();
+      Ember.run.once(this, '_setDefaultValues');
     },
 
     /**
@@ -217,7 +217,7 @@ export default Ember.Component.extend({
      */
     unregisterOption(option) {
       this.get('options').removeObject(option);
-      this._setDefaultValues();
+      Ember.run.once(this, '_updateValue');
     }
   }
 });
