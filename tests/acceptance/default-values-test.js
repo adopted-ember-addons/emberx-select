@@ -8,6 +8,7 @@ import {
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
 import Ember from 'ember';
+import { select } from 'dummy/tests/helpers/x-select';
 
 describe('XSelect: Default Values', function() {
   let application;

@@ -33,11 +33,3 @@ export function select(selector, ...texts) {
     });
   });
 }
-
-export default function() {
-  Ember.Test.registerAsyncHelper('select', function(app, selector, texts) {
-    select(selector, texts);
-
-    return app.testHelpers.wait();
-  });
-}
