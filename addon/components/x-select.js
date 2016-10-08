@@ -36,18 +36,18 @@ export default Ember.Component.extend({
    *
    * @property disabled
    * @type Boolean
-   * @default null
+   * @default false
    */
-  disabled: null,
+  disabled: false,
 
   /**
    * Bound to the `multiple` attribute on the native <select> tag.
    *
    * @property multiple
    * @type Boolean
-   * @default null
+   * @default false
    */
-  multiple: null,
+  multiple: false,
 
   /**
    * The collection of options for this select box. When options are
@@ -72,14 +72,75 @@ export default Ember.Component.extend({
   tabindex: 0,
 
   /**
+   * Function for the `on-blur` action
+   *
+   * @property on-blur
+   * @type Function
+   */
+  "on-blur": Ember.K,
+
+  /**
+   * Function for the `on-click` action
+   *
+   * @property on-click
+   * @type Function
+   */
+  "on-click": Ember.K,
+
+  /**
+   * Function for the `on-change` action
+   *
+   * @property on-change
+   * @type Function
+   */
+  "on-change": Ember.K,
+
+  /**
+   * Function for the `on-focus-out` action
+   *
+   * @property on-focus-out
+   * @type Function
+   */
+  "on-focus-out": Ember.K,
+
+  /**
+   * Object that holds the current state of the component
+   *
+   * @property componentState
+   * @type Object
+   * @return {Object} current state
+   */
+  componentState: Ember.computed('disabled', 'multiple', 'required', 'autofocus', function() {
+    return {
+      isDisabled: this.get('disabled'),
+      isMultiple: this.get('multiple'),
+      isAutoFocus: this.get('autofocus'),
+      isRequired: this.get('required')
+    };
+  }),
+
+  /**
+   * Function that calls an action and sends the proper arguments.
+   *
+   * @method _handleAction
+   * @type Function
+   * @param {String} action - string name of the action to invoke
+   * @param {String|Object} value - current value of the component
+   * @param {Object} event - jQuery event from the current action
+   */
+  _handleAction(action, value, event) {
+    this.get(action)(value, event, this.get('componentState'));
+  },
+
+  /**
    * When the select DOM event fires on the element, trigger the
    * component's action with the current value.
    */
   change(event) {
     let nextValue = this._getValue();
 
-    this.sendAction('action', nextValue, event);
-    this.sendAction('on-change', nextValue, event);
+    this.sendAction('action', nextValue, event, this.get('componentState'));
+    this._handleAction('on-change', nextValue, event);
   },
 
   /**
@@ -87,7 +148,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   click(event) {
-    this.sendAction('on-click', this._getValue(), event);
+    this._handleAction('on-click', this._getValue(), event);
   },
 
   /**
@@ -95,7 +156,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   blur(event) {
-    this.sendAction('on-blur', this._getValue(), event);
+    this._handleAction('on-blur', this._getValue(), event);
   },
 
   /**
@@ -103,7 +164,7 @@ export default Ember.Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   focusOut(event) {
-    this.sendAction('on-focus-out', this._getValue(), event);
+    this._handleAction('on-focus-out', this._getValue(), event);
   },
 
   /**

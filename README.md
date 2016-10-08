@@ -61,9 +61,6 @@ through data rather than through the DOM.
 {{/x-select}}
 ```
 
-If you're using a lower version of Ember, `emberx-select` will continue
-to work without block params for the forseeable future.
-
 ### Multiselect
 
 As of version 1.1.0, `emberx-select` supports the `multiple`
@@ -80,28 +77,32 @@ its selections directly on that array.
 
 The selections array will be initialized to an empty array if not present.
 
-## Action and Action Arguments
+## Actions and Action Arguments
 
-The action that is dispatched by x-select whenever the selected value or values
-change (change event) has a function signature of:
+All of x-selects actions are closure actions. This means you must use
+the `action` helper (i.e. `on-click=(action "onClick")`). The function
+that is dispatched by x-select whenever the event fires has a function
+signature of:
 
 ```js
 /**
-* @param value {Object} the value selected by the user.
-* @param component {Ember.Component} the x-select component itself
+* @param {Object} value - the value selected by the user.
+* @param {Object} event - the jQuery event of the action
+* @param {Object} componentState - object that contains `isDisabled`,
+  `isMultiple`, `isRequired` & `isAutoFocus`
 */
-function (value, component) {
+function (value, event, componentState) {
   // action body...
 }
 ```
 
 Most of the time all you need is the value that has been selected, but
 sometimes your action requires more context than just that. In those
-cases, you can associate arbitrary attributes with the component
-itself and use them later inside your action handler.  For example:
+cases, you can use the `componentState` argument. It contains a couple
+more things that relate to the components current state. For example:
 
 ```handlebars
-{{#x-select action="didMakeSelection" default=anything as |xs|}}
+{{#x-select action="didMakeSelection" required=true as |xs|}}
   <option>Nothing</option>
   {{#xs.option value=something}}Something{{/xs.option}}
 {{/x-select}}
@@ -111,18 +112,16 @@ then, inside your action handler:
 ```js
 export default Ember.Route.extend({
   actions: {
-    didMakeSelection: function(selection, component) {
-      if (selection) {
-        this.set('selection', selection)
+    didMakeSelection(value, event, componentState) {
+      if (!value & componentState.isRequired) {
+        this.set('error', 'You must fill out this field');
       } else {
-        this.set('selection', component.get('default'))
+        this.set('selection', value);
       }
     }
   }
 });
 ```
-
-#### Other Actions
 
 x-select also provides other actions that fire on different event
 types. These actions follow the HTML input event naming convention.
@@ -130,19 +129,20 @@ types. These actions follow the HTML input event naming convention.
 **on-blur**
 
 `on-blur` fires anytime the `blur` event is triggered on the x-select
-component. When the action fires it sends two arguments: the value,
-and the jQuery event.
+component. When the action fires it sends three arguments: the value,
+the jQuery event, and the components state.
 
 **on-focus-out**
 
 `on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
-component. When the action fires it sends two arguments: the value,
-and the jQuery event.
+component. When the action fires it sends three arguments: the value,
+the jQuery event, and the components state.
 
 **on-click**
 
 `on-click` fires when x-select is clicked. When the action fires it
-sends two arguments: the value, and the jQuery event.
+sends three arguments: the value, the jQuery event, and the components
+state.
 
 **on-disable** (x-option)
 

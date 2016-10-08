@@ -10,8 +10,8 @@ export default Ember.Controller.extend(Folks, {
   attrSize: null,
 
   actions: {
-    tagYouAreIt: function(object) {
-      this.set('it', object);
+    tagYouAreIt: function(value) {
+      this.set('it', value);
     }
   }
 });
