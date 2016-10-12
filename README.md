@@ -88,21 +88,18 @@ signature of:
 /**
 * @param {Object} value - the value selected by the user.
 * @param {Object} event - the jQuery event of the action
-* @param {Object} componentState - object that contains `isDisabled`,
-  `isMultiple`, `isRequired` & `isAutoFocus`
 */
-function (value, event, componentState) {
+function (value, event) {
   // action body...
 }
 ```
 
 Most of the time all you need is the value that has been selected, but
 sometimes your action requires more context than just that. In those
-cases, you can use the `componentState` argument that's an object. It contains
-keys that relate to the components current state. For example:
+cases, you can pass any arguments you need from the template. For example:
 
 ```handlebars
-{{#x-select action="didMakeSelection" required=true as |xs|}}
+{{#x-select on-click=(action "didMakeSelection" isXSelectRequired) required=isXSelectRequired as |xs|}}
   <option>Nothing</option>
   {{#xs.option value=something}}Something{{/xs.option}}
 {{/x-select}}
@@ -112,8 +109,8 @@ then, inside your action handler:
 ```js
 export default Ember.Route.extend({
   actions: {
-    didMakeSelection(value, event, componentState) {
-      if (!value & componentState.isRequired) {
+    didMakeSelection(value, event, isXSelectRequired) {
+      if (!value & isXSelectRequired) {
         this.set('error', 'You must fill out this field');
       } else {
         this.set('selection', value);
@@ -123,29 +120,25 @@ export default Ember.Route.extend({
 });
 ```
 
-`componentState` contains `isDisabled`,`isMultiple`, `isRequired` &
-`isAutoFocus`.
-
-x-select also provides other actions that fire on different event
+x-select provides other actions that fire on different event
 types. These actions follow the HTML input event naming convention.
 
 **on-blur**
 
 `on-blur` fires anytime the `blur` event is triggered on the x-select
-component. When the action fires it sends three arguments: the value,
-the jQuery event, and the components state.
+component. When the action fires it sends two arguments: the value,
+the jQuery event.
 
 **on-focus-out**
 
 `on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
-component. When the action fires it sends three arguments: the value,
-the jQuery event, and the components state.
+component. When the action fires it sends two arguments: the value,
+the jQuery event.
 
 **on-click**
 
 `on-click` fires when x-select is clicked. When the action fires it
-sends three arguments: the value, the jQuery event, and the components
-state.
+sends two arguments: the value, the jQuery event.
 
 **on-disable** (x-option)
 

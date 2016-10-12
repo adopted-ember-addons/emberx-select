@@ -10,7 +10,7 @@ before_install:
   - npm install -g bower
   - npm install -g yarn
   - bower --version
-  - yarn add phantomjs-prebuilt
+  - npm i phantomjs-prebuilt
   - phantomjs --version
 install:
   - yarn

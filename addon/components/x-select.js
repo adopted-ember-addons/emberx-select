@@ -104,22 +104,6 @@ export default Ember.Component.extend({
   "on-focus-out": Ember.K,
 
   /**
-   * Object that holds the current state of the component
-   *
-   * @property componentState
-   * @type Object
-   * @return {Object} current state
-   */
-  componentState: Ember.computed('disabled', 'multiple', 'required', 'autofocus', function() {
-    return {
-      isDisabled: this.get('disabled'),
-      isMultiple: this.get('multiple'),
-      isAutoFocus: this.get('autofocus'),
-      isRequired: this.get('required')
-    };
-  }),
-
-  /**
    * Function that calls an action and sends the proper arguments.
    *
    * @method _handleAction
@@ -129,7 +113,14 @@ export default Ember.Component.extend({
    * @param {Object} event - jQuery event from the current action
    */
   _handleAction(action, value, event) {
-    this.get(action)(value, event, this.get('componentState'));
+    let actionValue = this.get(action);
+
+    if(typeof actionValue === 'string') {
+      Ember.warn(`x-select: You must use the action helper for all actions. The try: ${action}=(action "${actionValue}") in your template`, false, {id: 'x-select-string-action'});
+      return;
+    }
+
+    this.get(action)(value, event);
   },
 
   /**
@@ -139,7 +130,7 @@ export default Ember.Component.extend({
   change(event) {
     let nextValue = this._getValue();
 
-    this.sendAction('action', nextValue, event, this.get('componentState'));
+    this.sendAction('action', nextValue, event, this);
     this._handleAction('on-change', nextValue, event);
   },
 
@@ -186,7 +177,7 @@ export default Ember.Component.extend({
    *
    * @private
    * @return {Array} all the values from selected x-options
-  */
+   */
   _findMultipleValues() {
     return this.get('options').filter(isSelectedOption).map(option => option.get('value'));
   },
@@ -197,7 +188,7 @@ export default Ember.Component.extend({
    *
    * @private
    * @return {Object} the value of the first select `x-option`, or null
-  */
+   */
   _findSingleValue() {
     let selectedValue = this.get('options').find(isSelectedOption);
     return selectedValue ? selectedValue.get('value') : null;

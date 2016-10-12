@@ -1,7 +1,9 @@
 /* jshint expr:true */
+import Ember from 'ember';
 import { expect } from 'chai';
 import { describeComponent, it } from 'ember-mocha';
 import { beforeEach, describe } from 'mocha';
+import { select } from 'dummy/tests/helpers/x-select';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 
@@ -67,5 +69,25 @@ describeComponent(
 
       });
     });
+
+    describe("x-select actions", function() {
+      describe("sending a string action", function() {
+        beforeEach(function() {
+          this.render(hbs`
+          {{#x-select value=value on-change="stringaction" as |xs|}}
+            {{#xs.option value="Hello"}}Hello{{/xs.option}}
+          {{/x-select}}
+        `);
+          Ember.warn = sinon.spy();
+
+          select(this.$(), 'Hello');
+        });
+
+        it("sends a warning in the console", function() {
+          expect(Ember.warn).to.have.been.calledOnce;
+        });
+      });
+    });
+
   }
 );
