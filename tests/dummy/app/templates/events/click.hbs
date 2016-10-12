@@ -1,6 +1,6 @@
 <h2>Click</h2>
 
-{{#x-select value=it onclick="onClick" as |xs|}}
+{{#x-select value=it on-click=(action "onClick") as |xs|}}
   {{#xs.option value=charles}}Charles{{/xs.option}}
   {{#xs.option value=bastion}}Bastion{{/xs.option}}
   {{#xs.option value=stanley}}Stanley{{/xs.option}}
