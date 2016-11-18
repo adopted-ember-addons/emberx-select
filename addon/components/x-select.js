@@ -147,7 +147,11 @@ export default Ember.Component.extend({
    */
   _getValue() {
     let options = this.get('options').filter(function(option) {
-      return option.$().is(':selected');
+      try {
+        return option.$().is(':selected');
+      } catch(err) {
+        console.log(err);
+      }
     });
 
     if (this.get('multiple')) {
