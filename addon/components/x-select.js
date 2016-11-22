@@ -77,7 +77,7 @@ export default Ember.Component.extend({
    * @property on-blur
    * @type Function
    */
-  "on-blur": Ember.K,
+  "on-blur"() {},
 
   /**
    * Function for the `on-click` action
@@ -85,7 +85,7 @@ export default Ember.Component.extend({
    * @property on-click
    * @type Function
    */
-  "on-click": Ember.K,
+  "on-click"() {},
 
   /**
    * Function for the `on-change` action
@@ -93,7 +93,7 @@ export default Ember.Component.extend({
    * @property on-change
    * @type Function
    */
-  "on-change": Ember.K,
+  "on-change"() {},
 
   /**
    * Function for the `on-focus-out` action
@@ -101,7 +101,7 @@ export default Ember.Component.extend({
    * @property on-focus-out
    * @type Function
    */
-  "on-focus-out": Ember.K,
+  "on-focus-out"() {},
 
   /**
    * Function that calls an action and sends the proper arguments.
