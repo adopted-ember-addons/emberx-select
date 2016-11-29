@@ -50,9 +50,9 @@
     "ember select component"
   ],
   "dependencies": {
-    "ember-cli-htmlbars": "^1.0.3",
-    "ember-cli-version-checker": "^1.1.6",
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-htmlbars": "^1.1.1",
+    "ember-cli-version-checker": "^1.1.6"
   },
   "ember-addon": {
     "demoURL": "https://thefrontside.github.io/emberx-select",
