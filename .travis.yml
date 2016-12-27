@@ -17,7 +17,7 @@ install:
   - bower install
 
 after_success:
-  test $TRAVIS_BRANCH = "master" && ember deploy production
+  test $TRAVIS_BRANCH = "rd/fix-auto-deploy" && ember build -e production && ember deploy production
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
