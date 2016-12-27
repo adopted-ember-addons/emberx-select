@@ -235,12 +235,13 @@ export default Ember.Component.extend({
     }
   })),
 
+
   /**
    * @private
    */
   registerOption: function(option) {
     this.get('options').addObject(option);
-    this._setDefaultValues();
+    Ember.run.once(this, '_setDefaultValues');
   },
 
   /**
@@ -251,7 +252,7 @@ export default Ember.Component.extend({
 
     // We don't want to update the value if we're tearing the component down.
     if (!this.get('isXSelectDestroying')) {
-      this._updateValue();
+      Ember.run.once(this, '_updateValue');
     }
   }
 });
