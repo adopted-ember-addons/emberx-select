@@ -2520,9 +2520,9 @@ fresh@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.3.0.tgz#651f838e22424e7566de161d8358caa199f83d4f"
 
-fs-branding@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/fs-branding/-/fs-branding-0.1.1.tgz#87ee28f10f0e2112fedeb4aee044d82b8fcd3b0c"
+fs-branding@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fs-branding/-/fs-branding-0.1.2.tgz#a7d15142e13ceec97461d17950aafe5489ab7d1e"
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-sass "5.5.1"
