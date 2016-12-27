@@ -25,7 +25,7 @@ describe('XSelect: Default Values', function() {
 
   describe('Initializing with default values', function(){
     beforeEach(function() {
-      visit('/default-value');
+      visit('test-bed/default-value');
     });
 
     it('initializes with defaults if no explicit value is present', function() {

@@ -14,7 +14,7 @@ let App;
 describe('XSelect: Single Selection', function() {
   beforeEach(function() {
     App = startApp();
-    visit("/single");
+    visit("test-bed/single");
   });
   beforeEach(function() {
     let el = Ember.$('select');
@@ -22,7 +22,7 @@ describe('XSelect: Single Selection', function() {
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
     };
-    this.controller = App.__container__.lookup('controller:single');
+    this.controller = App.__container__.lookup('controller:test-bed.single');
   });
 
   afterEach(function() {

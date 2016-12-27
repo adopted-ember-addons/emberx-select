@@ -12,7 +12,7 @@ let App;
 describe('XSelect: Embedded HTML', function() {
   beforeEach(function() {
     App = startApp();
-    visit("/zany-embedded-html");
+    visit("test-bed/zany-embedded-html");
   });
   beforeEach(function() {
     let el = Ember.$('select');
@@ -20,7 +20,7 @@ describe('XSelect: Embedded HTML', function() {
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
     };
-    this.controller = App.__container__.lookup('controller:zanyEmbeddedHTML');
+    this.controller = App.__container__.lookup('controller:test-bed.zanyEmbeddedHTML');
   });
 
   it("renders", function() {

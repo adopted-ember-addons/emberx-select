@@ -5,6 +5,9 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
+    fsBranding: {
+      enableAssets: true
+    }
   });
 
   /*
@@ -16,6 +19,7 @@ module.exports = function(defaults) {
 
   app.import('bower_components/chai-jquery/chai-jquery.js', {type: 'test'});
   app.import('bower_components/sinon-chai/lib/sinon-chai.js', {type: 'test'});
+  app.import("bower_components/highlightjs/styles/github.css");
 
   return app.toTree();
 };

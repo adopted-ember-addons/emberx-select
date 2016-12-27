@@ -1,0 +1,124 @@
+<h1>Migrating from 2.x to 3.x</h1>
+
+<p>
+  We decided to use a major version to align x-select with current ember best
+  practices. This also was an opportunity to remove old crufty code.
+
+  This should be your go to guide to updating from x-select 2.x to 3.x. There's
+  a good amount of changes, so let's get started!
+</p>
+
+<h3>Breaking changes in 3.x</h3>
+
+<ul>
+  <li>
+    <a href="contextual">Contextual components only</a>
+  </li>
+  <li>
+    <a href="#testHelper">Improved test helper</a>
+  </li>
+  <li>
+    <a href="#actions">Renamed actions & arguments</a>
+  </li>
+  <li>
+    <a href="#twoWayDataBinding">Removed two way data binding</a>
+  </li>
+</ul>
+
+<h3 id="contexual">Contextual Components Only</h3>
+
+<p>x-select 3.x will only support Embers
+<a href="http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components">Contextual Components</a>.
+Basically this means you have to structure your selects like:</p>
+
+{{format-markdown '
+  ```handlebars
+  {{#x-select value=model.status as |xs|}}
+    {{#xs.option value=1}}Active{{/xs.option}}
+    {{#xs.option value=2}}Inactive{{/xs.option}}
+  {{/x-select}}
+  ```
+  '
+}}
+
+<p>
+  This means you will have to use Ember 2.3 or higher. Using contextual components
+  allows emberx-select to skip some potentially expensive DOM traversals. Now the
+  options can register through data rather than through the DOM.
+</p>
+
+<h3 id="testHelper">Improved Test Helper</h3>
+
+<p>
+  In x-select 3.x we removed the auto registering test helper in favor of a more
+  robust helper that you must import now. In order to use the new helper you must
+  import the select function:
+</p>
+
+{{format-markdown '
+  ```js
+  import { select } from "yourappname/tests/helpers/x-select";
+  ```
+  '
+}}
+<p>
+  After that not much changes for your helper. You can continue to use the test
+  helper the way you were normally.
+</p>
+
+<p>
+  What's new is now you can pass a jquery object as an argument instead of a class
+  selector. This is helpful for when you're integration testing:
+</p>
+
+{{format-markdown '
+  ```js
+  select(this.$(), "My Option", "My Option Two", "My Option Three");
+  ```
+  '
+}}
+
+<h3 id="actions">Renamed Actions & Arguments</h3>
+
+<p>
+  x-select 3.x will only work with closure actions. That means you will have to
+  use the `action` helper in your templates {{format-markdown '(i.e. `on-click=(action "onClick")`).'}}
+</p>
+
+<p>
+  The arguments that are passes from x-selects actions have also changed. We
+  have normalized all of the action arguments so each action gets the same
+  arguments. The new function signature for x-select 3.x is:
+</p>
+
+{{format-markdown '
+  ```js
+  /**
+  * @param {Object} value - the value selected by the user.
+  * @param {Object} event - the jQuery event of the action
+  */
+  function (value, event) {
+  // action body...
+  }
+  ```
+  '
+}}
+
+<p>
+  We're no longer sending the component context as an argument since all of this
+  can be passed from the tempalate with the new closure actions. For example:
+
+  {{format-markdown '`on-click=(action "onClick" isDisabled)`'}}
+</p>
+
+<p>
+  We can pick state off the controller/parent component since it's in the
+  template context. Then pass it as an argument to the action if we need it.
+</p>
+
+<h3 id="twoWayDataBinding">Two Way Data Binding</h3>
+
+<p>
+  x-select 3.x has offically ended two way data binding support. You must now
+  change the value through an action that sets the value.
+</p>

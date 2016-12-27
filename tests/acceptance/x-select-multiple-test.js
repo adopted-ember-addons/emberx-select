@@ -12,7 +12,7 @@ let App;
 describe('XSelect: Multiple Selection', function() {
   beforeEach(function() {
     App = startApp();
-    visit("/multiple");
+    visit("test-bed/multiple");
   });
   beforeEach(function() {
     let el = Ember.$('select');
@@ -20,7 +20,7 @@ describe('XSelect: Multiple Selection', function() {
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
     };
-    this.controller = App.__container__.lookup('controller:multiple');
+    this.controller = App.__container__.lookup('controller:test-bed.multiple');
   });
 
   afterEach(function() {
