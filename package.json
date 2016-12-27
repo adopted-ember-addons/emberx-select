@@ -58,7 +58,7 @@
     "ember-cli-version-checker": "^1.1.6"
   },
   "ember-addon": {
-    "demoURL": "https://thefrontside.github.io/emberx-select",
+    "demoURL": "http://emberx-select.pagefrontapp.com",
     "configPath": "tests/dummy/config",
     "versionCompatibility": {
       "ember": ">=1.13.4"
