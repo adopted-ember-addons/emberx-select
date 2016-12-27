@@ -40,7 +40,7 @@
     "ember-resolver": "^2.0.3",
     "ember-sinon": "0.5.1",
     "eslint-plugin-prefer-let": "^0.1.0",
-    "fs-branding": "0.1.0",
+    "fs-branding": "0.1.1",
     "loader.js": "^4.0.1",
     "markdown-code-highlighting": "0.1.0"
   },
