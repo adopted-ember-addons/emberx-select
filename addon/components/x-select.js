@@ -220,6 +220,14 @@ export default Ember.Component.extend({
     this.$().on('blur', (event) => {
       this.blur(event);
     });
+
+    // FIXME this is an unfortunate workaround for an Edge bug for selects with required:
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8794503/
+    if (/edge\//i.test(window.navigator.userAgent)) {
+      let value = this.$().val();
+      this.$().val(`${value}-fake-edge-😳`);
+      this.$().val(value);
+    }
   },
 
   /**
