@@ -4,10 +4,10 @@
     "ember-mocha": "0.8.8",
     "chai-jquery": "~2.0.0",
     "sinon-chai": "~2.8.0",
-    "ember": "~2.3.0",
-    "ember-cli-shims": "0.1.1",
     "bootstrap": "v4.0.0-alpha.4",
     "marked": "^0.3.6",
-    "highlightjs": "^9.6.0"
+    "highlightjs": "^9.6.0",
+    "ember": "~2.10.0",
+    "ember-cli-shims": "0.1.3"
   }
 }
