@@ -27,9 +27,23 @@
 
 <h3 id="contexual">Contextual Components Only</h3>
 
-<p>x-select 3.x will only support Embers
-<a href="http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components">Contextual Components</a>.
-Basically this means you have to structure your selects like:</p>
+<p>
+  x-select 3.x will only support Embers
+  <a href="http://emberjs.com/blog/2016/01/15/ember-2-3-released.html#toc_contextual-components">Contextual Components</a>.
+  Basically this means the selects will go from this markup:
+</p>
+
+{{format-markdown '
+  ```handlebars
+  {{#x-select value=model.status}}
+    {{#x-option value=1}}Active{{/x-option}}
+    {{#x-option value=2}}Inactive{{/x-option}}
+  {{/x-select}}
+  ```
+  '
+  }}
+
+<p>To this markup:</p>
 
 {{format-markdown '
   ```handlebars
@@ -42,7 +56,7 @@ Basically this means you have to structure your selects like:</p>
 }}
 
 <p>
-  This means you will have to use Ember 2.3 or higher. Using contextual components
+  You will have to use Ember 2.3 or higher. Using contextual components
   allows emberx-select to skip some potentially expensive DOM traversals. Now the
   options can register through data rather than through the DOM.
 </p>
@@ -51,8 +65,24 @@ Basically this means you have to structure your selects like:</p>
 
 <p>
   In x-select 3.x we removed the auto registering test helper in favor of a more
-  robust helper that you must import now. In order to use the new helper you must
-  import the select function:
+  robust helper that you must import now. You must remove a couple lines in your
+  `test-helper.js` file:
+</p>
+
+{{format-markdown '
+  ```js
+  import registerSelectHelper from "./helpers/register-select-helper";
+  registerSelectHelper();
+  ```
+  '}}
+
+<p>
+  These lines were placed here by the now dead blueprint. You can also remove
+  the global `select` from your test `.jshintrc` file.
+</p>
+
+<p>
+  In order to use the new helper you must import the select function:
 </p>
 
 {{format-markdown '
@@ -120,5 +150,32 @@ Basically this means you have to structure your selects like:</p>
 
 <p>
   x-select 3.x has offically ended two way data binding support. You must now
-  change the value through an action that sets the value.
+  change the value through an action that sets the value. That means ever x-select
+  must have an action to change it's value.
+</p>
+
+{{format-markdown '
+  ```handlebars
+  {{#x-select value=status on-change=(action "setStatus") as |xs|}}
+    {{#xs.option value=1}}Active{{/xs.option}}
+    {{#xs.option value=2}}Inactive{{/xs.option}}
+  {{/x-select}}
+  ```
+  '
+}}
+
+In the controller / component / route:
+{{format-markdown '
+  ```js
+  actions: {
+    setStatus(value/*, event */) {
+      this.set("status", value);
+    }
+  }
+ ```
+ '
+}}
+
+<p>
+  {{format-markdown "If you were using the `one-way=true` attribute, you can remove it as it's unnecessary now."}}
 </p>
