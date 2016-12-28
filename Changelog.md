@@ -1,5 +1,78 @@
 # Change Log
 
+## [v3.0.0](https://github.com/thefrontside/emberx-select/tree/v3.0.0) (2016-12-28)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.3...v3.0.0)
+
+**Implemented enhancements:**
+
+- Is it possible to make updating disabled on an option reset the selected option? [\#136](https://github.com/thefrontside/emberx-select/issues/136)
+- Only use contextual components [\#128](https://github.com/thefrontside/emberx-select/issues/128)
+- Move acceptance tests to /test-bed route [\#123](https://github.com/thefrontside/emberx-select/issues/123)
+- Remove two way data binding by default [\#120](https://github.com/thefrontside/emberx-select/issues/120)
+- Export `select` function for use in integration tests [\#118](https://github.com/thefrontside/emberx-select/issues/118)
+- Use TravisCI to deploy GH pages [\#89](https://github.com/thefrontside/emberx-select/issues/89)
+- Setup auto deploy to pagefront on CI success [\#154](https://github.com/thefrontside/emberx-select/pull/154) ([Robdel12](https://github.com/Robdel12))
+- Fire action on x-option when disabled [\#146](https://github.com/thefrontside/emberx-select/pull/146) ([Robdel12](https://github.com/Robdel12))
+- Extract select test helper to an exported function [\#141](https://github.com/thefrontside/emberx-select/pull/141) ([Robdel12](https://github.com/Robdel12))
+- x-select contextual components only [\#140](https://github.com/thefrontside/emberx-select/pull/140) ([Robdel12](https://github.com/Robdel12))
+- Kill two way data binding [\#139](https://github.com/thefrontside/emberx-select/pull/139) ([Robdel12](https://github.com/Robdel12))
+
+**Closed issues:**
+
+- \_getValue: function \_getValue\(\) { throws error [\#163](https://github.com/thefrontside/emberx-select/issues/163)
+- Bug with computed properties [\#158](https://github.com/thefrontside/emberx-select/issues/158)
+- x-select.js:151 Uncaught TypeError: Cannot read property 'is' of undefined [\#144](https://github.com/thefrontside/emberx-select/issues/144)
+
+**Merged pull requests:**
+
+- Expand upon migrating from 2.x to 3.x [\#176](https://github.com/thefrontside/emberx-select/pull/176) ([Robdel12](https://github.com/Robdel12))
+- Upgrade ember-cli [\#175](https://github.com/thefrontside/emberx-select/pull/175) ([Robdel12](https://github.com/Robdel12))
+- Update branding addon to 0.1.2 [\#174](https://github.com/thefrontside/emberx-select/pull/174) ([Robdel12](https://github.com/Robdel12))
+- Remove auto register test helper [\#160](https://github.com/thefrontside/emberx-select/pull/160) ([Robdel12](https://github.com/Robdel12))
+- Update actions to kebob case & arguments. [\#159](https://github.com/thefrontside/emberx-select/pull/159) ([Robdel12](https://github.com/Robdel12))
+- Move tests to own route & build new demo app [\#157](https://github.com/thefrontside/emberx-select/pull/157) ([Robdel12](https://github.com/Robdel12))
+- Switch to eslint [\#155](https://github.com/thefrontside/emberx-select/pull/155) ([cowboyd](https://github.com/cowboyd))
+- v3.0.0 \(almost\) [\#143](https://github.com/thefrontside/emberx-select/pull/143) ([Robdel12](https://github.com/Robdel12))
+
+## [v2.2.3](https://github.com/thefrontside/emberx-select/tree/v2.2.3) (2016-12-27)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.2...v2.2.3)
+
+**Closed issues:**
+
+- Misleading docs? [\#156](https://github.com/thefrontside/emberx-select/issues/156)
+
+**Merged pull requests:**
+
+- Fixed Bug with computed properties \(to v2.2.3\) [\#173](https://github.com/thefrontside/emberx-select/pull/173) ([Robdel12](https://github.com/Robdel12))
+- UA sniff for bad MS Edge bug \(required selects must change value to be valid --glimmer PR\) [\#172](https://github.com/thefrontside/emberx-select/pull/172) ([Robdel12](https://github.com/Robdel12))
+- UA sniff for bad MS Edge bug \(required selects must change value to be valid\) [\#170](https://github.com/thefrontside/emberx-select/pull/170) ([Robdel12](https://github.com/Robdel12))
+- Allow ember-source npm package to work. [\#167](https://github.com/thefrontside/emberx-select/pull/167) ([rwjblue](https://github.com/rwjblue))
+- Replace deprecated contains with includes [\#166](https://github.com/thefrontside/emberx-select/pull/166) ([chrisccerami](https://github.com/chrisccerami))
+- Replaces `Ember.K` usage with JavaScript syntax [\#165](https://github.com/thefrontside/emberx-select/pull/165) ([locks](https://github.com/locks))
+- getValue update [\#164](https://github.com/thefrontside/emberx-select/pull/164) ([vinodhrajamuralidharan](https://github.com/vinodhrajamuralidharan))
+- Use Yarn over NPM [\#162](https://github.com/thefrontside/emberx-select/pull/162) ([Robdel12](https://github.com/Robdel12))
+- guard against \_\_setDefaultValues being called during teardown [\#153](https://github.com/thefrontside/emberx-select/pull/153) ([Dhaulagiri](https://github.com/Dhaulagiri))
+- Fix bug where undefined initial values were changed to null [\#152](https://github.com/thefrontside/emberx-select/pull/152) ([Dhaulagiri](https://github.com/Dhaulagiri))
+- don't share `options` arrays between x-select instances [\#150](https://github.com/thefrontside/emberx-select/pull/150) ([fivetanley](https://github.com/fivetanley))
+- reduce number of components searched [\#149](https://github.com/thefrontside/emberx-select/pull/149) ([fivetanley](https://github.com/fivetanley))
+- call willDestroyElement's this.\_super last [\#148](https://github.com/thefrontside/emberx-select/pull/148) ([fivetanley](https://github.com/fivetanley))
+- coalesce registering and unregistering options [\#147](https://github.com/thefrontside/emberx-select/pull/147) ([fivetanley](https://github.com/fivetanley))
+
+## [v2.2.2](https://github.com/thefrontside/emberx-select/tree/v2.2.2) (2016-09-03)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.1...v2.2.2)
+
+**Fixed bugs:**
+
+- isDestroying is false when x-option \(& x-select\) are being destroyed \(Ember 2.8 beta\) [\#138](https://github.com/thefrontside/emberx-select/issues/138)
+- Fire action with default value when in one-way mode [\#134](https://github.com/thefrontside/emberx-select/issues/134)
+
+**Merged pull requests:**
+
+- Fix beta build [\#142](https://github.com/thefrontside/emberx-select/pull/142) ([Robdel12](https://github.com/Robdel12))
+- Update ember-cli to 2.7 [\#137](https://github.com/thefrontside/emberx-select/pull/137) ([Robdel12](https://github.com/Robdel12))
+- Update changelog for 2.2.1 [\#133](https://github.com/thefrontside/emberx-select/pull/133) ([Robdel12](https://github.com/Robdel12))
+- Fire action when one-way is true and no default value provided [\#135](https://github.com/thefrontside/emberx-select/pull/135) ([tehviking](https://github.com/tehviking))
+
 ## [v2.2.1](https://github.com/thefrontside/emberx-select/tree/v2.2.1) (2016-07-19)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.0...v2.2.1)
 
