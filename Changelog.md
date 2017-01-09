@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Replace deprecated contains with includes [\#166](https://github.com/thefrontside/emberx-select/pull/166) ([chrisccerami](https://github.com/chrisccerami))
 - Expand upon migrating from 2.x to 3.x [\#176](https://github.com/thefrontside/emberx-select/pull/176) ([Robdel12](https://github.com/Robdel12))
 - Upgrade ember-cli [\#175](https://github.com/thefrontside/emberx-select/pull/175) ([Robdel12](https://github.com/Robdel12))
 - Update branding addon to 0.1.2 [\#174](https://github.com/thefrontside/emberx-select/pull/174) ([Robdel12](https://github.com/Robdel12))
@@ -47,7 +48,6 @@
 - UA sniff for bad MS Edge bug \(required selects must change value to be valid --glimmer PR\) [\#172](https://github.com/thefrontside/emberx-select/pull/172) ([Robdel12](https://github.com/Robdel12))
 - UA sniff for bad MS Edge bug \(required selects must change value to be valid\) [\#170](https://github.com/thefrontside/emberx-select/pull/170) ([Robdel12](https://github.com/Robdel12))
 - Allow ember-source npm package to work. [\#167](https://github.com/thefrontside/emberx-select/pull/167) ([rwjblue](https://github.com/rwjblue))
-- Replace deprecated contains with includes [\#166](https://github.com/thefrontside/emberx-select/pull/166) ([chrisccerami](https://github.com/chrisccerami))
 - Replaces `Ember.K` usage with JavaScript syntax [\#165](https://github.com/thefrontside/emberx-select/pull/165) ([locks](https://github.com/locks))
 - getValue update [\#164](https://github.com/thefrontside/emberx-select/pull/164) ([vinodhrajamuralidharan](https://github.com/vinodhrajamuralidharan))
 - Use Yarn over NPM [\#162](https://github.com/thefrontside/emberx-select/pull/162) ([Robdel12](https://github.com/Robdel12))
