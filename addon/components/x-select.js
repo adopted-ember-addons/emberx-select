@@ -32,6 +32,15 @@ export default Ember.Component.extend({
   attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
 
   /**
+   * The name of the x-option component.
+   *
+   * @property optionComponentName
+   * @type String
+   * @default x-option
+   */
+  optionComponentName: "x-option",
+
+  /**
    * Bound to the `disabled` attribute on the native <select> tag.
    *
    * @property disabled
