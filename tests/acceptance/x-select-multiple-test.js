@@ -2,8 +2,12 @@
 /* jshint expr:true */
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import { it } from 'ember-mocha';
-import { beforeEach, afterEach, describe } from 'mocha';
+import {
+  beforeEach,
+  afterEach,
+  describe,
+  it
+} from 'mocha';
 import { select } from 'dummy/tests/helpers/x-select';
 import { shouldBindAttrs } from './shared/attr-test';
 

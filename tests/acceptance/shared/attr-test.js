@@ -1,6 +1,5 @@
 /*global expect */
-import { beforeEach, describe } from 'mocha';
-import { it } from 'ember-mocha';
+import { beforeEach, describe, it } from 'mocha';
 
 export function shouldBindAttrs() {
   describe('native select element attributes', function() {
