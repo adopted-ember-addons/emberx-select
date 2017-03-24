@@ -37,7 +37,7 @@ module.exports = {
       name: 'ember-release',
       bower: {
         dependencies: {
-          'ember': 'components/ember#release'
+          'ember': '2.12.0' // TODO: Come back to this when release is some crazy broken version.
         },
         resolutions: {
           'ember': 'release'
