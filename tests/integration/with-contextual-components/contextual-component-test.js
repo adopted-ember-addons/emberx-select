@@ -1,4 +1,5 @@
-import { it, describeComponent } from 'ember-mocha';
+import { it, describe } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import { expect } from 'chai';
 import hbs from 'htmlbars-inline-precompile';
 import Ember from 'ember';
@@ -9,7 +10,8 @@ function hasContextualComponents() {
   return !Ember.VERSION.match(/^2\.[0-2]\./) && !Ember.VERSION.match(/^1/);
 }
 
-describeComponent('x-select', 'X-Select - Contextual Component', {integration}, function() {
+describe('X-Select - Contextual Component', function() {
+  setupComponentTest('x-select', {integration});
 
   if (hasContextualComponents()) {
     it('yields a hash with the option component', function() {
