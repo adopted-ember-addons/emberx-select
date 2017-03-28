@@ -1,5 +1,21 @@
 # Change Log
 
+## [v3.0.1](https://github.com/thefrontside/emberx-select/tree/v3.0.1) (2017-03-28)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v3.0.0...v3.0.1)
+
+**Closed issues:**
+
+- arguments passed to didReceiveAttrs trigger deprecation in Ember 2.12 [\#181](https://github.com/thefrontside/emberx-select/issues/181)
+- How to pass html data attributes to x select component? [\#179](https://github.com/thefrontside/emberx-select/issues/179)
+- Backport ember-source npm package [\#178](https://github.com/thefrontside/emberx-select/issues/178)
+- Demonstration deployment seems broken [\#168](https://github.com/thefrontside/emberx-select/issues/168)
+
+**Merged pull requests:**
+
+- Fix \#181 didReceiveAttrs arguments deprecation \(rebase on master\) [\#186](https://github.com/thefrontside/emberx-select/pull/186) ([Robdel12](https://github.com/Robdel12))
+- Upgrade addon CLI to 2.12.1 [\#183](https://github.com/thefrontside/emberx-select/pull/183) ([Robdel12](https://github.com/Robdel12))
+- Correct 2.2.3 Changelog.md entry [\#177](https://github.com/thefrontside/emberx-select/pull/177) ([chrisccerami](https://github.com/chrisccerami))
+
 ## [v3.0.0](https://github.com/thefrontside/emberx-select/tree/v3.0.0) (2016-12-28)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v2.2.3...v3.0.0)
 
@@ -25,7 +41,6 @@
 
 **Merged pull requests:**
 
-- Replace deprecated contains with includes [\#166](https://github.com/thefrontside/emberx-select/pull/166) ([chrisccerami](https://github.com/chrisccerami))
 - Expand upon migrating from 2.x to 3.x [\#176](https://github.com/thefrontside/emberx-select/pull/176) ([Robdel12](https://github.com/Robdel12))
 - Upgrade ember-cli [\#175](https://github.com/thefrontside/emberx-select/pull/175) ([Robdel12](https://github.com/Robdel12))
 - Update branding addon to 0.1.2 [\#174](https://github.com/thefrontside/emberx-select/pull/174) ([Robdel12](https://github.com/Robdel12))
@@ -48,6 +63,7 @@
 - UA sniff for bad MS Edge bug \(required selects must change value to be valid --glimmer PR\) [\#172](https://github.com/thefrontside/emberx-select/pull/172) ([Robdel12](https://github.com/Robdel12))
 - UA sniff for bad MS Edge bug \(required selects must change value to be valid\) [\#170](https://github.com/thefrontside/emberx-select/pull/170) ([Robdel12](https://github.com/Robdel12))
 - Allow ember-source npm package to work. [\#167](https://github.com/thefrontside/emberx-select/pull/167) ([rwjblue](https://github.com/rwjblue))
+- Replace deprecated contains with includes [\#166](https://github.com/thefrontside/emberx-select/pull/166) ([chrisccerami](https://github.com/chrisccerami))
 - Replaces `Ember.K` usage with JavaScript syntax [\#165](https://github.com/thefrontside/emberx-select/pull/165) ([locks](https://github.com/locks))
 - getValue update [\#164](https://github.com/thefrontside/emberx-select/pull/164) ([vinodhrajamuralidharan](https://github.com/vinodhrajamuralidharan))
 - Use Yarn over NPM [\#162](https://github.com/thefrontside/emberx-select/pull/162) ([Robdel12](https://github.com/Robdel12))
