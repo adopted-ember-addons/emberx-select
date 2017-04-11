@@ -45,17 +45,20 @@ export default Ember.Component.extend({
     }
   }),
 
-  didReceiveAttrs({oldAttrs}) {
+  didReceiveAttrs() {
     this._super.apply(...arguments);
 
-    if(oldAttrs && !!oldAttrs.disabled) {
-      // Undefined also means the option is not disabled.
-      let oldDisabled = !!oldAttrs.disabled.value;
+    let oldDisabled = this.get('_oldDisabled');
+
+    if(oldDisabled !== undefined && !oldDisabled) {
+      // Undefined means the first time
 
       if(this.get('disabled') !== oldDisabled) {
         this.sendAction('on-disable', this.get('value'), this.get('disabled'));
       }
     }
+
+    this.set('_oldDisabled', this.get('disabled'));
   },
 
   /**
