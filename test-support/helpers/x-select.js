@@ -9,25 +9,25 @@ import jQuery from 'jquery';
  * @param {string} texts - text of the option you are picking
  */
 export function select(selector, ...texts) {
-  let $select = selector instanceof jQuery ? selector : Ember.$(selector);
-  let $options = $select.find(`option`);
+  const $select = selector instanceof jQuery ? selector : Ember.$(selector);
+  const $options = $select.find(`option`);
 
   if (!$options.length) {
-    throw `No options found in ${selector}` ;
+    throw `No options found in ${selector}`;
   }
 
   $options.each(function() {
-    let $option = Ember.$(this);
+    const $option = Ember.$(this);
 
     Ember.run(() => {
-      this.selected = texts.some((text) => {
+      const selected = texts.some((text) => {
         // uppercase both texts so the helper isn't case sensastive.
-        let optionText = $option.text().trim().toUpperCase();
+        const optionText = $option.text().trim().toUpperCase();
 
         return optionText === text.toUpperCase();
       });
 
-      if(this.selected) {
+      if(selected) {
         $option.prop('selected', true).trigger('change');
       }
     });
