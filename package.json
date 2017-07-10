@@ -23,7 +23,7 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^5.1.7",
+    "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-version-checker": "^1.2.0"
   },
@@ -36,7 +36,7 @@
     "ember-cli-deploy": "0.5.1",
     "ember-cli-document-title": "0.3.3",
     "ember-cli-eslint": "^3.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-htmlbars-inline-precompile": "^0.4.3",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-mocha": "0.13.2",
     "ember-cli-release": "^1.0.0-beta.2",
