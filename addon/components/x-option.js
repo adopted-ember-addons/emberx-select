@@ -46,7 +46,7 @@ export default Ember.Component.extend({
   }),
 
   didReceiveAttrs() {
-    this._super.apply(...arguments);
+    this._super.apply(this, arguments);
 
     let oldDisabled = this.get('_oldDisabled');
 
