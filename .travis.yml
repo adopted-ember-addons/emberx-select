@@ -12,9 +12,11 @@ cache:
     - $HOME/.cache # includes bowers cache
 
 env:
-  # we recommend testing LTS's and latest stable release (bonus points to beta/canary)
+  # we recommend new addons test the current and previous LTS
+  # as well as latest stable release (bonus points to beta/canary)
   - EMBER_TRY_SCENARIO=ember-lts-2.4
   - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-lts-2.12
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
@@ -31,7 +33,7 @@ before_install:
   - phantomjs --version
 
 install:
-  - yarn install
+  - yarn install --no-lockfile --non-interactive
   - bower install
 
 after_success:
@@ -40,4 +42,4 @@ after_success:
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
