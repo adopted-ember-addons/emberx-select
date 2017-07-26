@@ -17,8 +17,6 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
    */
 
-  app.import('bower_components/chai-jquery/chai-jquery.js', {type: 'test'});
-  app.import('bower_components/sinon-chai/lib/sinon-chai.js', {type: 'test'});
   app.import("bower_components/highlightjs/styles/github.css");
 
   return app.toTree();
