@@ -1,5 +1,4 @@
 /*global expect, getComponentById */
-/* jshint expr:true */
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import {

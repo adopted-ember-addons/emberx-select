@@ -33,7 +33,7 @@ and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
 ```handlebars
-{{#x-select value=bob action="selectPerson" as |xs|}}
+{{#x-select value=bob action=(action "selectPerson") as |xs|}}
   {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
   {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
 {{/x-select}}
