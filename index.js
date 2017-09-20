@@ -8,11 +8,7 @@ module.exports = {
     var VersionChecker = require('ember-cli-version-checker');
 
     var checker = new VersionChecker(this);
-    var dep = checker.for('ember-source', 'npm');
-
-    if (!dep.version) {
-      dep = checker.for('ember', 'bower');
-    }
+    var dep = checker.forEmber();
 
     var isBetaOrCanary = ['beta', 'canary'].filter(function(version) {
       return dep.version.indexOf(version) >= 0;
