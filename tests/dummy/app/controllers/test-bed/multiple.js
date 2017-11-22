@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import Folks from 'dummy/mixins/folks';
 
-export default Ember.Controller.extend(Folks, {
-  currentSelections: Ember.computed.reads('selections'),
+export default Controller.extend(Folks, {
+  currentSelections: reads('selections'),
   actions: {
     selectionsChanged: function(selections) {
       this.set('currentSelections', selections);

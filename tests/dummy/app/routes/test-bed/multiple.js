@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Route from '@ember/routing/route';
 import Folks from 'dummy/mixins/folks';
 
-export default Ember.Route.extend(Folks, {
+export default Route.extend(Folks, {
   model: function() {
-    return Ember.A([this.get('bastion'), this.get('stanley')]);
+    return A([this.get('bastion'), this.get('stanley')]);
   },
   setupController: function(controller, model) {
     this._super.apply(this, arguments);

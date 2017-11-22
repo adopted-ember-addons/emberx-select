@@ -1,6 +1,8 @@
 /*global expect, getComponentById */
 
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+
+import $ from 'jquery';
 import startApp from '../helpers/start-app';
 import {
   beforeEach,
@@ -20,7 +22,7 @@ describe('XSelect: Single Selection', function() {
     visit("test-bed/single");
   });
   beforeEach(function() {
-    let el = Ember.$('select');
+    let el = $('select');
     this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
@@ -29,7 +31,7 @@ describe('XSelect: Single Selection', function() {
   });
 
   afterEach(function() {
-    Ember.run(App, 'destroy');
+    run(App, 'destroy');
   });
 
   it("does not fire any actions on didInsertElement", function() {

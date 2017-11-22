@@ -1,6 +1,7 @@
-import Ember from 'ember';
-
-const { isArray } = Ember;
+import { scheduleOnce } from '@ember/runloop';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import { isArray, A } from '@ember/array';
 
 /**
  * Used to wrap a native `<option>` tag and associate an object with
@@ -10,7 +11,7 @@ const { isArray } = Ember;
  * @class Ember.XOptionComponent
  * @extends Ember.Component
  */
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'option',
   attributeBindings: ['selected', 'name', 'disabled', 'value', 'title'],
   classNameBindings: [':x-option'],
@@ -35,9 +36,9 @@ export default Ember.Component.extend({
    * @property selected
    * @type Boolean
    */
-  selected: Ember.computed('value', 'select.value', 'select.multiple', function() {
+  selected: computed('value', 'select.value', 'select.multiple', function() {
     if (this.get('select.multiple') && isArray(this.get('select.value'))) {
-      let selectValue = Ember.A(this.get('select.value'));
+      let selectValue = A(this.get('select.value'));
 
       return selectValue.includes(this.get('value'));
     } else {
@@ -69,7 +70,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    Ember.run.scheduleOnce('afterRender', () => {
+    scheduleOnce('afterRender', () => {
       this.get('register')(this);
     });
   },

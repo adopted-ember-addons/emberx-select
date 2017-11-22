@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 export const sport = {name: 'Sport'};
 
@@ -36,7 +36,7 @@ export const honda = {name: 'Honda', models: hondaModels};
 
 export const ford = {name: 'Ford', models: fordModels};
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   makes: [toyota, honda, ford],
 
   toyota: toyota,

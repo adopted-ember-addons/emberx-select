@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import Cars from 'dummy/mixins/cars';
 
-export default Ember.Controller.extend(Cars, {
+export default Controller.extend(Cars, {
   autopopulatedField: null,
 
   make: null,

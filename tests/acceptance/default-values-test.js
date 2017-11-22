@@ -1,3 +1,5 @@
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 import {
   describe,
   it,
@@ -6,10 +8,7 @@ import {
 } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
-import Ember from 'ember';
 import { select } from 'dummy/tests/helpers/x-select';
-
-const { $ } = Ember;
 
 describe('XSelect: Default Values', function() {
   let application;
@@ -19,7 +18,7 @@ describe('XSelect: Default Values', function() {
   });
 
   afterEach(function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   });
 
   describe('Initializing with default values', function(){

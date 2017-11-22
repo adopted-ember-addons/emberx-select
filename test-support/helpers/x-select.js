@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import jQuery from 'jquery';
 
 /**
@@ -9,7 +9,7 @@ import jQuery from 'jquery';
  * @param {string} texts - text of the option you are picking
  */
 export function select(selector, ...texts) {
-  let $select = selector instanceof jQuery ? selector : Ember.$(selector);
+  let $select = selector instanceof jQuery ? selector : jQuery(selector);
   let $options = $select.find(`option`);
 
   if (!$options.length) {
@@ -17,9 +17,9 @@ export function select(selector, ...texts) {
   }
 
   $options.each(function() {
-    let $option = Ember.$(this);
+    let $option = jQuery(this);
 
-    Ember.run(() => {
+    run(() => {
       this.selected = texts.some((text) => {
         // uppercase both texts so the helper isn't case sensastive.
         let optionText = $option.text().trim().toUpperCase();
