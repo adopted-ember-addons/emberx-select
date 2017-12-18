@@ -44,8 +44,8 @@ describe('XSelect: Single Selection', function() {
 
   it('renders an option for each view', function() {
     expect(this.$('option').length).to.equal(4);
-    expect(this.$('option:first')).to.have.text('Charles');
-    expect(this.$('option:last')).to.have.text('Nobody');
+    expect(this.$('option:first').text()).to.equal('Charles');
+    expect(this.$('option:last').text()).to.equal('Nobody');
   });
 
   it('marks the selected value', function() {
