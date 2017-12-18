@@ -24,8 +24,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-cli-version-checker": "^1.2.0"
+    "ember-cli-htmlbars": "^2.0.1"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -61,7 +60,7 @@
     "demoURL": "http://emberx-select.pagefrontapp.com",
     "configPath": "tests/dummy/config",
     "versionCompatibility": {
-      "ember": ">=1.13.4"
+      "ember": ">=2.3.0"
     }
   }
 }
