@@ -1,5 +1,7 @@
 /*global expect, getComponentById */
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+
+import $ from 'jquery';
 import startApp from '../helpers/start-app';
 import {
   beforeEach,
@@ -18,7 +20,7 @@ describe('XSelect: Multiple Selection', function() {
     visit("test-bed/multiple");
   });
   beforeEach(function() {
-    let el = Ember.$('select');
+    let el = $('select');
     this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
@@ -27,7 +29,7 @@ describe('XSelect: Multiple Selection', function() {
   });
 
   afterEach(function() {
-    Ember.run(App, 'destroy');
+    run(App, 'destroy');
   });
 
   it("does not fire any actions on didInsertElement", function() {
@@ -75,7 +77,7 @@ describe('XSelect: Multiple Selection', function() {
   describe.skip("trying to set the value to a non-array", function() {
     beforeEach(function() {
       try {
-        Ember.run(() => {
+        run(() => {
           this.controller.set('selections', 'OHAI!');
         });
       } catch (e) {

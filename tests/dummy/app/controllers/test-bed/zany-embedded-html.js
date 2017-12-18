@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { schedule } from '@ember/runloop';
+import { on } from '@ember/object/evented';
+import Controller from '@ember/controller';
 
 /**
  * This controller sets up things a bit weirdly, because we're trying
@@ -14,16 +17,16 @@ import Ember from 'ember';
  * https://github.com/thefrontside/emberx-select/issues/44
  */
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   groupsOfZanyThings: [],
 
 
-  schedulePopulate: Ember.on('init', function() {
-    Ember.run.schedule('afterRender', this, 'populate');
+  schedulePopulate: on('init', function() {
+    schedule('afterRender', this, 'populate');
   }),
 
   populate: function() {
-    this.set('groupsOfZanyThings', Ember.A([
+    this.set('groupsOfZanyThings', A([
       {
         label: 'Sandwiches',
         things: [

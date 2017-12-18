@@ -1,8 +1,13 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { run } from '@ember/runloop';
+import {
+  describe,
+  it,
+  beforeEach,
+  afterEach
+} from 'mocha';
 import { expect } from 'chai';
 import { select } from 'dummy/tests/helpers/x-select';
 import startApp from '../helpers/start-app';
-import Ember from 'ember';
 
 describe('Acceptance: EmberData', function() {
   let application;
@@ -13,7 +18,7 @@ describe('Acceptance: EmberData', function() {
   });
 
   afterEach(function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   });
 
   it('can visit /ember-data', function() {

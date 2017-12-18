@@ -1,7 +1,13 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
+import {
+  describe,
+  it,
+  beforeEach,
+  afterEach
+} from 'mocha';
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
-import Ember from 'ember';
 
 describe('Acceptance: Events', function() {
   let application;
@@ -12,7 +18,7 @@ describe('Acceptance: Events', function() {
   });
 
   afterEach(function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
   });
 
   describe("visiting blur and triggering the blur event", function() {
@@ -21,11 +27,11 @@ describe('Acceptance: Events', function() {
     });
 
     beforeEach(function() {
-      Ember.$('.x-select').trigger('blur');
+      $('.x-select').trigger('blur');
     });
 
     it("fires the blur action", function() {
-      expect(Ember.$('.spec-event-type').text().trim()).to.equal('blur');
+      expect($('.spec-event-type').text().trim()).to.equal('blur');
     });
   });
 
@@ -36,7 +42,7 @@ describe('Acceptance: Events', function() {
     });
 
     it("fires the click action", function() {
-      expect(Ember.$('.spec-event-type').text().trim()).to.equal('click');
+      expect($('.spec-event-type').text().trim()).to.equal('click');
     });
   });
 
@@ -46,11 +52,11 @@ describe('Acceptance: Events', function() {
     });
 
     beforeEach(function() {
-      Ember.$('.x-select').trigger('focusout');
+      $('.x-select').trigger('focusout');
     });
 
     it("fires the focus-out action", function() {
-      expect(Ember.$('.spec-event-type').text().trim()).to.equal('focusout');
+      expect($('.spec-event-type').text().trim()).to.equal('focusout');
     });
   });
 

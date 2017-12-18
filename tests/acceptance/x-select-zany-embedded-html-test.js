@@ -1,6 +1,8 @@
 /*global expect, getComponentById */
 
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+
+import $ from 'jquery';
 import startApp from '../helpers/start-app';
 import {
   beforeEach,
@@ -18,7 +20,7 @@ describe('XSelect: Embedded HTML', function() {
     visit("test-bed/zany-embedded-html");
   });
   beforeEach(function() {
-    let el = Ember.$('select');
+    let el = $('select');
     this.component = getComponentById(el.attr('id'));
     this.$ = function() {
       return this.component.$.apply(this.component, arguments);
@@ -31,6 +33,6 @@ describe('XSelect: Embedded HTML', function() {
   });
 
   afterEach(function() {
-    Ember.run(App, 'destroy');
+    run(App, 'destroy');
   });
 });

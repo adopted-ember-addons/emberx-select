@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Cars from 'dummy/mixins/cars';
 
-export default Ember.Route.extend(Cars, {
+export default Route.extend(Cars, {
   model: function() {
     return this.get('makes')[2];
   }

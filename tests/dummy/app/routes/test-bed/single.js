@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Folks from 'dummy/mixins/folks';
 
-export default Ember.Route.extend(Folks, {
+export default Route.extend(Folks, {
   model: function() {
     return this.get('bastion');
   },
