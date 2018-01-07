@@ -107,7 +107,9 @@ cases, you can pass any arguments you need from the template. For example:
 then, inside your action handler:
 
 ```js
-export default Ember.Route.extend({
+import Controller from '@ember/controller';
+
+export default Controller.extend({
   actions: {
     didMakeSelection(value, event, isXSelectRequired) {
       if (!value & isXSelectRequired) {
