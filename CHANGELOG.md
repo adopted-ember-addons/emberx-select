@@ -1,5 +1,35 @@
 # Change Log
 
+## [v3.1.1](https://github.com/thefrontside/emberx-select/tree/v3.1.1) (2018-01-31)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v3.1.0...v3.1.1)
+
+**Closed issues:**
+
+- Readme error? [\#197](https://github.com/thefrontside/emberx-select/issues/197)
+- Test Helper Fails To Find Select Element [\#188](https://github.com/thefrontside/emberx-select/issues/188)
+- Set ember-try ember\#release back [\#184](https://github.com/thefrontside/emberx-select/issues/184)
+
+**Merged pull requests:**
+
+- Update README to use `controller` over `route` for actions \(closes \#197\) [\#204](https://github.com/thefrontside/emberx-select/pull/204) ([Robdel12](https://github.com/Robdel12))
+- Remove check for contextual components [\#203](https://github.com/thefrontside/emberx-select/pull/203) ([Robdel12](https://github.com/Robdel12))
+- ember-cli-update to 2.16 [\#200](https://github.com/thefrontside/emberx-select/pull/200) ([Dhaulagiri](https://github.com/Dhaulagiri))
+- Simplify ember version check [\#196](https://github.com/thefrontside/emberx-select/pull/196) ([andyhot](https://github.com/andyhot))
+
+## [v3.1.0](https://github.com/thefrontside/emberx-select/tree/v3.1.0) (2017-07-26)
+[Full Changelog](https://github.com/thefrontside/emberx-select/compare/v3.0.1...v3.1.0)
+
+**Closed issues:**
+
+- deprecation warnings with ember 2.12.2+ [\#192](https://github.com/thefrontside/emberx-select/issues/192)
+- Typeahead & Ajax Queries [\#191](https://github.com/thefrontside/emberx-select/issues/191)
+
+**Merged pull requests:**
+
+- Updates [\#195](https://github.com/thefrontside/emberx-select/pull/195) ([Dhaulagiri](https://github.com/Dhaulagiri))
+- fix this.\_super call in x-option [\#194](https://github.com/thefrontside/emberx-select/pull/194) ([cafreeman](https://github.com/cafreeman))
+- don't use deprecated action dispatch in example [\#190](https://github.com/thefrontside/emberx-select/pull/190) ([cowboyd](https://github.com/cowboyd))
+
 ## [v3.0.1](https://github.com/thefrontside/emberx-select/tree/v3.0.1) (2017-03-28)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v3.0.0...v3.0.1)
 
@@ -298,7 +328,7 @@
 - Use block params [\#28](https://github.com/thefrontside/emberx-select/pull/28) ([AVCEngineering](https://github.com/AVCEngineering))
 - Robust test helper [\#27](https://github.com/thefrontside/emberx-select/pull/27) ([Robdel12](https://github.com/Robdel12))
 - add tmp dir to npmignore fix \#23 [\#24](https://github.com/thefrontside/emberx-select/pull/24) ([odoe](https://github.com/odoe))
-- Use correct syntax for installing addon [\#17](https://github.com/thefrontside/emberx-select/pull/17) ([harianus](https://github.com/harianus))
+- Use correct syntax for installing addon [\#17](https://github.com/thefrontside/emberx-select/pull/17) ([adriaanvanrossum](https://github.com/adriaanvanrossum))
 
 ## [v1.1.2](https://github.com/thefrontside/emberx-select/tree/v1.1.2) (2015-05-01)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v1.1.1...v1.1.2)
