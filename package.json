@@ -1,6 +1,6 @@
 {
   "name": "emberx-select",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "A Select component based on html select.",
   "keywords": [
     "ember-addon",
