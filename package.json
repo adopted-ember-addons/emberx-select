@@ -19,6 +19,7 @@
   "repository": "https://github.com/thefrontside/emberx-select",
   "scripts": {
     "bower-install": "bower install",
+    "deploy": "ember deploy production",
     "build": "ember build",
     "start": "ember serve",
     "test": "ember test"
