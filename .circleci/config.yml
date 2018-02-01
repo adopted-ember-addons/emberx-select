@@ -32,6 +32,13 @@ jobs:
           paths:
             - .
 
+  deploy_master:
+    <<: *defaults
+    steps:
+      - run:
+          name: Deploy Master
+          command: yarn deploy
+
   test_default:
     <<: *defaults
     steps:
@@ -105,3 +112,9 @@ workflows:
       - test_beta:
           requires:
             - install_dependencies
+      - deploy_master:
+          requires:
+            - install_dependencies
+          filters:
+            branches:
+              only: master
