@@ -18,6 +18,7 @@
   },
   "repository": "https://github.com/thefrontside/emberx-select",
   "scripts": {
+    "bower-install": "bower install",
     "build": "ember build",
     "start": "ember serve",
     "test": "ember test"
@@ -27,6 +28,7 @@
     "ember-cli-htmlbars": "^2.0.1"
   },
   "devDependencies": {
+    "bower": "^1.8.2",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.17.1",
