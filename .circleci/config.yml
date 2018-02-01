@@ -24,6 +24,9 @@ jobs:
       - run:
           name: Yarn Install
           command: yarn install --non-interactive --no-lockfile
+      - run:
+          name: Bower Install
+          command: bower install
       - persist_to_workspace:
           root: .
           paths:
