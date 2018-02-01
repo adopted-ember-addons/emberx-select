@@ -2,7 +2,7 @@
 [![Ember Badge](https://embadge.io/b/7.svg)](https://embadge.io/badges/7)
 [![npm version](https://badge.fury.io/js/emberx-select.svg)](http://badge.fury.io/js/emberx-select)
 [![Ember Observer Score](http://emberobserver.com/badges/emberx-select.svg)](http://emberobserver.com/addons/emberx-select)
-[![Build Status](https://travis-ci.org/thefrontside/emberx-select.svg?branch=master)](https://travis-ci.org/thefrontside/emberx-select)
+[![CircleCI](https://circleci.com/gh/thefrontside/emberx-select/tree/master.svg?style=svg)](https://circleci.com/gh/thefrontside/emberx-select/tree/master)
 
 A Select component based on the native html select.
 
