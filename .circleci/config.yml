@@ -1,0 +1,104 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:6-browsers
+      environment:
+        JOBS: 2
+  working_directory: ~/emberx-select
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *defaults
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Yarn Install
+          command: yarn install --non-interactive --no-lockfile
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  test_default:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/emberx-select/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: ember test
+
+  test_lts_2_12:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/emberx-select/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: ember try:one ember-lts-2.12 --skip-cleanup=true
+
+  test_lts_2_16:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/emberx-select/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: ember try:one ember-lts-2.16 --skip-cleanup=true
+
+  test_release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/emberx-select/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: ember try:one ember-release --skip-cleanup=true
+
+  test_beta:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: echo 'export PATH=~/emberx-select/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: ember try:one ember-beta --skip-cleanup=true
+
+workflows:
+  version: 2
+  test_matrix:
+    jobs:
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - test_default:
+          requires:
+            - install_dependencies
+      - test_lts_2_12:
+          requires:
+            - install_dependencies
+      - test_lts_2_16:
+          requires:
+            - install_dependencies
+      - test_release:
+          requires:
+            - install_dependencies
+      - test_beta:
+          requires:
+            - install_dependencies
