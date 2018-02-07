@@ -35,6 +35,8 @@ jobs:
   deploy_master:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Deploy Master
           command: yarn deploy
@@ -114,7 +116,10 @@ workflows:
             - install_dependencies
       - deploy_master:
           requires:
-            - install_dependencies
+            - test_default
+            - test_lts_2_12
+            - test_lts_2_16
+            - test_release
           filters:
             branches:
-              only: master
+              only: rd/fix-deploy
