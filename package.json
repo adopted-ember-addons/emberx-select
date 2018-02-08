@@ -42,7 +42,7 @@
     "ember-cli-mocha": "^0.14.4",
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-shims": "^1.2.0",
-    "ember-cli-surge": "^1.1.21",
+    "ember-cli-surge": "^1.2.0-beta.2",
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "^2.17.0",
     "ember-disable-prototype-extensions": "^1.1.2",
