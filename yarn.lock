@@ -2959,9 +2959,9 @@ ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
-ember-cli-surge@^1.1.21:
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/ember-cli-surge/-/ember-cli-surge-1.1.21.tgz#28b1d2b0a4edf2a206daa75124777a3d0cce1ce4"
+ember-cli-surge@^1.2.0-beta.2:
+  version "1.2.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-surge/-/ember-cli-surge-1.2.0-beta.2.tgz#95b74b70506fad33a24965188b4c02a615945fd8"
   dependencies:
     console-ui "^2.0.0"
     ember-cli-babel "^6.7.1"
