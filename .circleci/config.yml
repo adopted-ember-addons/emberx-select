@@ -122,4 +122,4 @@ workflows:
             - test_release
           filters:
             branches:
-              only: master
+              only: rd/fix-deploy
