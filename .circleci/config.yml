@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:6-browsers
+    - image: circleci/node:6.12-browsers
       environment:
         JOBS: 2
   working_directory: ~/emberx-select
