@@ -122,4 +122,4 @@ workflows:
             - test_release
           filters:
             branches:
-              only: kiwi/fix-deploy
+              only: rd/fix-deploy
