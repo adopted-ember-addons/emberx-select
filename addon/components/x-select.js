@@ -130,6 +130,7 @@ export default Component.extend({
   change(event) {
     let nextValue = this._getValue();
 
+    // eslint-disable-next-line ember/closure-actions
     this.sendAction('action', nextValue, event, this);
     this._handleAction('on-change', nextValue, event);
   },
@@ -207,6 +208,7 @@ export default Component.extend({
   __setDefaultValues: function() {
     let canSet = !this.isDestroying && !this.isDestroyed;
     if (canSet && this.get('value') == null) {
+      // eslint-disable-next-line ember/closure-actions
       this.sendAction('action', this._getValue());
     }
   },
@@ -244,6 +246,7 @@ export default Component.extend({
    *
    * @private
    */
+  /* eslint-disable */
   ensureProperType: on('init', observer('value', function() {
     let value = this.get('value');
 
@@ -251,6 +254,7 @@ export default Component.extend({
       throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
     }
   })),
+  /* eslint-enable */
 
   actions: {
 
