@@ -18,7 +18,7 @@ import Controller from '@ember/controller';
  */
 
 export default Controller.extend({
-  groupsOfZanyThings: [],
+  groupsOfZanyThings: A([]),
 
 
   schedulePopulate: on('init', function() {

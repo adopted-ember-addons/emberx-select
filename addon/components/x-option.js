@@ -36,7 +36,7 @@ export default Component.extend({
    * @property selected
    * @type Boolean
    */
-  selected: computed('value', 'select.value', 'select.multiple', function() {
+  selected: computed('value', 'select.{value,multiple}', function() {
     if (this.get('select.multiple') && isArray(this.get('select.value'))) {
       let selectValue = A(this.get('select.value'));
 
@@ -55,6 +55,7 @@ export default Component.extend({
       // Undefined means the first time
 
       if(this.get('disabled') !== oldDisabled) {
+        // eslint-disable-next-line ember/closure-actions
         this.sendAction('on-disable', this.get('value'), this.get('disabled'));
       }
     }

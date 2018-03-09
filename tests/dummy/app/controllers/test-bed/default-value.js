@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { A } from '@ember/array';
 import Cars from 'dummy/mixins/cars';
 
 export default Controller.extend(Cars, {
@@ -18,7 +19,7 @@ export default Controller.extend(Cars, {
 
   trimIsSet: false,
 
-  quantities: [5, 4, 3, 2, 1, 0],
+  quantities: A([5, 4, 3, 2, 1, 0]),
 
   actions: {
     setMake: function(object) {

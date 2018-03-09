@@ -75,6 +75,7 @@ describe('Integration: XSelectActionsComponent', function() {
           {{#xs.option value="Hello"}}Hello{{/xs.option}}
         {{/x-select}}
       `);
+        /* eslint-disable */
         Ember.warn = sinon.spy();
 
         select(this.$(), 'Hello');
@@ -82,6 +83,7 @@ describe('Integration: XSelectActionsComponent', function() {
 
       it("sends a warning in the console", function() {
         expect(Ember.warn).to.have.been.calledOnce;
+        /* eslint-enable */
       });
     });
   });
