@@ -162,4 +162,4 @@ workflows:
             - test-beta
           filters:
             branches:
-              only: rd/fix-deploy
+              only: master
