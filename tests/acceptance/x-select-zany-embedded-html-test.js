@@ -1,38 +1,24 @@
-/*global expect, getComponentById */
+import startApp from "../helpers/start-app";
+import xSelectInteractor from "dummy/tests/helpers/x-select";
+import { expect } from "chai";
+import { run } from "@ember/runloop";
+import { when } from "@bigtest/convergence";
+import { beforeEach, afterEach, describe, it } from "mocha";
 
-import { run } from '@ember/runloop';
+describe("XSelect: Embedded HTML", function() {
+  let xselect = new xSelectInteractor(".x-select");
+  let App;
 
-import $ from 'jquery';
-import startApp from '../helpers/start-app';
-import {
-  beforeEach,
-  afterEach,
-  describe,
-  it
-} from 'mocha';
-
-
-let App;
-
-describe('XSelect: Embedded HTML', function() {
-  beforeEach(function() {
+  beforeEach(async () => {
     App = startApp();
     visit("test-bed/zany-embedded-html");
   });
-  beforeEach(function() {
-    let el = $('select');
-    this.component = getComponentById(el.attr('id'));
-    this.$ = function() {
-      return this.component.$.apply(this.component, arguments);
-    };
-    this.controller = App.__container__.lookup('controller:test-bed.zanyEmbeddedHTML');
-  });
-
-  it("renders", function() {
-    expect(this.$()).to.exist;
-  });
 
   afterEach(function() {
-    run(App, 'destroy');
+    run(App, "destroy");
+  });
+
+  it("renders", async () => {
+    await when(() => expect(xselect.isPresent).to.equal(true));
   });
 });

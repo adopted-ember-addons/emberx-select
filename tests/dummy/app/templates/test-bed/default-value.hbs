@@ -72,7 +72,7 @@
       {{#if index}}
         {{#xs.option value=quantity}}{{quantity}}{{/xs.option}}
       {{else}}
-      {{! Would default to the first option if quantity is not set}}
+        {{! Would default to the first option if quantity is not set}}
         {{#xs.option value=quantity selected=true}}{{quantity}}{{/xs.option}}
       {{/if}}
     {{/each}}

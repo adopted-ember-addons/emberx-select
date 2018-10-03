@@ -1,11 +1,10 @@
-import { on } from '@ember/object/evented';
-import { once } from '@ember/runloop';
-import { warn } from '@ember/debug';
-import Component from '@ember/component';
-import { isArray, A } from '@ember/array';
-import { computed, observer } from '@ember/object';
+import { on } from "@ember/object/evented";
+import { once } from "@ember/runloop";
+import Component from "@ember/component";
+import { isArray, A } from "@ember/array";
+import { computed, observer } from "@ember/object";
 
-const isSelectedOption = (option) => option.$().is(':selected');
+const isSelectedOption = option => option.$().is(":selected");
 
 /**
  * Wraps a native <select> element so that it can be object and
@@ -29,7 +28,17 @@ const isSelectedOption = (option) => option.$().is(':selected');
 export default Component.extend({
   tagName: "select",
   classNameBindings: [":x-select"],
-  attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
+  attributeBindings: [
+    "disabled",
+    "tabindex",
+    "multiple",
+    "form",
+    "name",
+    "autofocus",
+    "required",
+    "size",
+    "title"
+  ],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -113,13 +122,6 @@ export default Component.extend({
    * @param {Object} event - jQuery event from the current action
    */
   _handleAction(action, value, event) {
-    let actionValue = this.get(action);
-
-    if(typeof actionValue === 'string') {
-      warn(`x-select: You must use the action helper for all actions. The try: ${action}=(action "${actionValue}") in your template`, false, {id: 'x-select-string-action'});
-      return;
-    }
-
     this.get(action)(value, event);
   },
 
@@ -131,8 +133,8 @@ export default Component.extend({
     let nextValue = this._getValue();
 
     // eslint-disable-next-line ember/closure-actions
-    this.sendAction('action', nextValue, event, this);
-    this._handleAction('on-change', nextValue, event);
+    this.sendAction("action", nextValue, event, this);
+    this._handleAction("on-change", nextValue, event);
   },
 
   /**
@@ -140,7 +142,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   click(event) {
-    this._handleAction('on-click', this._getValue(), event);
+    this._handleAction("on-click", this._getValue(), event);
   },
 
   /**
@@ -148,7 +150,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   blur(event) {
-    this._handleAction('on-blur', this._getValue(), event);
+    this._handleAction("on-blur", this._getValue(), event);
   },
 
   /**
@@ -156,7 +158,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   focusOut(event) {
-    this._handleAction('on-focus-out', this._getValue(), event);
+    this._handleAction("on-focus-out", this._getValue(), event);
   },
 
   /**
@@ -169,7 +171,7 @@ export default Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    return this.get('multiple') ? this._findMultipleValues() : this._findSingleValue();
+    return this.get("multiple") ? this._findMultipleValues() : this._findSingleValue();
   },
 
   /**
@@ -180,7 +182,9 @@ export default Component.extend({
    * @return {Array} all the values from selected x-options
    */
   _findMultipleValues() {
-    return this.get('options').filter(isSelectedOption).map(option => option.get('value'));
+    return this.get("options")
+      .filter(isSelectedOption)
+      .map(option => option.get("value"));
   },
 
   /**
@@ -191,8 +195,8 @@ export default Component.extend({
    * @return {Object} the value of the first select `x-option`, or null
    */
   _findSingleValue() {
-    let selectedValue = this.get('options').find(isSelectedOption);
-    return selectedValue ? selectedValue.get('value') : null;
+    let selectedValue = this.get("options").find(isSelectedOption);
+    return selectedValue ? selectedValue.get("value") : null;
   },
 
   /**
@@ -207,9 +211,9 @@ export default Component.extend({
 
   __setDefaultValues: function() {
     let canSet = !this.isDestroying && !this.isDestroyed;
-    if (canSet && this.get('value') == null) {
+    if (canSet && this.get("value") == null) {
       // eslint-disable-next-line ember/closure-actions
-      this.sendAction('action', this._getValue());
+      this.sendAction("action", this._getValue());
     }
   },
 
@@ -219,7 +223,7 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    this.$().on('blur', (event) => {
+    this.$().on("blur", event => {
       this.blur(event);
     });
 
@@ -236,7 +240,7 @@ export default Component.extend({
    * @override
    */
   willDestroyElement: function() {
-    this.$().off('blur');
+    this.$().off("blur");
     this._super.apply(this, arguments);
   },
 
@@ -247,17 +251,19 @@ export default Component.extend({
    * @private
    */
   /* eslint-disable */
-  ensureProperType: on('init', observer('value', function() {
-    let value = this.get('value');
+  ensureProperType: on(
+    "init",
+    observer("value", function() {
+      let value = this.get("value");
 
-    if (value != null && this.get('multiple') && !isArray(value)) {
-      throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
-    }
-  })),
+      if (value != null && this.get("multiple") && !isArray(value)) {
+        throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
+      }
+    })
+  ),
   /* eslint-enable */
 
   actions: {
-
     /**
      * Registers a new option that is contained within x-select.
      *
@@ -267,7 +273,7 @@ export default Component.extend({
      * @private
      */
     registerOption(option) {
-      this.get('options').push(option);
+      this.get("options").push(option);
       this._setDefaultValues();
     },
 
@@ -280,7 +286,7 @@ export default Component.extend({
      * @private
      */
     unregisterOption(option) {
-      this.get('options').removeObject(option);
+      this.get("options").removeObject(option);
       this._setDefaultValues();
     }
   }

@@ -1,94 +1,88 @@
-/*global expect, getComponentById */
+import startApp from "../helpers/start-app";
+import xSelectInteractor from "dummy/tests/helpers/x-select";
+import pageInteractor from "dummy/tests/interactors/test-page";
+import { expect } from "chai";
+import { run } from "@ember/runloop";
+import { beforeEach, afterEach, describe, it } from "mocha";
+import { when } from "@bigtest/convergence";
 
-import { run } from '@ember/runloop';
+describe("XSelect: Single Selection", function() {
+  let App;
+  let xselect = new xSelectInteractor(".x-select");
+  let page = new pageInteractor();
 
-import $ from 'jquery';
-import startApp from '../helpers/start-app';
-import {
-  beforeEach,
-  afterEach,
-  describe,
-  it
-} from 'mocha';
-import { select } from 'dummy/tests/helpers/x-select';
-import { stanley } from 'dummy/mixins/folks';
-import { shouldBindAttrs } from './shared/attr-test';
-
-let App;
-
-describe('XSelect: Single Selection', function() {
-  beforeEach(function() {
+  beforeEach(async () => {
     App = startApp();
-    visit("test-bed/single");
-  });
-  beforeEach(function() {
-    let el = $('select');
-    this.component = getComponentById(el.attr('id'));
-    this.$ = function() {
-      return this.component.$.apply(this.component, arguments);
-    };
-    this.controller = App.__container__.lookup('controller:test-bed.single');
+    await visit("test-bed/single");
   });
 
   afterEach(function() {
-    run(App, 'destroy');
+    run(App, "destroy");
   });
 
-  it("does not fire any actions on didInsertElement", function() {
-    expect(this.controller.get('tagged')).not.to.be.ok;
+  // Not an acceptance test
+  it.skip("does not fire any actions on didInsertElement", function() {
+    expect(this.controller.get("tagged")).not.to.be.ok;
   });
 
-  it('is enabled by default', function() {
-    expect(this.$()).not.to.be.disabled;
+  it("is enabled by default", async () => {
+    await when(() => expect(xselect.isDisabled).to.equal(false));
   });
 
-  it('renders an option for each view', function() {
-    expect(this.$('option').length).to.equal(4);
-    expect(this.$('option:first').text()).to.equal('Charles');
-    expect(this.$('option:last').text()).to.equal('Nobody');
+  it("renders an option for each view", async () => {
+    await when(() => {
+      expect(xselect.options().length).to.equal(4);
+      expect(xselect.options(0).text).to.equal("Charles");
+      expect(xselect.options(3).text).to.equal("Nobody");
+    });
   });
 
-  it('marks the selected value', function() {
-    expect(this.$('option:eq(1)')).to.be.selected;
+  it("marks the selected value", async () => {
+    await when(() => expect(xselect.options(1).isSelected).to.equal(true));
   });
 
-  describe('choosing the last option', function() {
+  describe("choosing the last option", function() {
+    beforeEach(async () => {
+      await xselect.selectOption("Stanley");
+    });
+
+    it("invokes action & changes the value on page", async () => {
+      await when(() => expect(page.selectedText).to.equal("Stanley"));
+    });
+  });
+
+  // not an acceptance test
+  describe.skip("manually setting the selected binding", function() {
     beforeEach(function() {
-      select('.x-select', 'Stanley');
+      this.controller.set("it", this.controller.get("charles"));
     });
 
-    it('invokes action', function() {
-      expect(this.controller.get('it')).to.equal(stanley);
+    it("updates the selected option", function() {
+      expect(this.$("option:first")).to.be.selected;
     });
   });
 
-  describe('manually setting the selected binding', function() {
+  // not an acceptance test
+  describe.skip("disabling", function() {
     beforeEach(function() {
-      this.controller.set('it', this.controller.get('charles'));
+      this.controller.set("isDisabled", true);
     });
-    it('updates the selected option', function() {
-      expect(this.$('option:first')).to.be.selected;
-    });
-  });
 
-  describe('disabling', function() {
-    beforeEach(function() {
-      this.controller.set('isDisabled', true);
-    });
-    it('disables the select box', function() {
+    it("disables the select box", function() {
       expect(this.$()).not.to.be.enabled;
     });
   });
 
-  describe("when no option is selected", function() {
+  // not an acceptance test
+  describe.skip("when no option is selected", function() {
     beforeEach(function() {
-      this.$().prop('selectedIndex', 4).trigger('change');
+      this.$()
+        .prop("selectedIndex", 4)
+        .trigger("change");
     });
+
     it("has no value", function() {
-      expect(this.controller.get('it')).to.equal(null);
+      expect(this.controller.get("it")).to.equal(null);
     });
   });
-
-  shouldBindAttrs();
-
 });

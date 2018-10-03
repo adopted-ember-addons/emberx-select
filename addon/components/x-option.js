@@ -1,7 +1,7 @@
-import { scheduleOnce } from '@ember/runloop';
-import { computed } from '@ember/object';
-import Component from '@ember/component';
-import { isArray, A } from '@ember/array';
+import { scheduleOnce } from "@ember/runloop";
+import { computed } from "@ember/object";
+import Component from "@ember/component";
+import { isArray, A } from "@ember/array";
 
 /**
  * Used to wrap a native `<option>` tag and associate an object with
@@ -12,9 +12,9 @@ import { isArray, A } from '@ember/array';
  * @extends Ember.Component
  */
 export default Component.extend({
-  tagName: 'option',
-  attributeBindings: ['selected', 'name', 'disabled', 'value', 'title'],
-  classNameBindings: [':x-option'],
+  tagName: "option",
+  attributeBindings: ["selected", "name", "disabled", "value", "title"],
+  classNameBindings: [":x-option", "selected:is-selected"],
 
   /**
    * The value associated with this option. When this option is
@@ -36,31 +36,31 @@ export default Component.extend({
    * @property selected
    * @type Boolean
    */
-  selected: computed('value', 'select.{value,multiple}', function() {
-    if (this.get('select.multiple') && isArray(this.get('select.value'))) {
-      let selectValue = A(this.get('select.value'));
+  selected: computed("value", "select.{value,multiple}", function() {
+    if (this.get("select.multiple") && isArray(this.get("select.value"))) {
+      let selectValue = A(this.get("select.value"));
 
-      return selectValue.includes(this.get('value'));
+      return selectValue.includes(this.get("value"));
     } else {
-      return this.get('value') === this.get('select.value');
+      return this.get("value") === this.get("select.value");
     }
   }),
 
   didReceiveAttrs() {
     this._super.apply(this, arguments);
 
-    let oldDisabled = this.get('_oldDisabled');
+    let oldDisabled = this.get("_oldDisabled");
 
-    if(oldDisabled !== undefined && !oldDisabled) {
+    if (oldDisabled !== undefined && !oldDisabled) {
       // Undefined means the first time
 
-      if(this.get('disabled') !== oldDisabled) {
+      if (this.get("disabled") !== oldDisabled) {
         // eslint-disable-next-line ember/closure-actions
-        this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+        this.sendAction("on-disable", this.get("value"), this.get("disabled"));
       }
     }
 
-    this.set('_oldDisabled', this.get('disabled'));
+    this.set("_oldDisabled", this.get("disabled"));
   },
 
   /**
@@ -71,8 +71,8 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    scheduleOnce('afterRender', () => {
-      this.get('register')(this);
+    scheduleOnce("afterRender", () => {
+      this.get("register")(this);
     });
   },
 
@@ -82,7 +82,7 @@ export default Component.extend({
    * @override
    */
   willDestroyElement: function() {
-    this.get('unregister')(this);
+    this.get("unregister")(this);
     this._super.apply(this, arguments);
   }
 });
