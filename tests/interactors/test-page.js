@@ -1,4 +1,4 @@
-import { interactor, text } from "@bigtest/interactor";
+import { interactor, text, collection } from "@bigtest/interactor";
 
 // this is exactly the best use of interactors (by stuffing everything
 // into a single interactor), but for this cause I think it's okay.
@@ -11,7 +11,9 @@ let pageInteractor = interactor({
   carModelText: text(".spec-selected-model"),
   carTrimText: text(".spec-selected-trim"),
   selectedMakeModelText: text(".spec-selected-make-from-model"),
-  selectedQuantityText: text(".spec-selected-quantity")
+  selectedQuantityText: text(".spec-selected-quantity"),
+
+  multiselectValues: collection("[data-test-multiselected] li")
 });
 
 export default pageInteractor;

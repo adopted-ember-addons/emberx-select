@@ -23,7 +23,7 @@ describe("Acceptance: Events", function() {
   describe("visiting blur and triggering the blur event", function() {
     beforeEach(async () => {
       await click(".spec-blur-link");
-      await xselect.blur();
+      await xselect.focus().blur();
     });
 
     it("fires the blur action", async () => {

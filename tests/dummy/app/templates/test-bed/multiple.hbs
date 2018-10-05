@@ -1,13 +1,15 @@
 <p>
-  {{#x-select value=selections action="selectionsChanged" disabled=isDisabled multiple=true title=title required=isRequired
+  {{#x-select value=selections on-change=(action "selectionsChanged") disabled=isDisabled multiple=true title=title required=isRequired
      autofocus=hasAutofocus name=attrName form=attrForm size=attrSize as |xs|}}
     {{#xs.option value=charles}}Charles{{/xs.option}}
     {{#xs.option value=bastion}}Bastion{{/xs.option}}
     {{#xs.option value=stanley}}Stanley{{/xs.option}}
-    <option>Nobody</option>
+    <option value="nobody">Nobody</option>
   {{/x-select}}
 </p>
+
 <p>Selected:</p>
+
 <ul data-test-multiselected="true">
   {{#each currentSelections as |selection|}}
     <li>{{selection.name}}</li>

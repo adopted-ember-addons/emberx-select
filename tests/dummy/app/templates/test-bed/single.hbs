@@ -1,5 +1,5 @@
 <p>
-  {{#x-select value=it action="tagYouAreIt" disabled=isDisabled title=title required=isRequired
+  {{#x-select value=it on-change=(action "tagYouAreIt") disabled=isDisabled title=title required=isRequired
      autofocus=hasAutofocus name=attrName form=attrForm size=attrSize as |xs|}}
     {{#xs.option value=charles}}Charles{{/xs.option}}
     {{#xs.option value=bastion}}Bastion{{/xs.option}}

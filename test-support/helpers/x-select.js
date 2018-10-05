@@ -6,6 +6,7 @@ import {
   collection,
   hasClass,
   blurrable,
+  focusable,
   is
 } from "@bigtest/interactor";
 
@@ -14,17 +15,13 @@ const xSelectInteractor = interactor({
   isDisabled: property("disabled"),
   blur: blurrable(),
   click: clickable(),
+  focus: focusable(),
   hasFocus: is(":focus"),
 
   options: collection("option", {
-    isSelected: hasClass("is-selected")
-  }),
-
-  // TODO
-  focus() {
-    this.$root.focus();
-    return this;
-  }
+    isSelected: property("selected"),
+    hasSelectedClass: hasClass("is-selected")
+  })
 });
 
 export default xSelectInteractor;

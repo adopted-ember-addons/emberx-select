@@ -4,7 +4,7 @@ import Component from "@ember/component";
 import { isArray, A } from "@ember/array";
 import { computed, observer } from "@ember/object";
 
-const isSelectedOption = option => option.$().is(":selected");
+const isSelectedOption = option => option.element.selected;
 
 /**
  * Wraps a native <select> element so that it can be object and
@@ -130,11 +130,7 @@ export default Component.extend({
    * component's action with the current value.
    */
   change(event) {
-    let nextValue = this._getValue();
-
-    // eslint-disable-next-line ember/closure-actions
-    this.sendAction("action", nextValue, event, this);
-    this._handleAction("on-change", nextValue, event);
+    this._handleAction("on-change", this._getValue(), event);
   },
 
   /**
@@ -205,15 +201,16 @@ export default Component.extend({
    *
    * @private
    */
-  _setDefaultValues: function() {
+  _setDefaultValues() {
     once(this, this.__setDefaultValues);
   },
 
-  __setDefaultValues: function() {
+  __setDefaultValues() {
     let canSet = !this.isDestroying && !this.isDestroyed;
+
     if (canSet && this.get("value") == null) {
-      // eslint-disable-next-line ember/closure-actions
-      this.sendAction("action", this._getValue());
+      // `on-change` is the default event we use
+      this._handleAction("on-change", this._getValue(), event);
     }
   },
 
@@ -223,24 +220,14 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    this.$().on("blur", event => {
-      this.blur(event);
-    });
-
-    // FIXME this is an unfortunate workaround for an Edge bug for selects with required:
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8794503/
-    if (/edge\//i.test(window.navigator.userAgent)) {
-      let value = this.$().val();
-      this.$().val(`${value}-fake-edge-😳`);
-      this.$().val(value);
-    }
+    this.element.addEventListener("blur", event => this.blur(event));
   },
 
   /**
    * @override
    */
   willDestroyElement: function() {
-    this.$().off("blur");
+    this.element.removeEventListener("blur", this.blur);
     this._super.apply(this, arguments);
   },
 

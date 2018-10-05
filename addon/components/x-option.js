@@ -55,8 +55,7 @@ export default Component.extend({
       // Undefined means the first time
 
       if (this.get("disabled") !== oldDisabled) {
-        // eslint-disable-next-line ember/closure-actions
-        this.sendAction("on-disable", this.get("value"), this.get("disabled"));
+        this.get("on-disable")(this.get("value"), this.get("disabled"));
       }
     }
 
