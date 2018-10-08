@@ -52,8 +52,7 @@ describe('XSelect: Default Values', function() {
       await when(() => expect(modelMakeSelect.options(2).text).to.equal('Ford'));
     });
 
-    // Yikes, this was broken
-    it.skip('does not set the selected property on the default option', async () => {
+    it('does not set the selected property on the default option', async () => {
       await when(() => expect(modelMakeSelect.options(0).isSelected).to.equal(false));
     });
 
@@ -87,8 +86,7 @@ describe('XSelect: Default Values', function() {
         });
       });
 
-      // x-option selected bug
-      it.skip('removes the selected property on the previously selected option', async () => {
+      it('removes the selected property on the previously selected option', async () => {
         await when(() => {
           expect(makeSelect.options(1).isSelected).to.equal(false);
           expect(makeSelect.options(1).text).to.equal('Honda');
