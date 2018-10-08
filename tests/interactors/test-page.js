@@ -1,6 +1,6 @@
 import { interactor, text, collection } from "@bigtest/interactor";
 
-// this is exactly the best use of interactors (by stuffing everything
+// this isn't exactly the best use of interactors (by stuffing everything
 // into a single interactor), but for this cause I think it's okay.
 let pageInteractor = interactor({
   selectedText: text("[data-test-selected]"),

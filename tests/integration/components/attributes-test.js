@@ -1,11 +1,11 @@
 import { expect } from "chai";
-import { describe, beforeEach, it } from "mocha";
 import { when } from "@bigtest/convergence";
+import { describe, beforeEach, it } from "mocha";
 import { setupComponentTest } from "ember-mocha";
 import hbs from "htmlbars-inline-precompile";
 import xSelectInteractor from "dummy/tests/helpers/x-select";
 
-describe.only("Integration | Component | attributes", function() {
+describe("Integration | Component | attributes", function() {
   let xselect = new xSelectInteractor(".x-select");
 
   setupComponentTest("attributes", {

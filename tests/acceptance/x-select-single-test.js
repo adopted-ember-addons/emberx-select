@@ -20,11 +20,6 @@ describe("XSelect: Single Selection", function() {
     run(App, "destroy");
   });
 
-  // Not an acceptance test
-  it.skip("does not fire any actions on didInsertElement", function() {
-    expect(this.controller.get("tagged")).not.to.be.ok;
-  });
-
   it("is enabled by default", async () => {
     await when(() => expect(xselect.isDisabled).to.equal(false));
   });
@@ -48,41 +43,6 @@ describe("XSelect: Single Selection", function() {
 
     it("invokes action & changes the value on page", async () => {
       await when(() => expect(page.selectedText).to.equal("Stanley"));
-    });
-  });
-
-  // not an acceptance test
-  describe.skip("manually setting the selected binding", function() {
-    beforeEach(function() {
-      this.controller.set("it", this.controller.get("charles"));
-    });
-
-    it("updates the selected option", function() {
-      expect(this.$("option:first")).to.be.selected;
-    });
-  });
-
-  // not an acceptance test
-  describe.skip("disabling", function() {
-    beforeEach(function() {
-      this.controller.set("isDisabled", true);
-    });
-
-    it("disables the select box", function() {
-      expect(this.$()).not.to.be.enabled;
-    });
-  });
-
-  // not an acceptance test
-  describe.skip("when no option is selected", function() {
-    beforeEach(function() {
-      this.$()
-        .prop("selectedIndex", 4)
-        .trigger("change");
-    });
-
-    it("has no value", function() {
-      expect(this.controller.get("it")).to.equal(null);
     });
   });
 });
