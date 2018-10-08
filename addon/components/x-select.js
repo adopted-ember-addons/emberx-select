@@ -76,9 +76,9 @@ export default Component.extend({
    *
    * @property tabindex
    * @type Integer
-   * @default 0
+   * @default null
    */
-  tabindex: 0,
+  tabindex: null,
 
   /**
    * Function for the `on-blur` action
