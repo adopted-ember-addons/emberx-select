@@ -1,23 +1,23 @@
-import { expect } from "chai";
-import { when } from "@bigtest/convergence";
-import { describe, beforeEach, it } from "mocha";
-import { setupComponentTest } from "ember-mocha";
-import hbs from "htmlbars-inline-precompile";
-import xSelectInteractor from "dummy/tests/helpers/x-select";
+import { expect } from 'chai';
+import { when } from '@bigtest/convergence';
+import { describe, beforeEach, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
+import hbs from 'htmlbars-inline-precompile';
+import xSelectInteractor from 'dummy/tests/helpers/x-select';
 
-describe("Integration | Component | attributes", function() {
-  let xselect = new xSelectInteractor(".x-select");
+describe('Integration | Component | attributes', function() {
+  let xselect = new xSelectInteractor('.x-select');
 
-  setupComponentTest("attributes", {
+  setupComponentTest('attributes', {
     integration: true
   });
 
-  describe("default attributes", function() {
+  describe('default attributes', function() {
     beforeEach(async function() {
       this.setProperties({
-        value: "ollie",
+        value: 'ollie',
         handleChange(value) {
-          this.set("value", value);
+          this.set('value', value);
         }
       });
 
@@ -33,7 +33,7 @@ describe("Integration | Component | attributes", function() {
       `);
     });
 
-    it("does not render optional attributes", async () => {
+    it('does not render optional attributes', async () => {
       await when(() => {
         expect(xselect.name).to.equal(null);
         expect(xselect.form).to.equal(null);
@@ -48,16 +48,16 @@ describe("Integration | Component | attributes", function() {
 
   beforeEach(async function() {
     this.setProperties({
-      value: "ollie",
-      attrName: "person-select",
-      attrForm: "person-form",
-      title: "person title",
-      attrSize: "3",
+      value: 'ollie',
+      attrName: 'person-select',
+      attrForm: 'person-form',
+      title: 'person title',
+      attrSize: '3',
       isRequired: true,
       hasAutofocus: true,
       isDisabled: true,
       handleChange(value) {
-        this.set("value", value);
+        this.set('value', value);
       }
     });
 
@@ -81,53 +81,53 @@ describe("Integration | Component | attributes", function() {
     `);
   });
 
-  it("renders the name attribute", async () => {
-    await when(() => expect(xselect.name).to.equal("person-select"));
+  it('renders the name attribute', async () => {
+    await when(() => expect(xselect.name).to.equal('person-select'));
   });
 
-  it("renders the disabled property", async () => {
+  it('renders the disabled property', async () => {
     await when(() => expect(xselect.isDisabled).to.equal(true));
   });
 
-  it("renders the form attribute", async () => {
-    await when(() => expect(xselect.form).to.equal("person-form"));
+  it('renders the form attribute', async () => {
+    await when(() => expect(xselect.form).to.equal('person-form'));
   });
 
-  it("renders the title attribute", async () => {
-    await when(() => expect(xselect.title).to.equal("person title"));
+  it('renders the title attribute', async () => {
+    await when(() => expect(xselect.title).to.equal('person title'));
   });
 
-  it("renders the size attribute", async () => {
-    await when(() => expect(xselect.size).to.equal("3"));
+  it('renders the size attribute', async () => {
+    await when(() => expect(xselect.size).to.equal('3'));
   });
 
-  it("renders the required property", async () => {
+  it('renders the required property', async () => {
     await when(() => expect(xselect.isRequired).to.equal(true));
   });
 
-  it("renders the autofocus property", async () => {
+  it('renders the autofocus property', async () => {
     await when(() => expect(xselect.isAutofocus).to.equal(true));
   });
 
-  it("renders the tabindex attribute with 2", async () => {
-    await when(() => expect(xselect.tabindex).to.equal("2"));
+  it('renders the tabindex attribute with 2', async () => {
+    await when(() => expect(xselect.tabindex).to.equal('2'));
   });
 
-  describe("options properties & attributes", function() {
-    it("renders the value attribute", async () => {
-      await when(() => expect(xselect.options(0).value).to.equal("wally"));
+  describe('options properties & attributes', function() {
+    it('renders the value attribute', async () => {
+      await when(() => expect(xselect.options(0).value).to.equal('wally'));
     });
 
-    it("renders the name attribute", async () => {
-      await when(() => expect(xselect.options(0).name).to.equal("Walter"));
+    it('renders the name attribute', async () => {
+      await when(() => expect(xselect.options(0).name).to.equal('Walter'));
     });
 
-    it("renders the disabled property", async () => {
+    it('renders the disabled property', async () => {
       await when(() => expect(xselect.options(2).isDisabled).to.equal(true));
     });
 
-    it("renders the title attribute", async () => {
-      await when(() => expect(xselect.options(1).title).to.equal("The Pup"));
+    it('renders the title attribute', async () => {
+      await when(() => expect(xselect.options(1).title).to.equal('The Pup'));
     });
   });
 });

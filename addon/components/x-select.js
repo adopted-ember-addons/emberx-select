@@ -1,8 +1,8 @@
-import { on } from "@ember/object/evented";
-import { once } from "@ember/runloop";
-import Component from "@ember/component";
-import { isArray, A } from "@ember/array";
-import { computed, observer } from "@ember/object";
+import { on } from '@ember/object/evented';
+import { once } from '@ember/runloop';
+import Component from '@ember/component';
+import { isArray, A } from '@ember/array';
+import { computed, observer } from '@ember/object';
 
 const isSelectedOption = option => option.element.selected;
 
@@ -26,18 +26,18 @@ const isSelectedOption = option => option.element.selected;
  * @extends Ember.Component
  */
 export default Component.extend({
-  tagName: "select",
-  classNameBindings: [":x-select"],
+  tagName: 'select',
+  classNameBindings: [':x-select'],
   attributeBindings: [
-    "disabled",
-    "tabindex",
-    "multiple",
-    "form",
-    "name",
-    "autofocus",
-    "required",
-    "size",
-    "title"
+    'disabled',
+    'tabindex',
+    'multiple',
+    'form',
+    'name',
+    'autofocus',
+    'required',
+    'size',
+    'title'
   ],
 
   /**
@@ -86,7 +86,7 @@ export default Component.extend({
    * @property on-blur
    * @type Function
    */
-  "on-blur"() {},
+  'on-blur'() {},
 
   /**
    * Function for the `on-click` action
@@ -94,7 +94,7 @@ export default Component.extend({
    * @property on-click
    * @type Function
    */
-  "on-click"() {},
+  'on-click'() {},
 
   /**
    * Function for the `on-change` action
@@ -102,7 +102,7 @@ export default Component.extend({
    * @property on-change
    * @type Function
    */
-  "on-change"() {},
+  'on-change'() {},
 
   /**
    * Function for the `on-focus-out` action
@@ -110,7 +110,7 @@ export default Component.extend({
    * @property on-focus-out
    * @type Function
    */
-  "on-focus-out"() {},
+  'on-focus-out'() {},
 
   /**
    * Function that calls an action and sends the proper arguments.
@@ -130,7 +130,7 @@ export default Component.extend({
    * component's action with the current value.
    */
   change(event) {
-    this._handleAction("on-change", this._getValue(), event);
+    this._handleAction('on-change', this._getValue(), event);
   },
 
   /**
@@ -138,7 +138,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   click(event) {
-    this._handleAction("on-click", this._getValue(), event);
+    this._handleAction('on-click', this._getValue(), event);
   },
 
   /**
@@ -146,7 +146,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   blur(event) {
-    this._handleAction("on-blur", this._getValue(), event);
+    this._handleAction('on-blur', this._getValue(), event);
   },
 
   /**
@@ -154,7 +154,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the jQuery event.
    */
   focusOut(event) {
-    this._handleAction("on-focus-out", this._getValue(), event);
+    this._handleAction('on-focus-out', this._getValue(), event);
   },
 
   /**
@@ -167,7 +167,7 @@ export default Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    return this.get("multiple") ? this._findMultipleValues() : this._findSingleValue();
+    return this.get('multiple') ? this._findMultipleValues() : this._findSingleValue();
   },
 
   /**
@@ -178,9 +178,9 @@ export default Component.extend({
    * @return {Array} all the values from selected x-options
    */
   _findMultipleValues() {
-    return this.get("options")
+    return this.get('options')
       .filter(isSelectedOption)
-      .map(option => option.get("value"));
+      .map(option => option.get('value'));
   },
 
   /**
@@ -191,8 +191,8 @@ export default Component.extend({
    * @return {Object} the value of the first select `x-option`, or null
    */
   _findSingleValue() {
-    let selectedValue = this.get("options").find(isSelectedOption);
-    return selectedValue ? selectedValue.get("value") : null;
+    let selectedValue = this.get('options').find(isSelectedOption);
+    return selectedValue ? selectedValue.get('value') : null;
   },
 
   /**
@@ -208,9 +208,9 @@ export default Component.extend({
   __setDefaultValues() {
     let canSet = !this.isDestroying && !this.isDestroyed;
 
-    if (canSet && this.get("value") == null) {
+    if (canSet && this.get('value') == null) {
       // `on-change` is the default event we use
-      this._handleAction("on-change", this._getValue(), event);
+      this._handleAction('on-change', this._getValue(), event);
     }
   },
 
@@ -220,14 +220,14 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    this.element.addEventListener("blur", event => this.blur(event));
+    this.element.addEventListener('blur', event => this.blur(event));
   },
 
   /**
    * @override
    */
   willDestroyElement: function() {
-    this.element.removeEventListener("blur", this.blur);
+    this.element.removeEventListener('blur', this.blur);
     this._super.apply(this, arguments);
   },
 
@@ -239,11 +239,11 @@ export default Component.extend({
    */
   /* eslint-disable */
   ensureProperType: on(
-    "init",
-    observer("value", function() {
-      let value = this.get("value");
+    'init',
+    observer('value', function() {
+      let value = this.get('value');
 
-      if (value != null && this.get("multiple") && !isArray(value)) {
+      if (value != null && this.get('multiple') && !isArray(value)) {
         throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
       }
     })
@@ -260,7 +260,7 @@ export default Component.extend({
      * @private
      */
     registerOption(option) {
-      this.get("options").push(option);
+      this.get('options').push(option);
       this._setDefaultValues();
     },
 
@@ -273,7 +273,7 @@ export default Component.extend({
      * @private
      */
     unregisterOption(option) {
-      this.get("options").removeObject(option);
+      this.get('options').removeObject(option);
       this._setDefaultValues();
     }
   }

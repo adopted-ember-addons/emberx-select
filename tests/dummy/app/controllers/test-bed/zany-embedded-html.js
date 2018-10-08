@@ -20,35 +20,39 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   groupsOfZanyThings: A([]),
 
-
   schedulePopulate: on('init', function() {
     schedule('afterRender', this, 'populate');
   }),
 
   populate: function() {
-    this.set('groupsOfZanyThings', A([
-      {
-        label: 'Sandwiches',
-        things: [
-          { description: 'Cucumber and Peanutbutter' },
-          { description: 'Wasabe Muffuletta'},
-          { description: 'Ice Cream Burger' }
-        ]
-      }, {
-        label: 'Haircuts',
-        things: [
-          { description: 'One Direction' },
-          { description: 'Inverse Beehive' },
-          { description: '"The Cellist"' }
-        ]
-      }, {
-        label: 'Cars',
-        things: [
-          { description: 'The Smart Car' },
-          { description: 'The Dumb Car' },
-          { description: 'Delorean on Fire' }
-        ]
-      }
-    ]));
+    this.set(
+      'groupsOfZanyThings',
+      A([
+        {
+          label: 'Sandwiches',
+          things: [
+            { description: 'Cucumber and Peanutbutter' },
+            { description: 'Wasabe Muffuletta' },
+            { description: 'Ice Cream Burger' }
+          ]
+        },
+        {
+          label: 'Haircuts',
+          things: [
+            { description: 'One Direction' },
+            { description: 'Inverse Beehive' },
+            { description: '"The Cellist"' }
+          ]
+        },
+        {
+          label: 'Cars',
+          things: [
+            { description: 'The Smart Car' },
+            { description: 'The Dumb Car' },
+            { description: 'Delorean on Fire' }
+          ]
+        }
+      ])
+    );
   }
 });

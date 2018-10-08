@@ -1,6 +1,6 @@
-import Controller from "@ember/controller";
-import { A } from "@ember/array";
-import Cars from "dummy/mixins/cars";
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
+import Cars from 'dummy/mixins/cars';
 
 export default Controller.extend(Cars, {
   autopopulatedField: null,
@@ -16,20 +16,20 @@ export default Controller.extend(Cars, {
   actions: {
     setMake(object) {
       if (object) {
-        this.set("carModel", object.models[0]);
-        this.set("make", object);
+        this.set('carModel', object.models[0]);
+        this.set('make', object);
       }
     },
 
     setCarModel(object) {
       if (object) {
-        this.set("carModel", object);
+        this.set('carModel', object);
       }
     },
 
     setTrim(object) {
       if (object) {
-        this.set("trim", object);
+        this.set('trim', object);
       }
     },
 
