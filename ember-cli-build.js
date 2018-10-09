@@ -1,13 +1,10 @@
-"use strict";
+'use strict';
 
-let EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
+let EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
-    fsBranding: {
-      enableAssets: true
-    }
   });
 
   /*
@@ -17,7 +14,7 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  app.import("bower_components/highlightjs/styles/github.css");
+  app.import('bower_components/highlightjs/styles/github.css');
 
   return app.toTree();
 };

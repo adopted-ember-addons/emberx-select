@@ -1,0 +1,63 @@
+@mixin btn() {
+  background-color: $trout;
+  border: none;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: lighten($trout, 20%);
+    box-shadow: 0px 9px 24px 0px rgba(20,49,93,0.25);
+    transition: all 200ms cubic-bezier(0.47, 0, 0.75, 0.72);
+  }
+}
+
+.btn-primary {
+  @include btn();
+  background-color: $picton-blue;
+
+  &:hover {
+    background-color: lighten($picton-blue, 20%);
+  }
+}
+
+.btn-secondary {
+  @include btn();
+  background-color: $french-rose;
+
+  &:hover {
+    background-color: lighten($french-rose, 20%);
+    color: white;
+  }
+}
+
+.btn-link {
+  @include btn();
+  background-color: transparent;
+  background-image: url('../images/right-arrow.svg');
+  background-position: right;
+  background-repeat: no-repeat;
+  color: $trout;
+  padding-right: 30px;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+    color: $french-rose;
+    text-decoration: none;
+  }
+}
+
+.btn-tertiary {
+  @include btn();
+  color: $picton-blue;
+  background-color: white;
+
+  &:hover {
+    background-color: darken($white, 20%);
+  }
+}
