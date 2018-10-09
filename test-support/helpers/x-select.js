@@ -1,21 +1,6 @@
-import {
-  interactor,
-  selectable,
-  property,
-  clickable,
-  collection,
-  hasClass,
-  blurrable,
-  focusable,
-  attribute,
-  is
-} from '@bigtest/interactor';
+import { interactor, property, collection, hasClass, attribute, is } from '@bigtest/interactor';
 
 const xSelectInteractor = interactor({
-  selectOption: selectable(),
-  blur: blurrable(),
-  click: clickable(),
-  focus: focusable(),
   hasFocus: is(':focus'),
   name: attribute('name'),
   form: attribute('form'),

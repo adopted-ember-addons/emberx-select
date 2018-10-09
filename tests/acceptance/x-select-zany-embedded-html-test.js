@@ -1,21 +1,17 @@
-import startApp from '../helpers/start-app';
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import { expect } from 'chai';
-import { run } from '@ember/runloop';
 import { when } from '@bigtest/convergence';
-import { beforeEach, afterEach, describe, it } from 'mocha';
+import { visit } from '@ember/test-helpers';
+import { beforeEach, describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('XSelect: Embedded HTML', function() {
   let xselect = new xSelectInteractor('.x-select');
-  let App;
+
+  setupApplicationTest();
 
   beforeEach(async () => {
-    App = startApp();
     visit('test-bed/zany-embedded-html');
-  });
-
-  afterEach(function() {
-    run(App, 'destroy');
   });
 
   it('renders', async () => {

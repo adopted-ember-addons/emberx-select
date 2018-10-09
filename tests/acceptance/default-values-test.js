@@ -1,13 +1,12 @@
-import startApp from '../helpers/start-app';
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
 import { expect } from 'chai';
+import { visit } from '@ember/test-helpers';
 import { when } from '@bigtest/convergence';
-import { run } from '@ember/runloop';
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('XSelect: Default Values', function() {
-  let App;
   let page = new pageInteractor();
   let makeSelect = new xSelectInteractor('.spec-car-make');
   let modelSelect = new xSelectInteractor('.spec-car-model');
@@ -15,16 +14,10 @@ describe('XSelect: Default Values', function() {
   let modelMakeSelect = new xSelectInteractor('.spec-autopopulated-make-field');
   let quantitySelect = new xSelectInteractor('.spec-autopopulated-quantity-field');
 
-  beforeEach(function() {
-    App = startApp();
-  });
-
-  afterEach(function() {
-    run(App, 'destroy');
-  });
+  setupApplicationTest();
 
   describe('Initializing with default values', function() {
-    beforeEach(async () => {
+    beforeEach(async function() {
       await visit('test-bed/default-value');
     });
 
@@ -76,7 +69,7 @@ describe('XSelect: Default Values', function() {
 
     describe('Changing the value on fields with default values', function() {
       beforeEach(async () => {
-        await makeSelect.selectOption('Toyota');
+        await makeSelect.select('Toyota');
       });
 
       it('updates the value', async () => {

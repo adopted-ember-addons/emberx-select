@@ -1,23 +1,19 @@
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
-import startApp from '../helpers/start-app';
 import { expect } from 'chai';
-import { run } from '@ember/runloop';
-import { beforeEach, afterEach, describe, it } from 'mocha';
 import { when } from '@bigtest/convergence';
+import { visit } from '@ember/test-helpers';
+import { beforeEach, describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('XSelect: Multiple Selection', function() {
-  let App;
   let xselect = new xSelectInteractor('.x-select');
   let page = new pageInteractor();
 
-  beforeEach(async () => {
-    App = startApp();
-    await visit('test-bed/multiple');
-  });
+  setupApplicationTest();
 
-  afterEach(function() {
-    run(App, 'destroy');
+  beforeEach(async () => {
+    await visit('test-bed/multiple');
   });
 
   it('marks all selected values initially', async () => {
@@ -35,7 +31,7 @@ describe('XSelect: Multiple Selection', function() {
 
   describe('deselecting', function() {
     beforeEach(async () => {
-      await xselect.selectOption('Stanley');
+      await xselect.select('Stanley');
     });
 
     it('properly deselects the right option', async () => {
@@ -55,7 +51,7 @@ describe('XSelect: Multiple Selection', function() {
 
   describe('when no option is selected', function() {
     beforeEach(async () => {
-      await xselect.selectOption(['Bastion', 'Stanley']);
+      await xselect.select(['Bastion', 'Stanley']);
     });
 
     it('updates the select values', async () => {

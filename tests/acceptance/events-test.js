@@ -1,23 +1,19 @@
-import startApp from '../helpers/start-app';
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
-import { run } from '@ember/runloop';
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
+import { visit, click } from '@ember/test-helpers';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
 import { when } from '@bigtest/convergence';
 
 describe('Acceptance: Events', function() {
-  let App;
   let xselect = new xSelectInteractor('.x-select');
   let page = new pageInteractor();
 
-  beforeEach(async () => {
-    App = startApp();
-    await visit('test-bed/e');
-  });
+  setupApplicationTest();
 
-  afterEach(function() {
-    run(App, 'destroy');
+  beforeEach(async function() {
+    await visit('test-bed/e');
   });
 
   describe('visiting blur and triggering the blur event', function() {
