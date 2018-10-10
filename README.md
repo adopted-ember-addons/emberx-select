@@ -42,7 +42,7 @@ the options are always up to date, so that when the object bound to
 `value` changes, the corresponding option becomes selected.
 
 Whenever the select tag receives a change event, it will fire
-`action`.
+`on-change`.
 
 
 ### Contextual Components
@@ -128,18 +128,18 @@ types. These actions follow the HTML input event naming convention.
 
 `on-blur` fires anytime the `blur` event is triggered on the x-select
 component. When the action fires it sends two arguments: the value,
-the jQuery event.
+the DOM event.
 
 **on-focus-out**
 
 `on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
 component. When the action fires it sends two arguments: the value,
-the jQuery event.
+the DOM event.
 
 **on-click**
 
 `on-click` fires when x-select is clicked. When the action fires it
-sends two arguments: the value, the jQuery event.
+sends two arguments: the value, the DOM event.
 
 **on-disable** (x-option)
 

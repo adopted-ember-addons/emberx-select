@@ -119,7 +119,7 @@ export default Component.extend({
    * @type Function
    * @param {String} action - string name of the action to invoke
    * @param {String|Object} value - current value of the component
-   * @param {Object} event - jQuery event from the current action
+   * @param {Object} event - DOM event from the current action
    */
   _handleAction(action, value, event) {
     this.get(action)(value, event);
@@ -135,7 +135,7 @@ export default Component.extend({
 
   /**
    * When the click DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   click(event) {
     this._handleAction('on-click', this._getValue(), event);
@@ -143,7 +143,7 @@ export default Component.extend({
 
   /**
    * When the blur DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   blur(event) {
     this._handleAction('on-blur', this._getValue(), event);
@@ -151,7 +151,7 @@ export default Component.extend({
 
   /**
    * When the focusOut DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   focusOut(event) {
     this._handleAction('on-focus-out', this._getValue(), event);
