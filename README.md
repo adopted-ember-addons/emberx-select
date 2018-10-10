@@ -32,10 +32,10 @@ and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
 ```handlebars
-{{#x-select value=bob action=(action "selectPerson") as |xs|}}
-  {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
-  {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
-{{/x-select}}
+<XSelect @value={{bob}} @on-change={{action "selectPerson"}} as |xs|>
+  <xs.option @value={{fred}}>Fred Flintstone</xs.option>
+  <xs.option @value={{bob}}>Bob Newhart</xs.option>
+</XSelect>
 ```
 
 the options are always up to date, so that when the object bound to
@@ -54,10 +54,10 @@ potentially expensive DOM traversals. Now the options can register
 through data rather than through the DOM.
 
 ```handlebars
-{{#x-select value=model.status as |xs|}}
-  {{#xs.option value=1}}Active{{/xs.option}}
-  {{#xs.option value=2}}Inactive{{/xs.option}}
-{{/x-select}}
+<XSelect @value={{model.status}} as |xs|>
+  <xs.option value=1>Active</xs.option>
+  <xs.option value=2>Inactive</xs.option>
+</XSelect>
 ```
 
 ### Multiselect
@@ -67,11 +67,11 @@ option. This means you can pass an array as its value, and it will set
 its selections directly on that array.
 
 ```handlebars
-{{#x-select value=selections multiple=true action="selectionsChanged" as |xs|}}
- {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
- {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
- {{#xs.option value=andrew}}Andrew WK{{/xs.option}}
-{{/x-select}}
+<XSelect @value=selections @multiple=true @on-change={{action "selectionsChanged"}} as |xs|>
+ <xs.option value={{fred}}>Fred Flintstone</xs.option>
+ <xs.option value={{bob}}>Bob Newhart</xs.option>
+ <xs.option value={{andrew}}>Andrew WK</xs.option>
+</XSelect>
 ```
 
 The selections array will be initialized to an empty array if not present.
@@ -86,7 +86,7 @@ signature of:
 ```js
 /**
 * @param {Object} value - the value selected by the user.
-* @param {Object} event - the jQuery event of the action
+* @param {Object} event - the DOM event of the action
 */
 function (value, event) {
   // action body...
@@ -98,10 +98,10 @@ sometimes your action requires more context than just that. In those
 cases, you can pass any arguments you need from the template. For example:
 
 ```handlebars
-{{#x-select on-click=(action "didMakeSelection" isXSelectRequired) required=isXSelectRequired as |xs|}}
+<XSelect @on-click={{action "didMakeSelection" isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
   <option>Nothing</option>
-  {{#xs.option value=something}}Something{{/xs.option}}
-{{/x-select}}
+  <xs.option value={{something}}>Something</xs.option>
+</XSelect>
 ```
 then, inside your action handler:
 
@@ -147,7 +147,9 @@ sends two arguments: the value, the jQuery event.
 attribute. When the action fires it sends two arguments: the value
 and if it is disabled (boolean).
 
-### Test Helper
+### Test Helper [TODO]
+
+TODO: Redo this section to talk about interactor and how it works
 
 Since `x-select` uses internal identifiers as the `value` attribute, it
 doesn't integrate with the `fillIn` test helper. But don't fret, we've built a

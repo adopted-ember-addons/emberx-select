@@ -4,12 +4,11 @@
     {{#xs.option value=charles}}Charles{{/xs.option}}
     {{#xs.option value=bastion}}Bastion{{/xs.option}}
     {{#xs.option value=stanley}}Stanley{{/xs.option}}
-    <option value="nobody">Nobody</option>
+    <option>Nobody</option>
   {{/x-select}}
 </p>
 
 <p>Selected:</p>
-
 <ul data-test-multiselected="true">
   {{#each currentSelections as |selection|}}
     <li>{{selection.name}}</li>
