@@ -3,15 +3,15 @@
 [![Ember Observer Score](http://emberobserver.com/badges/emberx-select.svg)](http://emberobserver.com/addons/emberx-select)
 [![CircleCI](https://circleci.com/gh/thefrontside/emberx-select/tree/master.svg?style=svg)](https://circleci.com/gh/thefrontside/emberx-select/tree/master)
 
-A Select component based on the native html select.
+A select component based on the native html select.
 
 We've tried other select components, and were missing the reliability,
 maintainability, and accessbility of the native html `<select>`.
-`<x-select>` is a drop-in component to let you use any
+`<XSelect>` is a drop-in component to let you use any
 object for your selectable options. You can use it out of the box, or
 as a building block of something more ambitious.
 
-The goal of `<x-select>` is to let you see how it works and style it
+The goal of `<XSelect>` is to let you see how it works and style it
 right in your template, rather than passing in a ball of configuration
 or wrapping a hard-coded, inaccessible jQuery plugin.
 
@@ -27,7 +27,7 @@ element, you can use it just like you would normally. This means
 things like having `<optgroup>` tags inside your select, or even plain
 old `<option>` elements to represent things like empty values.
 
-XSelect thinly wraps a native `<select>` element so that it can be object
+`<XSelect>` thinly wraps a native `<select>` element so that it can be object
 and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
@@ -42,7 +42,8 @@ the options are always up to date, so that when the object bound to
 `value` changes, the corresponding option becomes selected.
 
 Whenever the select tag receives a change event, it will fire
-`on-change`.
+`on-change` action. This is the default action that is fired but not
+the only event that's available.
 
 
 ### Contextual Components
@@ -62,9 +63,9 @@ through data rather than through the DOM.
 
 ### Multiselect
 
-As of version 1.1.0, `emberx-select` supports the `multiple`
-option. This means you can pass an array as its value, and it will set
-its selections directly on that array.
+`<XSelect>` supports the `multiple` option. This means you can pass an
+array as its value, and it will set its selections directly on that
+array.
 
 ```handlebars
 <XSelect @value=selections @multiple=true @on-change={{action "selectionsChanged"}} as |xs|>
@@ -78,9 +79,9 @@ The selections array will be initialized to an empty array if not present.
 
 ## Actions and Action Arguments
 
-All of x-selects actions are closure actions. This means you must use
-the `action` helper (i.e. `on-click=(action "onClick")`). The function
-that is dispatched by x-select whenever the event fires has a function
+All of `<XSelect>`s actions are closure actions. This means you must use
+the `action` helper (i.e. `@on-click={{action "onClick"}}`). The function
+that is dispatched by `<XSelect>` whenever the event fires has a function
 signature of:
 
 ```js
@@ -95,7 +96,8 @@ function (value, event) {
 
 Most of the time all you need is the value that has been selected, but
 sometimes your action requires more context than just that. In those
-cases, you can pass any arguments you need from the template. For example:
+cases, you can pass any arguments you need from the template. For
+example:
 
 ```handlebars
 <XSelect @on-click={{action "didMakeSelection" isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
@@ -103,6 +105,7 @@ cases, you can pass any arguments you need from the template. For example:
   <xs.option value={{something}}>Something</xs.option>
 </XSelect>
 ```
+
 then, inside your action handler:
 
 ```js
@@ -121,24 +124,24 @@ export default Controller.extend({
 });
 ```
 
-x-select provides other actions that fire on different event
+`<XSelect>` provides other actions that fire on different event
 types. These actions follow the HTML input event naming convention.
 
 **on-blur**
 
-`on-blur` fires anytime the `blur` event is triggered on the x-select
+`on-blur` fires anytime the `blur` event is triggered on the `<XSelect>`
 component. When the action fires it sends two arguments: the value,
 the DOM event.
 
 **on-focus-out**
 
-`on-focus-out` fires anytime the `focusOut` event is triggered on the x-select
+`on-focus-out` fires anytime the `focusOut` event is triggered on the `<XSelect>`
 component. When the action fires it sends two arguments: the value,
 the DOM event.
 
 **on-click**
 
-`on-click` fires when x-select is clicked. When the action fires it
+`on-click` fires when `<XSelect>` is clicked. When the action fires it
 sends two arguments: the value, the DOM event.
 
 **on-disable** (x-option)
@@ -147,39 +150,134 @@ sends two arguments: the value, the DOM event.
 attribute. When the action fires it sends two arguments: the value
 and if it is disabled (boolean).
 
-### Test Helper [TODO]
+### Test Helper
 
-TODO: Redo this section to talk about interactor and how it works
+`<XSelect>` 4.0 ships with an entirely new test helper that goes
+beyond just allowing you to select an option. It allows you to
+interact with your `<select>` element in all different ways. For
+example in tests if you need to assert your first options `disabled`
+or not:
 
-Since `x-select` uses internal identifiers as the `value` attribute, it
-doesn't integrate with the `fillIn` test helper. But don't fret, we've built a
-test helper for you.
+```javascript
+expect(xselect.options(0).isDisabled).to.equal(true);
+```
+
+Under the hood this new test helper is using a [BigTest
+Interactor](https://bigtestjs.io/guides/interactors/introduction/). Interactors
+allow you to think about how you're going to _interact_ with the DOM
+and abstract that into composable & immutable containers. Interactors
+are similar to page objects, but for components.
 
 #### Using the test helper
 
-To use the select helper in your tests you have to import the select function:
+Import the select interactor:
 
 ``` javascript
-  import { select } from "yourappname/tests/helpers/x-select";
+// you can name the import whatever you want
+import XSelect from "yourappname/tests/helpers/x-select";
 ```
 
-We support both multiselects and regular selects. To use, you
-need to specify the class on the select (or a jquery object) as the
-first argument and the rest of the arguments are the options you'd
-like to select. For example:
+At the top of your test file you need to initialize the
+interactor. This should go at the top most part of your test so it's
+available to all tests in the file. Here's an example in Qunit:
 
-```js
-//... Single select
-  select(".my-drop-down", "My Option");
-//...
+
+``` javascript
+module("Acceptance | Your Test", function(hooks) {
+  let xselect = new XSelect('.selector-for-select');
+  setupApplicationTest(hooks);
+  // ...
+});
 ```
 
-Multiselect
-```javascript
-//... Multiselect
-  select(Ember.$(".my-drop-down"), "My Option", "My Option Two", "My Option Three");
-//...
+Once you have initialized the interactor, you're ready to start
+selecting!
+
+``` javascript
+module("Acceptance | Your Test", function(hooks) {
+  let xselect = new XSelect('.selector-for-select');
+  // ...
+
+  test('Selecting an option', async (assert) => {
+    await xselect.select('Fred Flintstone');
+    // for a multiselect pass an array
+    // await xselect.select(['Fred Flintstone', 'Bob Newhart']);
+
+    // assert change happened in your app
+  });
+});
 ```
+
+You can do more than just select options with this helper.
+
+``` javascript
+module('Acceptance | Your Test', function(hooks) {
+  let xselect = new XSelect('.selector-for-select');
+  // ...
+
+  test('Selecting an option', async (assert) => {
+    await xselect.select('Fred Flintstone');
+
+    // this is using `@bigtest/convergence`'s `when` to assert
+    await when(() => assert.equal(xselect.options(0).isSelected, true));
+  });
+});
+```
+
+In this example we're using `@bigtest/convergence#when` to
+assert. The TL;DR of convergence is it basically _converges_ on the
+state of the DOM. It checks every 10ms until the assertion is
+truthy. Once it's truthy the test passes. [You can read more about
+convergences here](https://github.com/bigtestjs/convergence#why-convergence)
+
+This is the full interactor which has all of the attributes or
+interactions for an `HTMLSelectElement`.
+
+``` javascript
+const xSelectInteractor = interactor({
+  hasFocus: is(':focus'),
+  name: attribute('name'),
+  form: attribute('form'),
+  title: attribute('title'),
+  size: attribute('size'),
+  tabindex: attribute('tabindex'),
+  isDisabled: property('disabled'),
+  isRequired: property('required'),
+  isAutofocus: property('autofocus'),
+
+  options: collection('option', {
+    name: attribute('name'),
+    value: property('value'),
+    title: attribute('title'),
+    isSelected: property('selected'),
+    isDisabled: property('disabled'),
+    hasSelectedClass: hasClass('is-selected')
+  })
+});
+```
+
+Example usage might be:
+
+``` html
+<select name="World" class="x-select">
+  <option value="hello world">Hello world!</option>
+</select>
+```
+
+``` javascript
+let xselect = new XSelect('.x-select');
+
+xselect.options(0).value; //=> "hello world"
+xselect.options(0).text; //=> "Hello World!"
+xselect.name; //=> "World"
+xselect.form; //=> null
+xselect.hasFocus; //=> false
+xselect.tabIndex; //=> 0
+```
+
+If you want to see this test helper used in many different ways look
+no further than [this addons test suite!](https://github.com/thefrontside/emberx-select/tree/master/tests)
+
 ## EmberX
 
 emberx-select is part of the "missing components of ember" collectively
@@ -200,6 +298,7 @@ known as emberx:
 
 
 ## Code of Conduct
+
 Please note that this project is released with a Contributor Code of
 Conduct. By participating in this project you agree to abide by its
 terms, which can be found in the `CODE_OF_CONDUCT.md` file in this
