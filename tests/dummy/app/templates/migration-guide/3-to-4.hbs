@@ -1,0 +1,90 @@
+<h1>Migrating from 3.x to 4.x</h1>
+
+<p>
+  emberx-select 4.x doesn't introduce too many breaking changes. This major version is mostly to align x-select with ember best practices (like removing jQuery).
+</p>
+
+<p>
+  There are a few breaking changes in this release:
+</p>
+
+{{format-markdown
+  "
+  - Removed jQuery from component usage
+  - Action handers no longer pass a jQuery event. They now pass a native DOM event.
+  - `sendAction` has been removed. That means `{{#x-select action='myAction'}}` will no longer work
+  - Completely revamped the test helper
+"
+}}
+
+<h2>Removing sendAction</h2>
+
+{{format-markdown
+  "
+  [Ember deprecated `sendAction`](https://emberjs.com/blog/2018/10/07/ember-3-4-released.html#toc_deprecations-2) in v3.4. `<XSelect>` had two places where `sendAction` was used. One internally and one through the default `action` property:
+
+  ```handlebars
+  {{#x-select action=\"myAction\"}} ... {{/x-select}}
+  ```
+
+  In `<XSelect>` v4.x we removed the default `action` property. You should now implement `on-change` instead. In fact, `action` was called from `on-change` for all of `<XSelect>`s life. So the above example becomes:
+
+  ```handlebars
+  {{#x-select on-change=(action \"myAction\")}} ... {{/x-select}}
+  ```
+
+  or in Ember v3.4:
+
+  ```html
+  <XSelect @on-change={{action \"myAction\"}}> ... </XSelect>
+  ```
+  "
+}}
+
+<h2>New test helper</h2>
+
+<p>
+  Migrating from the 3.x to 4.x x-select test helper is fairly simple, but still breaking change. There are a couple differences. There's no longer a named import, you have to initialize the helper, and it does way more than selecting options now.
+</p>
+
+{{format-markdown
+  "
+  The old test helper import looked like this:
+
+  ```javascript
+  import { select } from 'yourappname/tests/helpers/x-select';
+  ```
+
+  The test helper import in 4.x is now:
+
+  ```javascript
+  import XSelectInteractor from 'yourappname/tests/helpers/x-select';
+  ```
+
+  To use the new test helper you have to initialize it at the top of your test file:
+
+  ``` javascript
+  module(\"Acceptance | Your Test\", function(hooks) {
+    let xselect = new XSelectInteractor('.selector-for-select');
+    setupApplicationTest(hooks);
+    // ...
+  });
+  ```
+
+  Once it's initialized you can select an option:
+
+  ``` javascript
+  test(\"Selecting an option\", async function(assert) {
+    await xselect.select('My Option');
+    // for multiple selects pass an array
+    // await xselect.select(['My Option', 'Another Option']);
+
+    // ...
+  });
+  ```
+  "
+}}
+
+<p>
+  Checkout the {{#link-to 'testing'}}testing documentation{{/link-to}} for more information on the new test helper.
+</p>

@@ -155,7 +155,7 @@ and if it is disabled (boolean).
 `<XSelect>` 4.0 ships with an entirely new test helper that goes
 beyond just allowing you to select an option. It allows you to
 interact with your `<select>` element in all different ways. For
-example in tests if you need to assert your first options `disabled`
+example, if you need to assert your first option is `disabled`
 or not:
 
 ```javascript
@@ -174,7 +174,7 @@ Import the select interactor:
 
 ``` javascript
 // you can name the import whatever you want
-import XSelect from "yourappname/tests/helpers/x-select";
+import XSelectInteractor from "yourappname/tests/helpers/x-select";
 ```
 
 At the top of your test file you need to initialize the
@@ -184,7 +184,7 @@ available to all tests in the file. Here's an example in Qunit:
 
 ``` javascript
 module("Acceptance | Your Test", function(hooks) {
-  let xselect = new XSelect('.selector-for-select');
+  let xselect = new XSelectInteractor('.selector-for-select');
   setupApplicationTest(hooks);
   // ...
 });
@@ -195,7 +195,7 @@ selecting!
 
 ``` javascript
 module("Acceptance | Your Test", function(hooks) {
-  let xselect = new XSelect('.selector-for-select');
+  let xselect = new XSelectInteractor('.selector-for-select');
   // ...
 
   test('Selecting an option', async (assert) => {
@@ -212,7 +212,7 @@ You can do more than just select options with this helper.
 
 ``` javascript
 module('Acceptance | Your Test', function(hooks) {
-  let xselect = new XSelect('.selector-for-select');
+  let xselect = new XSelectInteractor('.selector-for-select');
   // ...
 
   test('Selecting an option', async (assert) => {
@@ -265,7 +265,7 @@ Example usage might be:
 ```
 
 ``` javascript
-let xselect = new XSelect('.x-select');
+let xselect = new XSelectInteractor('.x-select');
 
 xselect.options(0).value; //=> "hello world"
 xselect.options(0).text; //=> "Hello World!"

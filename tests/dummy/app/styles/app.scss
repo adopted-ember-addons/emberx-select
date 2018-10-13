@@ -65,5 +65,11 @@ pre {
   margin-top: 1em;
   padding: 10px 0;
   border-radius: 4px;
-  background-color: #ebebeb;
+  background-color: $gallery;
+}
+
+code {
+  padding: 3px 0;
+  border-radius: 4px;
+  background-color: $gallery;
 }
