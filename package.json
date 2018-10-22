@@ -26,7 +26,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "@bigtest/interactor": "^0.8.0",
+    "@bigtest/interactor": "^0.9.0",
     "ember-auto-import": "^1.2.13",
     "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^3.0.0"

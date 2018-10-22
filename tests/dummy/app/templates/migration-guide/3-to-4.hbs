@@ -27,16 +27,16 @@
   {{#x-select action=\"myAction\"}} ... {{/x-select}}
   ```
 
-  In `<XSelect>` v4.x we removed the default `action` property. You should now implement `on-change` instead. In fact, `action` was called from `on-change` for all of `<XSelect>`s life. So the above example becomes:
+  In `<XSelect>` v4.x we removed the default `action` property. You should now implement `onChange` instead. In fact, `action` was called from `onChange` for all of `<XSelect>`s life. So the above example becomes:
 
   ```handlebars
-  {{#x-select on-change=(action \"myAction\")}} ... {{/x-select}}
+  {{#x-select onChange=(action \"myAction\")}} ... {{/x-select}}
   ```
 
   or in Ember v3.4:
 
   ```html
-  <XSelect @on-change={{action \"myAction\"}}> ... </XSelect>
+  <XSelect @onChange={{action \"myAction\"}}> ... </XSelect>
   ```
   "
 }}

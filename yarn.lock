@@ -6,9 +6,9 @@
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@bigtest/convergence/-/convergence-0.10.0.tgz#ed2212b7034c84917ccfbaa8cf875730ee535702"
 
-"@bigtest/interactor@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@bigtest/interactor/-/interactor-0.8.0.tgz#2b8d8e71dcce495011658356df146752b50474e1"
+"@bigtest/interactor@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@bigtest/interactor/-/interactor-0.9.0.tgz#53e24332e5eb06cbb4eab03f2e90654a76d1b59d"
   dependencies:
     "@bigtest/convergence" "^0.10.0"
 

@@ -3,7 +3,7 @@
 <h2>Select a Car Make</h2>
 <p>Default set to option two (Honda)</p>
 <p>
-  {{#x-select value=make on-change=(action "setMake") class="spec-car-make" as |xs|}}
+  {{#x-select value=make onChange=(action "setMake") class="spec-car-make" as |xs|}}
     {{#xs.option value=ford}}Ford{{/xs.option}}
     {{#xs.option value=honda selected=true}}Honda{{/xs.option}}
     {{#xs.option value=toyota}}Toyota{{/xs.option}}
@@ -16,7 +16,7 @@
 <h2>Select a Car Model</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=carModel on-change=(action "setCarModel") class="spec-car-model" as |xs|}}
+  {{#x-select value=carModel onChange=(action "setCarModel") class="spec-car-model" as |xs|}}
     {{#each make.models as |carModel index|}}
       {{#if index}}
         {{#xs.option value=carModel}}{{carModel.name}}{{/xs.option}}
@@ -33,7 +33,7 @@
 <h2>Select a Car Trim Option</h2>
 <p>Default set to the first option in the dynamic list</p>
 <p>
-  {{#x-select value=trim on-change=(action "setTrim") class="spec-car-trim" as |xs|}}
+  {{#x-select value=trim onChange=(action "setTrim") class="spec-car-trim" as |xs|}}
     {{#each carModel.trimOptions as |trim index|}}
       {{#if index}}
         {{#xs.option value=trim}}{{trim.name}}{{/xs.option}}
@@ -50,7 +50,7 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the model (initialized as Ford) is overriding the default to select the first option in the list (Toyota).</p>
 <p>
-  {{#x-select value=model on-change=(action "updateField") class="spec-autopopulated-make-field" as |xs|}}
+  {{#x-select value=model onChange=(action "updateField") class="spec-autopopulated-make-field" as |xs|}}
     {{#each makes as |make index|}}
       {{#if index}}
         {{#xs.option value=make}}{{make.name}}{{/xs.option}}
@@ -67,7 +67,7 @@
 <p>An explicit value overrides any defaults.</p>
 <p>Here, the selectedQuantity (initially 0) is overriding the default to select the first option in the list (5).</p>
 <p>
-  {{#x-select value=selectedQuantity on-change=(action "updateSelectedQuantity") class="spec-autopopulated-quantity-field" as |xs|}}
+  {{#x-select value=selectedQuantity onChange=(action "updateSelectedQuantity") class="spec-autopopulated-quantity-field" as |xs|}}
     {{#each quantities as |quantity index|}}
       {{#if index}}
         {{#xs.option value=quantity}}{{quantity}}{{/xs.option}}

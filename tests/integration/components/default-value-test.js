@@ -20,7 +20,7 @@ describe('Integration: DefaultValue', function() {
       });
 
       this.render(hbs`
-        {{#x-select value=make on-change=(action selectAction) as |xs|}}
+        {{#x-select value=make onChange=(action selectAction) as |xs|}}
           {{#xs.option value="fordValue" class="spec-ford-option"}}Ford{{/xs.option}}
           {{#xs.option value="chevyValue"}}Chevy{{/xs.option}}
           {{#xs.option value="dodgeValue" class="spec-dodge-option"}}Dodge{{/xs.option}}
