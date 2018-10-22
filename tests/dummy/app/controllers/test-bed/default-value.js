@@ -4,41 +4,36 @@ import Cars from 'dummy/mixins/cars';
 
 export default Controller.extend(Cars, {
   autopopulatedField: null,
-
   make: null,
-
   carModel: null,
-
   trim: undefined,
-
   selectedQuantity: 0,
-
   makeIsSet: false,
-
   modelIsSet: false,
-
   trimIsSet: false,
-
   quantities: A([5, 4, 3, 2, 1, 0]),
 
   actions: {
-    setMake: function(object) {
-      if(object) {
+    setMake(object) {
+      if (object) {
         this.set('carModel', object.models[0]);
         this.set('make', object);
       }
     },
-    setCarModel: function(object) {
-      if(object) {
+
+    setCarModel(object) {
+      if (object) {
         this.set('carModel', object);
       }
     },
-    setTrim: function(object) {
-      if(object) {
+
+    setTrim(object) {
+      if (object) {
         this.set('trim', object);
       }
     },
-    updateField: function() {},
-    updateSelectedQuantity: function() {}
+
+    updateField() {},
+    updateSelectedQuantity() {}
   }
 });

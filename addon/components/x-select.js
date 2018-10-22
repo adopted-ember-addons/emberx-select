@@ -1,11 +1,10 @@
 import { on } from '@ember/object/evented';
 import { once } from '@ember/runloop';
-import { warn } from '@ember/debug';
 import Component from '@ember/component';
 import { isArray, A } from '@ember/array';
 import { computed, observer } from '@ember/object';
 
-const isSelectedOption = (option) => option.$().is(':selected');
+const isSelectedOption = option => option.element.selected;
 
 /**
  * Wraps a native <select> element so that it can be object and
@@ -27,9 +26,19 @@ const isSelectedOption = (option) => option.$().is(':selected');
  * @extends Ember.Component
  */
 export default Component.extend({
-  tagName: "select",
-  classNameBindings: [":x-select"],
-  attributeBindings: ['disabled', 'tabindex', 'multiple', 'form', 'name', 'autofocus', 'required', 'size', 'title'],
+  tagName: 'select',
+  classNameBindings: [':x-select'],
+  attributeBindings: [
+    'disabled',
+    'tabindex',
+    'multiple',
+    'form',
+    'name',
+    'autofocus',
+    'required',
+    'size',
+    'title'
+  ],
 
   /**
    * Bound to the `disabled` attribute on the native <select> tag.
@@ -67,9 +76,9 @@ export default Component.extend({
    *
    * @property tabindex
    * @type Integer
-   * @default 0
+   * @default null
    */
-  tabindex: 0,
+  tabindex: null,
 
   /**
    * Function for the `on-blur` action
@@ -77,7 +86,7 @@ export default Component.extend({
    * @property on-blur
    * @type Function
    */
-  "on-blur"() {},
+  'on-blur'() {},
 
   /**
    * Function for the `on-click` action
@@ -85,7 +94,7 @@ export default Component.extend({
    * @property on-click
    * @type Function
    */
-  "on-click"() {},
+  'on-click'() {},
 
   /**
    * Function for the `on-change` action
@@ -93,7 +102,7 @@ export default Component.extend({
    * @property on-change
    * @type Function
    */
-  "on-change"() {},
+  'on-change'() {},
 
   /**
    * Function for the `on-focus-out` action
@@ -101,7 +110,7 @@ export default Component.extend({
    * @property on-focus-out
    * @type Function
    */
-  "on-focus-out"() {},
+  'on-focus-out'() {},
 
   /**
    * Function that calls an action and sends the proper arguments.
@@ -110,16 +119,9 @@ export default Component.extend({
    * @type Function
    * @param {String} action - string name of the action to invoke
    * @param {String|Object} value - current value of the component
-   * @param {Object} event - jQuery event from the current action
+   * @param {Object} event - DOM event from the current action
    */
   _handleAction(action, value, event) {
-    let actionValue = this.get(action);
-
-    if(typeof actionValue === 'string') {
-      warn(`x-select: You must use the action helper for all actions. The try: ${action}=(action "${actionValue}") in your template`, false, {id: 'x-select-string-action'});
-      return;
-    }
-
     this.get(action)(value, event);
   },
 
@@ -128,16 +130,12 @@ export default Component.extend({
    * component's action with the current value.
    */
   change(event) {
-    let nextValue = this._getValue();
-
-    // eslint-disable-next-line ember/closure-actions
-    this.sendAction('action', nextValue, event, this);
-    this._handleAction('on-change', nextValue, event);
+    this._handleAction('on-change', this._getValue(), event);
   },
 
   /**
    * When the click DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   click(event) {
     this._handleAction('on-click', this._getValue(), event);
@@ -145,7 +143,7 @@ export default Component.extend({
 
   /**
    * When the blur DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   blur(event) {
     this._handleAction('on-blur', this._getValue(), event);
@@ -153,7 +151,7 @@ export default Component.extend({
 
   /**
    * When the focusOut DOM event fires on the element, trigger the
-   * component's action with the component, x-select value, and the jQuery event.
+   * component's action with the component, x-select value, and the DOM event.
    */
   focusOut(event) {
     this._handleAction('on-focus-out', this._getValue(), event);
@@ -180,7 +178,9 @@ export default Component.extend({
    * @return {Array} all the values from selected x-options
    */
   _findMultipleValues() {
-    return this.get('options').filter(isSelectedOption).map(option => option.get('value'));
+    return this.get('options')
+      .filter(isSelectedOption)
+      .map(option => option.get('value'));
   },
 
   /**
@@ -201,15 +201,16 @@ export default Component.extend({
    *
    * @private
    */
-  _setDefaultValues: function() {
+  _setDefaultValues() {
     once(this, this.__setDefaultValues);
   },
 
-  __setDefaultValues: function() {
+  __setDefaultValues() {
     let canSet = !this.isDestroying && !this.isDestroyed;
+
     if (canSet && this.get('value') == null) {
-      // eslint-disable-next-line ember/closure-actions
-      this.sendAction('action', this._getValue());
+      // `on-change` is the default event we use
+      this._handleAction('on-change', this._getValue(), event);
     }
   },
 
@@ -219,24 +220,14 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    this.$().on('blur', (event) => {
-      this.blur(event);
-    });
-
-    // FIXME this is an unfortunate workaround for an Edge bug for selects with required:
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8794503/
-    if (/edge\//i.test(window.navigator.userAgent)) {
-      let value = this.$().val();
-      this.$().val(`${value}-fake-edge-😳`);
-      this.$().val(value);
-    }
+    this.element.addEventListener('blur', event => this.blur(event));
   },
 
   /**
    * @override
    */
   willDestroyElement: function() {
-    this.$().off('blur');
+    this.element.removeEventListener('blur', this.blur);
     this._super.apply(this, arguments);
   },
 
@@ -247,17 +238,19 @@ export default Component.extend({
    * @private
    */
   /* eslint-disable */
-  ensureProperType: on('init', observer('value', function() {
-    let value = this.get('value');
+  ensureProperType: on(
+    'init',
+    observer('value', function() {
+      let value = this.get('value');
 
-    if (value != null && this.get('multiple') && !isArray(value)) {
-      throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
-    }
-  })),
+      if (value != null && this.get('multiple') && !isArray(value)) {
+        throw new Error(`x-select multiple=true was set, but value ${value} is not enumerable.`);
+      }
+    })
+  ),
   /* eslint-enable */
 
   actions: {
-
     /**
      * Registers a new option that is contained within x-select.
      *

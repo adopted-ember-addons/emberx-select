@@ -1,95 +1,71 @@
-/*global expect, getComponentById */
-import { run } from '@ember/runloop';
-
-import $ from 'jquery';
-import startApp from '../helpers/start-app';
-import {
-  beforeEach,
-  afterEach,
-  describe,
-  it
-} from 'mocha';
-import { select } from 'dummy/tests/helpers/x-select';
-import { shouldBindAttrs } from './shared/attr-test';
-
-let App;
+import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import pageInteractor from 'dummy/tests/interactors/test-page';
+import { expect } from 'chai';
+import { when } from '@bigtest/convergence';
+import { visit } from '@ember/test-helpers';
+import { beforeEach, describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('XSelect: Multiple Selection', function() {
-  beforeEach(function() {
-    App = startApp();
-    visit("test-bed/multiple");
-  });
-  beforeEach(function() {
-    let el = $('select');
-    this.component = getComponentById(el.attr('id'));
-    this.$ = function() {
-      return this.component.$.apply(this.component, arguments);
-    };
-    this.controller = App.__container__.lookup('controller:test-bed.multiple');
+  let xselect = new xSelectInteractor('.x-select');
+  let page = new pageInteractor();
+
+  setupApplicationTest();
+
+  beforeEach(async () => {
+    await visit('test-bed/multiple');
   });
 
-  afterEach(function() {
-    run(App, 'destroy');
-  });
+  it('marks all selected values initially', async () => {
+    await when(() => {
+      expect(xselect.options(1).text).to.equal('Bastion');
+      expect(xselect.options(2).text).to.equal('Stanley');
 
-  it("does not fire any actions on didInsertElement", function() {
-    expect(this.controller.get('changedSelections')).not.to.be.ok;
-  });
+      expect(xselect.options(1).isSelected).to.equal(true);
+      expect(xselect.options(2).isSelected).to.equal(true);
 
-  it('marks all selected values', function() {
-    expect(this.$('option:eq(1)')).to.be.selected;
-    expect(this.$('option:eq(2)')).to.be.selected;
-  });
-
-  describe('choosing the last option', function() {
-    beforeEach(function() {
-      select('.x-select', 'Stanley');
-    });
-
-    it('invokes action', function() {
-      expect(this.controller.get('currentSelections.length')).to.equal(1);
-      expect(this.controller.get('currentSelections')[0].name).to.deep.equal('Stanley');
+      expect(page.multiselectValues(0).text).to.equal('Bastion');
+      expect(page.multiselectValues(1).text).to.equal('Stanley');
     });
   });
 
-  describe('manually setting the selected binding', function() {
-    beforeEach(function() {
-      this.controller.set('selections', [this.controller.get('charles'), this.controller.get('stanley')]);
+  describe('deselecting', function() {
+    beforeEach(async () => {
+      await xselect.select('Stanley');
     });
-    it('updates the selected option', function() {
-      expect(this.$('option:first')).to.be.selected;
-      expect(this.$('option:eq(2)')).to.be.selected;
+
+    it('properly deselects the right option', async () => {
+      await when(() => {
+        expect(xselect.options(1).text).to.equal('Bastion');
+        expect(xselect.options(2).text).to.equal('Stanley');
+
+        expect(xselect.options(1).isSelected).to.equal(true);
+        expect(xselect.options(2).isSelected).to.equal(false);
+      });
+    });
+
+    it('updates the page values', async () => {
+      await when(() => expect(page.multiselectValues(0).text).to.equal('Bastion'));
     });
   });
 
-  describe("when no option is selected", function() {
-    beforeEach(function() {
-      this.$().prop('selectedIndex', 3).trigger('change');
+  describe('when no option is selected', function() {
+    beforeEach(async () => {
+      await xselect.select(['Bastion', 'Stanley']);
     });
 
-    it("has the empty array as a value", function() {
-      expect(this.controller.get('currentSelections.length')).to.equal(0);
-    });
-  });
+    it('updates the select values', async () => {
+      await when(() => {
+        expect(xselect.options(1).isSelected).to.equal(false);
+        expect(xselect.options(1).text).to.equal('Bastion');
 
-  // TODO: come back to this when https://github.com/emberjs/ember.js/issues/15013 is resolved.
-  // Ember 2.11 broke testing code that throws exceptions.
-  describe.skip("trying to set the value to a non-array", function() {
-    beforeEach(function() {
-      try {
-        run(() => {
-          this.controller.set('selections', 'OHAI!');
-        });
-      } catch (e) {
-        this.exception = e;
-      }
+        expect(xselect.options(2).isSelected).to.equal(false);
+        expect(xselect.options(2).text).to.equal('Stanley');
+      });
     });
-    it("throws an error", function() {
-      expect(this.exception).not.to.be.undefined;
-      expect(this.exception.message).to.match(/enumerable/);
+
+    it('updates the page values', async () => {
+      await when(() => expect(page.multiselectValues(0).text).to.equal('None'));
     });
   });
-
-  shouldBindAttrs();
-
 });

@@ -1,7 +1,6 @@
 {
   "name": "emberx-select",
   "dependencies": {
-    "bootstrap": "v4.0.0-alpha.4",
     "marked": "^0.3.6",
     "highlightjs": "^9.6.0"
   }

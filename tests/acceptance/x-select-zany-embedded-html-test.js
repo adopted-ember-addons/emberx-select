@@ -1,38 +1,20 @@
-/*global expect, getComponentById */
-
-import { run } from '@ember/runloop';
-
-import $ from 'jquery';
-import startApp from '../helpers/start-app';
-import {
-  beforeEach,
-  afterEach,
-  describe,
-  it
-} from 'mocha';
-
-
-let App;
+import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import { expect } from 'chai';
+import { when } from '@bigtest/convergence';
+import { visit } from '@ember/test-helpers';
+import { beforeEach, describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 
 describe('XSelect: Embedded HTML', function() {
-  beforeEach(function() {
-    App = startApp();
-    visit("test-bed/zany-embedded-html");
-  });
-  beforeEach(function() {
-    let el = $('select');
-    this.component = getComponentById(el.attr('id'));
-    this.$ = function() {
-      return this.component.$.apply(this.component, arguments);
-    };
-    this.controller = App.__container__.lookup('controller:test-bed.zanyEmbeddedHTML');
+  let xselect = new xSelectInteractor('.x-select');
+
+  setupApplicationTest();
+
+  beforeEach(async () => {
+    visit('test-bed/zany-embedded-html');
   });
 
-  it("renders", function() {
-    expect(this.$()).to.exist;
-  });
-
-  afterEach(function() {
-    run(App, 'destroy');
+  it('renders', async () => {
+    await when(() => expect(xselect.isPresent).to.equal(true));
   });
 });

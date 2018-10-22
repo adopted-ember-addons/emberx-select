@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+## Changed
+
+- Upgrade addon to Ember 3.4
+- Upgrade addon test suite to new ember testing APIs
+- [BREAKING] remove jQuery from addon (no longer passes jQuery events or uses jQuery)
+- [BREAKING] change test helper to use `@bigtest/interactor`
+- [BREAKING] remove `sendAction`. `on-change` is now the default action fired.
+
 ## [v3.1.1](https://github.com/thefrontside/emberx-select/tree/v3.1.1) (2018-01-31)
 [Full Changelog](https://github.com/thefrontside/emberx-select/compare/v3.1.0...v3.1.1)
 

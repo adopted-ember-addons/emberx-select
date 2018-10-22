@@ -1,63 +1,51 @@
-import $ from 'jquery';
-import { run } from '@ember/runloop';
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
+import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import pageInteractor from 'dummy/tests/interactors/test-page';
+import { setupApplicationTest } from 'ember-mocha';
+import { visit, click } from '@ember/test-helpers';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from '../helpers/start-app';
+import { when } from '@bigtest/convergence';
 
 describe('Acceptance: Events', function() {
-  let application;
+  let xselect = new xSelectInteractor('.x-select');
+  let page = new pageInteractor();
 
-  beforeEach(function() {
-    application = startApp();
-    visit('test-bed/e');
+  setupApplicationTest();
+
+  beforeEach(async function() {
+    await visit('test-bed/e');
   });
 
-  afterEach(function() {
-    run(application, 'destroy');
-  });
-
-  describe("visiting blur and triggering the blur event", function() {
-    beforeEach(function() {
-      return click('.spec-blur-link');
+  describe('visiting blur and triggering the blur event', function() {
+    beforeEach(async () => {
+      await click('.spec-blur-link');
+      await xselect.focus().blur();
     });
 
-    beforeEach(function() {
-      $('.x-select').trigger('blur');
-    });
-
-    it("fires the blur action", function() {
-      expect($('.spec-event-type').text().trim()).to.equal('blur');
+    it('fires the blur action', async () => {
+      await when(() => expect(page.eventTypeText).to.equal('blur'));
     });
   });
 
-  describe("visiting click and triggering the click event", function() {
-    beforeEach(function() {
-      click('.spec-click-link');
-      return click('.x-select');
+  describe('visiting click and triggering the click event', function() {
+    beforeEach(async () => {
+      await click('.spec-click-link');
+      await xselect.click();
     });
 
-    it("fires the click action", function() {
-      expect($('.spec-event-type').text().trim()).to.equal('click');
-    });
-  });
-
-  describe("visiting focus-out and triggering the focus-out event", function() {
-    beforeEach(function() {
-      return click('.spec-focus-out-link');
-    });
-
-    beforeEach(function() {
-      $('.x-select').trigger('focusout');
-    });
-
-    it("fires the focus-out action", function() {
-      expect($('.spec-event-type').text().trim()).to.equal('focusout');
+    it('fires the click action', async () => {
+      await when(() => expect(page.eventTypeText).to.equal('click'));
     });
   });
 
+  describe('visiting focus-out and triggering the focus-out event', function() {
+    beforeEach(async () => {
+      await click('.spec-focus-out-link');
+      await xselect.focus().blur();
+    });
+
+    it('fires the focus-out action', async () => {
+      await when(() => expect(page.eventTypeText).to.equal('focusout'));
+    });
+  });
 });

@@ -1,46 +1,35 @@
-import { run } from '@ember/runloop';
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
+import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import { describe, it, beforeEach } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
+import { visit, currentRouteName, click } from '@ember/test-helpers';
 import { expect } from 'chai';
-import { select } from 'dummy/tests/helpers/x-select';
-import startApp from '../helpers/start-app';
 
 describe('Acceptance: EmberData', function() {
-  let application;
+  let xselect = new xSelectInteractor('.x-select');
 
-  beforeEach(function() {
-    application = startApp();
-    visit('test-bed/ember-data');
-  });
+  setupApplicationTest();
 
-  afterEach(function() {
-    run(application, 'destroy');
+  beforeEach(async function() {
+    await visit('test-bed/ember-data');
   });
 
   it('can visit /ember-data', function() {
-    expect(currentPath()).to.equal('test-bed.ember-data');
+    expect(currentRouteName()).to.equal('test-bed.ember-data');
   });
 
-  describe("selecting a new value", function() {
-    beforeEach(function() {
-      select('.x-select', "Ollie");
+  describe('selecting a new value', function() {
+    beforeEach(async () => {
+      await xselect.select('Ollie');
     });
 
-    describe("navigating to another route", function() {
-      beforeEach(function() {
-        return click("a:contains('Single')");
+    describe('navigating to another route', function() {
+      beforeEach(async () => {
+        await click('.spec-single');
       });
 
       it("doesn't blow up", function() {
-        expect(currentPath()).to.equal('test-bed.single');
+        expect(currentRouteName()).to.equal('test-bed.single');
       });
-
     });
-
   });
-
 });

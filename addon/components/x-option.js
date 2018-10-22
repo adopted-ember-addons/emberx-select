@@ -14,7 +14,7 @@ import { isArray, A } from '@ember/array';
 export default Component.extend({
   tagName: 'option',
   attributeBindings: ['selected', 'name', 'disabled', 'value', 'title'],
-  classNameBindings: [':x-option'],
+  classNameBindings: [':x-option', 'selected:is-selected'],
 
   /**
    * The value associated with this option. When this option is
@@ -51,12 +51,11 @@ export default Component.extend({
 
     let oldDisabled = this.get('_oldDisabled');
 
-    if(oldDisabled !== undefined && !oldDisabled) {
+    if (oldDisabled !== undefined && !oldDisabled) {
       // Undefined means the first time
 
-      if(this.get('disabled') !== oldDisabled) {
-        // eslint-disable-next-line ember/closure-actions
-        this.sendAction('on-disable', this.get('value'), this.get('disabled'));
+      if (this.get('disabled') !== oldDisabled) {
+        this.get('on-disable')(this.get('value'), this.get('disabled'));
       }
     }
 

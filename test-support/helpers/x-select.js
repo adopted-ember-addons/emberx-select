@@ -1,35 +1,24 @@
-import { run } from '@ember/runloop';
-import jQuery from 'jquery';
+import { interactor, property, collection, hasClass, attribute, is } from '@bigtest/interactor';
 
-/**
- * Picks an option from the select and sets it to be `selected` in the DOM.
- *
- * @method select
- * @param {string|<jQuery>} selector - selector for the select to pick from.
- * @param {string} texts - text of the option you are picking
- */
-export function select(selector, ...texts) {
-  let $select = selector instanceof jQuery ? selector : jQuery(selector);
-  let $options = $select.find(`option`);
+const xSelectInteractor = interactor({
+  hasFocus: is(':focus'),
+  name: attribute('name'),
+  form: attribute('form'),
+  title: attribute('title'),
+  size: attribute('size'),
+  tabindex: attribute('tabindex'),
+  isDisabled: property('disabled'),
+  isRequired: property('required'),
+  isAutofocus: property('autofocus'),
 
-  if (!$options.length) {
-    throw `No options found in ${selector}` ;
-  }
+  options: collection('option', {
+    name: attribute('name'),
+    value: property('value'),
+    title: attribute('title'),
+    isSelected: property('selected'),
+    isDisabled: property('disabled'),
+    hasSelectedClass: hasClass('is-selected')
+  })
+});
 
-  $options.each(function() {
-    let $option = jQuery(this);
-
-    run(() => {
-      this.selected = texts.some((text) => {
-        // uppercase both texts so the helper isn't case sensastive.
-        let optionText = $option.text().trim().toUpperCase();
-
-        return optionText === text.toUpperCase();
-      });
-
-      if(this.selected) {
-        $option.prop('selected', true).trigger('change');
-      }
-    });
-  });
-}
+export default xSelectInteractor;

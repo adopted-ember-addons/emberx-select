@@ -1,40 +1,39 @@
 <h1>Emberx-select</h1>
 {{format-markdown
   "
-  ### Installation
-  ```bash
-  ember install emberx-select
-  ```
-
-  ## Introduction
-
-  x-select is a component based on the native html select.
+  A select component based on the native html select.
 
   We've tried other select components, and were missing the reliability,
   maintainability, and accessbility of the native html `<select>`.
-
-  `x-select` is a drop-in component to let you use any
+  `<XSelect>` is a drop-in component to let you use any
   object for your selectable options. You can use it out of the box, or
   as a building block of something more ambitious.
 
-  The goal of `x-select` is to let you see how it works and style it
+  The goal of `<XSelect>` is to let you see how it works and style it
   right in your template, rather than passing in a ball of configuration
   or wrapping a hard-coded, inaccessible jQuery plugin.
+
+
+  ## Installation
+
+  ```
+  ember install emberx-select
+  ```
 
   By allowing arbitrary html to appear in the template of the select
   element, you can use it just like you would normally. This means
   things like having `<optgroup>` tags inside your select, or even plain
   old `<option>` elements to represent things like empty values.
 
-  `x-select` thinly wraps a native `<select>` element so that it can be object
+  `<XSelect>` thinly wraps a native `<select>` element so that it can be object
   and binding aware. It is used in conjuction with the `x-option`
   component to construct select boxes. E.g.
 
   ```handlebars
-  {{#x-select value=currentValue on-change=(action 'selectPerson') as |xs|}}
-    {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
-    {{#xs.option value=bob}}Bob Newhart{{/xs.option}} {{! currentValue = bob }}
-  {{/x-select}}
+  <XSelect @value={{bob}} @on-change={{action 'selectPerson'}} as |xs|>
+    <xs.option @value={{fred}}>Fred Flintstone</xs.option>
+    <xs.option @value={{bob}}>Bob Newhart</xs.option>
+  </XSelect>
   ```
 
   Whenever the select tag receives a change event, it will fire the

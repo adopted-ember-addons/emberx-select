@@ -11,7 +11,10 @@ Router.map(function() {
   this.route('actions');
   this.route('testing');
   this.route('examples');
-  this.route('migration-guide');
+  this.route('migration-guide', function() {
+    this.route('2-to-3');
+    this.route('3-to-4');
+  });
 
   this.route('test-bed', function() {
     this.route('single');

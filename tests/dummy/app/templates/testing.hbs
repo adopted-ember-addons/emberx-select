@@ -1,34 +1,131 @@
 <h1>Testing</h1>
+
 {{format-markdown
   '
-  Since `x-select` uses internal identifiers as the `value` attribute, it
-  doesn\'t integrate with the `fillIn` test helper. But don\'t fret, we\'ve built a
-  test helper for you.
+  `<XSelect>` 4.0 ships with an entirely new test helper that goes
+  beyond just allowing you to select an option. It allows you to
+  interact with your `<select>` element in all different ways. For
+  example in tests if you need to assert your first options `disabled`
+  or not:
+
+  ```javascript
+  expect(xselect.options(0).isDisabled).to.equal(true);
+  ```
+
+  Under the hood this new test helper is using a [BigTest
+  Interactor](https://bigtestjs.io/guides/interactors/introduction/). Interactors
+  allow you to think about how you\'re going to _interact_ with the DOM
+  and abstract that into composable & immutable containers. Interactors
+  are similar to page objects, but for components.
 
   #### Using the test helper
 
-  To use the select helper in your tests you have to import the select function:
+  Import the select interactor:
 
   ``` javascript
-  import { select } from "yourappname/tests/helpers/x-select";
+  // you can name the import whatever you want
+  import XSelect from "yourappname/tests/helpers/x-select";
   ```
 
-  We support both multiselects and regular selects. To use, you
-  need to specify the class on the select (or a jquery object) as the
-  first argument and the rest of the arguments are the options you\'d
-  like to select. For example:
+  At the top of your test file you need to initialize the
+  interactor. This should go at the top most part of your test so it\'s
+  available to all tests in the file. Here\'s an example in Qunit:
 
-  ```js
-  //... Single select
-  select(".my-drop-down", "My Option");
-  //...
+
+  ``` javascript
+  module("Acceptance | Your Test", function(hooks) {
+    let xselect = new XSelect(".selector-for-select");
+    setupApplicationTest(hooks);
+    // ...
+  });
   ```
 
-  Multiselect
-  ```javascript
-  //... Multiselect
-  select(Ember.$(".my-drop-down"), "My Option", "My Option Two", "My Option Three");
-  //...
+  Once you have initialized the interactor, you\'re ready to start
+  selecting!
+
+  ``` javascript
+  module("Acceptance | Your Test", function(hooks) {
+    let xselect = new XSelect(".selector-for-select");
+    // ...
+
+    test("Selecting an option", async (assert) => {
+      await xselect.select("Fred Flintstone");
+      // for a multiselect pass an array
+      // await xselect.select(["Fred Flintstone", "Bob Newhart"]);
+
+      // assert change happened in your app
+    });
+  });
   ```
+
+  You can do more than just select options with this helper.
+
+  ``` javascript
+  module("Acceptance | Your Test", function(hooks) {
+    let xselect = new XSelect(".selector-for-select");
+    // ...
+
+    test("Selecting an option", async (assert) => {
+      await xselect.select("Fred Flintstone");
+
+      // this is using `@bigtest/convergence`\'s `when` to assert
+      await when(() => assert.equal(xselect.options(0).isSelected, true));
+    });
+  });
+  ```
+
+  In this example we\'re using `@bigtest/convergence#when` to
+  assert. The TL;DR of convergence is it basically _converges_ on the
+  state of the DOM. It checks every 10ms until the assertion is
+  truthy. Once it\'s truthy the test passes. [You can read more about
+  convergences here](https://github.com/bigtestjs/convergence#why-convergence)
+
+  This is the full interactor which has all of the attributes or
+  interactions for an `HTMLSelectElement`.
+
+  ``` javascript
+  const xSelectInteractor = interactor({
+    hasFocus: is(":focus"),
+    name: attribute("name"),
+    form: attribute("form"),
+    title: attribute("title"),
+    size: attribute("size"),
+    tabindex: attribute("tabindex"),
+    isDisabled: property("disabled"),
+    isRequired: property("required"),
+    isAutofocus: property("autofocus"),
+
+    options: collection("option", {
+      name: attribute("name"),
+      value: property("value"),
+      title: attribute("title"),
+      isSelected: property("selected"),
+      isDisabled: property("disabled"),
+      hasSelectedClass: hasClass("is-selected")
+    })
+  });
+  ```
+
+  Example usage might be:
+
+  ``` html
+  <select name="World" class="x-select">
+    <option value="hello world">Hello world!</option>
+  </select>
+  ```
+
+  ``` javascript
+  let xselect = new XSelect(".x-select");
+
+  xselect.options(0).value; //=> "hello world"
+  xselect.options(0).text; //=> "Hello World!"
+  xselect.name; //=> "World"
+  xselect.form; //=> null
+  xselect.hasFocus; //=> false
+  xselect.tabIndex; //=> 0
+  ```
+
+  If you want to see this test helper used in many different ways look
+  no further than [this addons test suite!](https://github.com/thefrontside/emberx-select/tree/master/tests)
   '
 }}
