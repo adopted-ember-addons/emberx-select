@@ -19,7 +19,6 @@
   "repository": "https://github.com/thefrontside/emberx-select",
   "scripts": {
     "bower-install": "bower install",
-    "deploy": "ember surge",
     "build": "ember build",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -49,7 +48,6 @@
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-sass": "^8.0.1",
     "ember-cli-sri": "^2.1.1",
-    "ember-cli-surge": "^1.2.0-beta.2",
     "ember-cli-uglify": "^2.1.0",
     "ember-data": "^3.4.2",
     "ember-disable-prototype-extensions": "^1.1.3",
@@ -74,7 +72,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
-    "demoURL": "https://emberx-select.surge.sh",
+    "demoURL": "http://emberx-select.netlify.com",
     "versionCompatibility": {
       "ember": ">=2.3.0"
     },
