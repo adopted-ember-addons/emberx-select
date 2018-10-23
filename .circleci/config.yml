@@ -60,16 +60,6 @@ jobs:
           paths:
             - bower_components
 
-  deploy_master:
-      <<: *container_config
-      steps:
-        - *restore_repo
-        - *restore_node_modules
-        - *restore_bower_components
-        - run:
-            name: Deploy Master
-            command: yarn deploy
-
   test-lts-2.12:
     <<: *container_config
     steps:
@@ -152,14 +142,3 @@ workflows:
       - test-canary:
           requires:
             - install_dependencies
-
-      - deploy_master:
-          requires:
-            - test-lts-2.12
-            - test-lts-2.16
-            - test-default
-            - test-release
-            - test-beta
-          filters:
-            branches:
-              only: master
