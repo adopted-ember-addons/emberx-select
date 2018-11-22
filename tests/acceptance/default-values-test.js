@@ -2,7 +2,6 @@ import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
 import { expect } from 'chai';
 import { visit } from '@ember/test-helpers';
-import { when } from '@bigtest/convergence';
 import { describe, it, beforeEach } from 'mocha';
 import { setupApplicationTest } from 'ember-mocha';
 
@@ -22,46 +21,46 @@ describe('XSelect: Default Values', function() {
     });
 
     it('initializes with defaults if no explicit value is present', async () => {
-      await when(() => expect(page.carMakeText).to.equal('Selected Make: Honda'));
+      await page.when(() => expect(page.carMakeText).to.equal('Selected Make: Honda'));
     });
 
     it('sets the selected property on the correct default option', async () => {
-      await when(() => expect(makeSelect.options(1).isSelected).to.equal(true));
+      await makeSelect.when(() => expect(makeSelect.options(1).isSelected).to.equal(true));
     });
 
     it('can set a default to the first option in a dynamic list', async () => {
-      await when(() => expect(page.carModelText).to.equal('Selected Model: Fit'));
+      await page.when(() => expect(page.carModelText).to.equal('Selected Model: Fit'));
     });
 
     it('sets the selected property on the correct default option', async () => {
-      await when(() => expect(modelSelect.options(0).isSelected).to.equal(true));
+      await modelSelect.when(() => expect(modelSelect.options(0).isSelected).to.equal(true));
     });
 
     it('initializes with the correct explicit value if one is present', async () => {
-      await when(() => expect(modelMakeSelect.options(2).isSelected).to.equal(true));
+      await modelMakeSelect.when(() => expect(modelMakeSelect.options(2).isSelected).to.equal(true));
     });
 
     it('sets the selected property on the correct explicity value option', async () => {
-      await when(() => expect(modelMakeSelect.options(2).text).to.equal('Ford'));
+      await modelMakeSelect.when(() => expect(modelMakeSelect.options(2).text).to.equal('Ford'));
     });
 
     it('does not set the selected property on the default option', async () => {
-      await when(() => expect(modelMakeSelect.options(0).isSelected).to.equal(false));
+      await modelMakeSelect.when(() => expect(modelMakeSelect.options(0).isSelected).to.equal(false));
     });
 
     it('sets the selected property to the explicitly set value', async () => {
-      await when(() => {
+      await quantitySelect.when(() => {
         expect(quantitySelect.options(5).text).to.equal('0');
         expect(quantitySelect.options(5).isSelected).to.equal(true);
       });
     });
 
     it('initializes with the correct explicit value if one is present even if that value is falsy', async () => {
-      await when(() => expect(page.selectedQuantityText).to.equal('Selected Quantity: 0'));
+      await page.when(() => expect(page.selectedQuantityText).to.equal('Selected Quantity: 0'));
     });
 
     it('sets the selected property on the correct default option', async () => {
-      await when(() => {
+      await trimSelect.when(() => {
         expect(trimSelect.options(0).isSelected).to.equal(true);
         expect(trimSelect.options(0).text).to.equal('Sport');
       });
@@ -73,21 +72,21 @@ describe('XSelect: Default Values', function() {
       });
 
       it('updates the value', async () => {
-        await when(() => {
+        await makeSelect.when(() => {
           expect(makeSelect.options(2).isSelected).to.equal(true);
           expect(makeSelect.options(2).text).to.equal('Toyota');
         });
       });
 
       it('removes the selected property on the previously selected option', async () => {
-        await when(() => {
+        await makeSelect.when(() => {
           expect(makeSelect.options(1).isSelected).to.equal(false);
           expect(makeSelect.options(1).text).to.equal('Honda');
         });
       });
 
       it('reevalutates the dynamic default value', async () => {
-        await when(() => {
+        await makeSelect.when(() => {
           expect(modelSelect.options(0).isSelected).to.equal(true);
           expect(modelSelect.options(0).text).to.equal('Camry');
         });

@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { when } from '@bigtest/convergence';
 import { setupComponentTest } from 'ember-mocha';
 import { beforeEach, describe, it } from 'mocha';
 import sinon from 'sinon';
@@ -28,7 +27,7 @@ describe('Integration: XSelectActionsComponent', function() {
     });
 
     it('the option is not disabled', async () => {
-      await when(() => {
+      await xselect.when(() => {
         expect(xselect.options(0).isDisabled).to.equal(false);
         expect(xselect.options(0).text).to.equal('Hello');
       });
@@ -44,7 +43,7 @@ describe('Integration: XSelectActionsComponent', function() {
       });
 
       it('disables the option', async () => {
-        await when(() => expect(xselect.options(0).isDisabled).to.equal(true));
+        await xselect.when(() => expect(xselect.options(0).isDisabled).to.equal(true));
       });
 
       it('calls the disable action', function() {
