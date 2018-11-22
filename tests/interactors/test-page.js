@@ -1,8 +1,8 @@
-import { interactor, text, collection } from '@bigtest/interactor';
+import Interactor, { text, collection } from '@bigtest/interactor';
 
 // this isn't exactly the best use of interactors (by stuffing everything
 // into a single interactor), but for this cause I think it's okay.
-let pageInteractor = interactor({
+let pageInteractor = Interactor.from({
   selectedText: text('[data-test-selected]'),
   eventTypeText: text('.spec-event-type'),
 
