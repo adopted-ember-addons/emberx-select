@@ -6,10 +6,6 @@
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@bigtest/convergence/-/convergence-0.10.0.tgz#ed2212b7034c84917ccfbaa8cf875730ee535702"
 
-"@bigtest/convergence@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@bigtest/convergence/-/convergence-1.0.0.tgz#7bca36af5b6eae2e6fd47c07f28901397b338d7d"
-
 "@bigtest/interactor@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@bigtest/interactor/-/interactor-0.8.0.tgz#2b8d8e71dcce495011658356df146752b50474e1"

@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { when } from '@bigtest/convergence';
 import { setupComponentTest } from 'ember-mocha';
 import { describe, beforeEach, it } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
@@ -30,7 +29,7 @@ describe('Integration: DefaultValue', function() {
     });
 
     it('displays the first item in the list', async () => {
-      await when(() => {
+      await xselect.when(() => {
         expect(xselect.options(0).isSelected).to.equal(true);
         expect(xselect.options(0).text).to.equal('Ford');
       });

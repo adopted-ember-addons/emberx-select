@@ -1,7 +1,6 @@
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
 import { expect } from 'chai';
-import { when } from '@bigtest/convergence';
 import { visit } from '@ember/test-helpers';
 import { beforeEach, describe, it } from 'mocha';
 import { setupApplicationTest } from 'ember-mocha';
@@ -17,7 +16,7 @@ describe('XSelect: Multiple Selection', function() {
   });
 
   it('marks all selected values initially', async () => {
-    await when(() => {
+    await page.when(() => {
       expect(xselect.options(1).text).to.equal('Bastion');
       expect(xselect.options(2).text).to.equal('Stanley');
 
@@ -35,7 +34,7 @@ describe('XSelect: Multiple Selection', function() {
     });
 
     it('properly deselects the right option', async () => {
-      await when(() => {
+      await xselect.when(() => {
         expect(xselect.options(1).text).to.equal('Bastion');
         expect(xselect.options(2).text).to.equal('Stanley');
 
@@ -45,7 +44,7 @@ describe('XSelect: Multiple Selection', function() {
     });
 
     it('updates the page values', async () => {
-      await when(() => expect(page.multiselectValues(0).text).to.equal('Bastion'));
+      await xselect.when(() => expect(page.multiselectValues(0).text).to.equal('Bastion'));
     });
   });
 
@@ -55,7 +54,7 @@ describe('XSelect: Multiple Selection', function() {
     });
 
     it('updates the select values', async () => {
-      await when(() => {
+      await xselect.when(() => {
         expect(xselect.options(1).isSelected).to.equal(false);
         expect(xselect.options(1).text).to.equal('Bastion');
 
@@ -65,7 +64,7 @@ describe('XSelect: Multiple Selection', function() {
     });
 
     it('updates the page values', async () => {
-      await when(() => expect(page.multiselectValues(0).text).to.equal('None'));
+      await xselect.when(() => expect(page.multiselectValues(0).text).to.equal('None'));
     });
   });
 });

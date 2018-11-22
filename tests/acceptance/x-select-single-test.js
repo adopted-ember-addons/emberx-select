@@ -1,7 +1,6 @@
 import xSelectInteractor from 'dummy/tests/helpers/x-select';
 import pageInteractor from 'dummy/tests/interactors/test-page';
 import { expect } from 'chai';
-import { when } from '@bigtest/convergence';
 import { visit } from '@ember/test-helpers';
 import { beforeEach, describe, it } from 'mocha';
 import { setupApplicationTest } from 'ember-mocha';
@@ -17,11 +16,11 @@ describe('XSelect: Single Selection', function() {
   });
 
   it('is enabled by default', async () => {
-    await when(() => expect(xselect.isDisabled).to.equal(false));
+    await xselect.when(() => expect(xselect.isDisabled).to.equal(false));
   });
 
   it('renders an option for each view', async () => {
-    await when(() => {
+    await xselect.when(() => {
       expect(xselect.options().length).to.equal(4);
       expect(xselect.options(0).text).to.equal('Charles');
       expect(xselect.options(3).text).to.equal('Nobody');
@@ -29,16 +28,14 @@ describe('XSelect: Single Selection', function() {
   });
 
   it('marks the selected value', async () => {
-    await when(() => expect(xselect.options(1).isSelected).to.equal(true));
+    await xselect.when(() => expect(xselect.options(1).isSelected).to.equal(true));
   });
 
   describe('choosing the last option', function() {
-    beforeEach(async () => {
-      await xselect.select('Stanley');
-    });
-
     it('invokes action & changes the value on page', async () => {
-      await when(() => expect(page.selectedText).to.equal('Stanley'));
+      await xselect
+        .select('Stanley')
+        .when(() => expect(page.selectedText).to.equal('Stanley'));
     });
   });
 });

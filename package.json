@@ -32,7 +32,6 @@
     "ember-cli-htmlbars": "^3.0.0"
   },
   "devDependencies": {
-    "@bigtest/convergence": "^1.0.0",
     "@ember/optional-features": "^0.6.3",
     "@ember/test-helpers": "^0.7.26",
     "bower": "^1.8.2",

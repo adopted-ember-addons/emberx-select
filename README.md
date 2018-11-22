@@ -199,11 +199,14 @@ module("Acceptance | Your Test", function(hooks) {
   // ...
 
   test('Selecting an option', async (assert) => {
-    await xselect.select('Fred Flintstone');
-    // for a multiselect pass an array
-    // await xselect.select(['Fred Flintstone', 'Bob Newhart']);
+    await xselect
+      .select('Fred Flintstone')
+      .when(() => assert.equal(xselect.options(0).isSelected, true));
 
-    // assert change happened in your app
+    // for a multiselect pass an array
+    // await xselect
+    //   .select(['Fred Flintstone', 'Bob Newhart'])
+    //   .when(() => assert.equal(xselect.options(0).isSelected, true));;
   });
 });
 ```
@@ -216,10 +219,10 @@ module('Acceptance | Your Test', function(hooks) {
   // ...
 
   test('Selecting an option', async (assert) => {
-    await xselect.select('Fred Flintstone');
-
-    // this is using `@bigtest/convergence`'s `when` to assert
-    await when(() => assert.equal(xselect.options(0).isSelected, true));
+    await xselect.select('Fred Flintstone')
+      // assert the change is has happened. It's important to make the
+      // assertion inside of `when`, so tests are not flakey.
+      .when(() => assert.equal(xselect.options(0).isSelected, true));
   });
 });
 ```
@@ -229,6 +232,10 @@ assert. The TL;DR of convergence is it basically _converges_ on the
 state of the DOM. It checks every 10ms until the assertion is
 truthy. Once it's truthy the test passes. [You can read more about
 convergences here](https://github.com/bigtestjs/convergence#why-convergence)
+
+You don't need to include `@bigtest/convergence` in your project, it's
+already a dependency of `@bigtest/interactor` and interactor provides
+all of the convergence methods to you (like `when` and `do`).
 
 This is the full interactor which has all of the attributes or
 interactions for an `HTMLSelectElement`.
@@ -277,6 +284,26 @@ xselect.tabIndex; //=> 0
 
 If you want to see this test helper used in many different ways look
 no further than [this addons test suite!](https://github.com/thefrontside/emberx-select/tree/master/tests)
+
+#### Extending the XSelect interactor
+
+If you want to add custom interactions to your `<XSelect>` interactor,
+you can do so by importing it into the custom interactor you want to
+create, and extend it:
+
+``` javascript
+import XSelectInteractor from 'yourappname/tests/helpers/x-select';
+import { clickable } from '@bigtest/interactor';
+
+@XSelectInteractor.extend
+class NewInteractor {
+  submitForm = clickable('[data-test-form-submit]');
+
+  fillAndSubmit(value) {
+    return this.select(value).submitForm();
+  }
+}
+```
 
 ## EmberX
 
