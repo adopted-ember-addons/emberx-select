@@ -55,7 +55,7 @@ export default Component.extend({
       // Undefined means the first time
 
       if (this.get('disabled') !== oldDisabled) {
-        this.get('on-disable')(this.get('value'), this.get('disabled'));
+        this.get('onDisable')(this.get('value'), this.get('disabled'));
       }
     }
 

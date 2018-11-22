@@ -32,7 +32,7 @@ and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
 ```handlebars
-<XSelect @value={{bob}} @on-change={{action "selectPerson"}} as |xs|>
+<XSelect @value={{bob}} @onChange={{action "selectPerson"}} as |xs|>
   <xs.option @value={{fred}}>Fred Flintstone</xs.option>
   <xs.option @value={{bob}}>Bob Newhart</xs.option>
 </XSelect>
@@ -42,7 +42,7 @@ the options are always up to date, so that when the object bound to
 `value` changes, the corresponding option becomes selected.
 
 Whenever the select tag receives a change event, it will fire
-`on-change` action. This is the default action that is fired but not
+`onChange` action. This is the default action that is fired but not
 the only event that's available.
 
 
@@ -68,7 +68,7 @@ array as its value, and it will set its selections directly on that
 array.
 
 ```handlebars
-<XSelect @value=selections @multiple=true @on-change={{action "selectionsChanged"}} as |xs|>
+<XSelect @value=selections @multiple=true @onChange={{action "selectionsChanged"}} as |xs|>
  <xs.option value={{fred}}>Fred Flintstone</xs.option>
  <xs.option value={{bob}}>Bob Newhart</xs.option>
  <xs.option value={{andrew}}>Andrew WK</xs.option>
@@ -80,7 +80,7 @@ The selections array will be initialized to an empty array if not present.
 ## Actions and Action Arguments
 
 All of `<XSelect>`s actions are closure actions. This means you must use
-the `action` helper (i.e. `@on-click={{action "onClick"}}`). The function
+the `action` helper (i.e. `@onClick={{action "onClick"}}`). The function
 that is dispatched by `<XSelect>` whenever the event fires has a function
 signature of:
 
@@ -100,7 +100,7 @@ cases, you can pass any arguments you need from the template. For
 example:
 
 ```handlebars
-<XSelect @on-click={{action "didMakeSelection" isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
+<XSelect @onClick={{action "didMakeSelection" isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
   <option>Nothing</option>
   <xs.option value={{something}}>Something</xs.option>
 </XSelect>
@@ -127,26 +127,26 @@ export default Controller.extend({
 `<XSelect>` provides other actions that fire on different event
 types. These actions follow the HTML input event naming convention.
 
-**on-blur**
+**onBlur**
 
-`on-blur` fires anytime the `blur` event is triggered on the `<XSelect>`
+`onBlur` fires anytime the `blur` event is triggered on the `<XSelect>`
 component. When the action fires it sends two arguments: the value,
 the DOM event.
 
-**on-focus-out**
+**onFocusOut**
 
-`on-focus-out` fires anytime the `focusOut` event is triggered on the `<XSelect>`
+`onFocusOut` fires anytime the `focusOut` event is triggered on the `<XSelect>`
 component. When the action fires it sends two arguments: the value,
 the DOM event.
 
-**on-click**
+**onClick**
 
-`on-click` fires when `<XSelect>` is clicked. When the action fires it
+`onClick` fires when `<XSelect>` is clicked. When the action fires it
 sends two arguments: the value, the DOM event.
 
-**on-disable** (x-option)
+**onDisable** (x-option)
 
-`on-disable` fires when x-option detects a change to its `disabled`
+`onDisable` fires when x-option detects a change to its `disabled`
 attribute. When the action fires it sends two arguments: the value
 and if it is disabled (boolean).
 

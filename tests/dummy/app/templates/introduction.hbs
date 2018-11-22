@@ -30,14 +30,14 @@
   component to construct select boxes. E.g.
 
   ```handlebars
-  <XSelect @value={{bob}} @on-change={{action 'selectPerson'}} as |xs|>
+  <XSelect @value={{bob}} @onChange={{action 'selectPerson'}} as |xs|>
     <xs.option @value={{fred}}>Fred Flintstone</xs.option>
     <xs.option @value={{bob}}>Bob Newhart</xs.option>
   </XSelect>
   ```
 
   Whenever the select tag receives a change event, it will fire the
-  `on-change` event. This is where you can set the value of the object you pass
+  `onChange` event. This is where you can set the value of the object you pass
   in to `x-select`. Say we select Fred Flintstone from the select example above.
   We would set `currentValue` to `fred` (which is an object) in our action:
 

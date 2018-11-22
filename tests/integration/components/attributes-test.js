@@ -23,7 +23,7 @@ describe('Integration | Component | attributes', function() {
       await this.render(hbs`
         {{#x-select
           value=value
-          on-change=(action handleChange) as |xs|
+          onChange=(action handleChange) as |xs|
         }}
           {{#xs.option value="wally"}}Wally{{/xs.option}}
           {{#xs.option value="ollie"}}Olllie{{/xs.option}}
@@ -63,7 +63,7 @@ describe('Integration | Component | attributes', function() {
     await this.render(hbs`
       {{#x-select
         value=value
-        on-change=(action handleChange)
+        onChange=(action handleChange)
         disabled=isDisabled
         title=title
         required=isRequired

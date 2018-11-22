@@ -4,15 +4,15 @@
   "
   `<XSelect>` provides actions that fire on different event types. These actions
   will be kebob-cased event names:
-  - `on-change`
-  - `on-blur`
-  - `on-focus-out`
-  - `on-click`
+  - `onChange`
+  - `onBlur`
+  - `onFocusOut`
+  - `onClick`
 
 
-  #### on-blur
+  #### onBlur
 
-  `on-blur` fires anytime the `blur` event is triggered on the `<XSelect>`
+  `onBlur` fires anytime the `blur` event is triggered on the `<XSelect>`
   component. When the action fires it sends two arguments: the value and the
   DOM event.
 
@@ -22,9 +22,9 @@
   }
   ```
 
-  #### on-focus-out
+  #### onFocusOut
 
-  `on-focus-out` fires anytime the `focusOut` event is triggered on the `<XSelect>`
+  `onFocusOut` fires anytime the `focusOut` event is triggered on the `<XSelect>`
   component. When the action fires it sends two arguments: the value and the
   DOM event.
 
@@ -34,9 +34,9 @@
   }
   ```
 
-  #### on-click
+  #### onClick
 
-  `on-click` fires when `<XSelect>` is clicked. When the action fires it sends two
+  `onClick` fires when `<XSelect>` is clicked. When the action fires it sends two
   arguments: the value and the DOM event.
 
   ```js
@@ -45,9 +45,9 @@
   }
   ```
 
-  #### on-disable (x-option)
+  #### onDisable (x-option)
 
-  `on-disable` fires when x-option detects a change to its `disabled`
+  `onDisable` fires when x-option detects a change to its `disabled`
   attribute. When the action fires it sends two arguments: the value
   and if it is disabled (boolean).
 
@@ -63,7 +63,7 @@
   example:
 
   ```handlebars
-  <XSelect @on-click={{action 'didMakeSelection' isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
+  <XSelect @onClick={{action 'didMakeSelection' isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
     <option>Nothing</option>
     <xs.option value={{something}}>Something</xs.option>
   </XSelect>

@@ -18,7 +18,7 @@ describe('Integration: XSelectActionsComponent', function() {
 
       this.render(hbs`
         {{#x-select value=value as |xs|}}
-          {{#xs.option value="Hello" on-disable=(action handleDisable) disabled=disabledProp}}
+          {{#xs.option value="Hello" onDisable=(action handleDisable) disabled=disabledProp}}
             Hello
           {{/xs.option}}
         {{/x-select}}

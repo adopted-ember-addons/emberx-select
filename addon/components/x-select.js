@@ -81,36 +81,36 @@ export default Component.extend({
   tabindex: null,
 
   /**
-   * Function for the `on-blur` action
+   * Function for the `onBlur` action
    *
-   * @property on-blur
+   * @property onBlur
    * @type Function
    */
-  'on-blur'() {},
+  onBlur() {},
 
   /**
-   * Function for the `on-click` action
+   * Function for the `onClick` action
    *
-   * @property on-click
+   * @property onClick
    * @type Function
    */
-  'on-click'() {},
+  onClick() {},
 
   /**
-   * Function for the `on-change` action
+   * Function for the `onChange` action
    *
-   * @property on-change
+   * @property onChange
    * @type Function
    */
-  'on-change'() {},
+  onChange() {},
 
   /**
-   * Function for the `on-focus-out` action
+   * Function for the `onFocusOut` action
    *
-   * @property on-focus-out
+   * @property onFocusOut
    * @type Function
    */
-  'on-focus-out'() {},
+  onFocusOut() {},
 
   /**
    * Function that calls an action and sends the proper arguments.
@@ -130,7 +130,7 @@ export default Component.extend({
    * component's action with the current value.
    */
   change(event) {
-    this._handleAction('on-change', this._getValue(), event);
+    this._handleAction('onChange', this._getValue(), event);
   },
 
   /**
@@ -138,7 +138,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the DOM event.
    */
   click(event) {
-    this._handleAction('on-click', this._getValue(), event);
+    this._handleAction('onClick', this._getValue(), event);
   },
 
   /**
@@ -146,7 +146,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the DOM event.
    */
   blur(event) {
-    this._handleAction('on-blur', this._getValue(), event);
+    this._handleAction('onBlur', this._getValue(), event);
   },
 
   /**
@@ -154,7 +154,7 @@ export default Component.extend({
    * component's action with the component, x-select value, and the DOM event.
    */
   focusOut(event) {
-    this._handleAction('on-focus-out', this._getValue(), event);
+    this._handleAction('onFocusOut', this._getValue(), event);
   },
 
   /**
@@ -209,8 +209,8 @@ export default Component.extend({
     let canSet = !this.isDestroying && !this.isDestroyed;
 
     if (canSet && this.get('value') == null) {
-      // `on-change` is the default event we use
-      this._handleAction('on-change', this._getValue(), event);
+      // `onChange` is the default event we use
+      this._handleAction('onChange', this._getValue(), event);
     }
   },
 
