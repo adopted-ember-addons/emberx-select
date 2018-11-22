@@ -88,3 +88,41 @@
 <p>
   Checkout the {{#link-to 'testing'}}testing documentation{{/link-to}} for more information on the new test helper.
 </p>
+
+<h2>Camel case action names</h2>
+
+<p>
+  We have decided to use the major version bump as an opportunity to rename the action names to be more inline with what you would see in modern Ember angle bracket components.
+</p>
+
+{{format-markdown
+  "
+  The current actions are:
+
+  - `on-change`
+  - `on-click`
+  - `on-blur`
+  - `on-focus-out`
+  - `on-disable` (`x-option`)
+
+  They have changed to:
+
+  - `onChange`
+  - `onClick`
+  - `onBlur`
+  - `onFocusOut`
+  - `onDisable` (`x-option`)
+
+  So for example, this:
+
+  ```html
+    <XSelect @on-change={{action \"myAction\"}}> ... </XSelect>
+  ```
+
+  Becomes:
+
+  ```html
+    <XSelect @onChange={{action \"myAction\"}}> ... </XSelect>
+  ```
+  "
+}}
