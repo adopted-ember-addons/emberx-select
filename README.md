@@ -56,8 +56,8 @@ through data rather than through the DOM.
 
 ```handlebars
 <XSelect @value={{model.status}} as |xs|>
-  <xs.option value=1>Active</xs.option>
-  <xs.option value=2>Inactive</xs.option>
+  <xs.option @value=1>Active</xs.option>
+  <xs.option @value=2>Inactive</xs.option>
 </XSelect>
 ```
 
@@ -69,9 +69,9 @@ array.
 
 ```handlebars
 <XSelect @value=selections @multiple=true @onChange={{action "selectionsChanged"}} as |xs|>
- <xs.option value={{fred}}>Fred Flintstone</xs.option>
- <xs.option value={{bob}}>Bob Newhart</xs.option>
- <xs.option value={{andrew}}>Andrew WK</xs.option>
+ <xs.option @value={{fred}}>Fred Flintstone</xs.option>
+ <xs.option @value={{bob}}>Bob Newhart</xs.option>
+ <xs.option @value={{andrew}}>Andrew WK</xs.option>
 </XSelect>
 ```
 
@@ -102,7 +102,7 @@ example:
 ```handlebars
 <XSelect @onClick={{action "didMakeSelection" isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
   <option>Nothing</option>
-  <xs.option value={{something}}>Something</xs.option>
+  <xs.option @value={{something}}>Something</xs.option>
 </XSelect>
 ```
 
@@ -174,7 +174,7 @@ Import the select interactor:
 
 ``` javascript
 // you can name the import whatever you want
-import XSelectInteractor from "yourappname/tests/helpers/x-select";
+import XSelectInteractor from 'emberx-select/test-support/interactor';
 ```
 
 At the top of your test file you need to initialize the
@@ -292,7 +292,7 @@ you can do so by importing it into the custom interactor you want to
 create, and extend it:
 
 ``` javascript
-import XSelectInteractor from 'yourappname/tests/helpers/x-select';
+import XSelectInteractor from 'emberx-select/test-support/interactor';
 import { clickable } from '@bigtest/interactor';
 
 @XSelectInteractor.extend

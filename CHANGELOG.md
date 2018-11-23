@@ -2,7 +2,14 @@
 
 ## Unreleased
 
+## v4.0.0-beta.2
+
 ## Changed
+- [BREAKING] use `addon-test-support` over `test-support` folder. This works for Ember-CLI 2.1+.
+
+## v4.0.0-beta.1
+
+### Changed
 
 - Upgrade addon to Ember 3.4
 - Upgrade addon test suite to new ember testing APIs
