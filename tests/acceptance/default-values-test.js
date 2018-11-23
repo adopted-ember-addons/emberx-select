@@ -1,4 +1,4 @@
-import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import xSelectInteractor from 'emberx-select/test-support/interactor';
 import pageInteractor from 'dummy/tests/interactors/test-page';
 import { expect } from 'chai';
 import { visit } from '@ember/test-helpers';

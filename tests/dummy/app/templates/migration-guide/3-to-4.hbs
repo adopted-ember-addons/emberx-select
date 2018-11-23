@@ -14,6 +14,8 @@
   - Action handers no longer pass a jQuery event. They now pass a native DOM event.
   - `sendAction` has been removed. That means `{{#x-select action='myAction'}}` will no longer work
   - Completely revamped the test helper
+  - Camel case action names
+  - Use `addon-test-support` folder instead of `test-support` (Ember-CLI 2.1+)
 "
 }}
 
@@ -126,3 +128,7 @@
   ```
   "
 }}
+
+<h2>Use addon-test-support folder</h2>
+
+<p>We use the new addon-test-support folder in this version. Make sure your version of Ember-CLI is greater than 2.1.</p>

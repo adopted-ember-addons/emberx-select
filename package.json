@@ -1,6 +1,6 @@
 {
   "name": "emberx-select",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "A Select component based on html select.",
   "keywords": [
     "ember-addon",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@bigtest/interactor": "^0.9.0",
-    "ember-auto-import": "^1.2.13",
+    "ember-auto-import": "^1.2.15",
     "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^3.0.0"
   },
