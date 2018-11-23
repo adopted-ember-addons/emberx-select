@@ -65,7 +65,7 @@
   ```handlebars
   <XSelect @onClick={{action 'didMakeSelection' isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
     <option>Nothing</option>
-    <xs.option value={{something}}>Something</xs.option>
+    <xs.option @value={{something}}>Something</xs.option>
   </XSelect>
   ```
 
