@@ -3,7 +3,7 @@
 {{format-markdown
   "
   `<XSelect>` provides actions that fire on different event types. These actions
-  will be kebob-cased event names:
+  will be camel-cased event names:
   - `onChange`
   - `onBlur`
   - `onFocusOut`
@@ -65,7 +65,7 @@
   ```handlebars
   <XSelect @onClick={{action 'didMakeSelection' isXSelectRequired}} @required={{isXSelectRequired}} as |xs|>
     <option>Nothing</option>
-    <xs.option value={{something}}>Something</xs.option>
+    <xs.option @value={{something}}>Something</xs.option>
   </XSelect>
   ```
 
