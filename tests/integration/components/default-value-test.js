@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { setupComponentTest } from 'ember-mocha';
 import { describe, beforeEach, it } from 'mocha';
 import hbs from 'htmlbars-inline-precompile';
-import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import xSelectInteractor from 'emberx-select/test-support/interactor';
 
 describe('Integration: DefaultValue', function() {
   let xselect = new xSelectInteractor('.x-select');

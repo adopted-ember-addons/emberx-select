@@ -1,4 +1,4 @@
-import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import xSelectInteractor from 'emberx-select/test-support/interactor';
 import { describe, it, beforeEach } from 'mocha';
 import { setupApplicationTest } from 'ember-mocha';
 import { visit, currentRouteName, click } from '@ember/test-helpers';

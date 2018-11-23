@@ -3,7 +3,7 @@ import { setupComponentTest } from 'ember-mocha';
 import { beforeEach, describe, it } from 'mocha';
 import sinon from 'sinon';
 import hbs from 'htmlbars-inline-precompile';
-import xSelectInteractor from 'dummy/tests/helpers/x-select';
+import xSelectInteractor from 'emberx-select/test-support/interactor';
 
 describe('Integration: XSelectActionsComponent', function() {
   let xselect = new xSelectInteractor('.x-select');
