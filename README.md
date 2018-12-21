@@ -22,6 +22,8 @@ or wrapping a hard-coded, inaccessible jQuery plugin.
 ember install emberx-select
 ```
 
+## Usage
+
 By allowing arbitrary html to appear in the template of the select
 element, you can use it just like you would normally. This means
 things like having `<optgroup>` tags inside your select, or even plain
@@ -31,6 +33,7 @@ old `<option>` elements to represent things like empty values.
 and binding aware. It is used in conjuction with the `x-option`
 component to construct select boxes. E.g.
 
+**Ember >= 3.4:**
 ```handlebars
 <XSelect @value={{bob}} @onChange={{action "selectPerson"}} as |xs|>
   <xs.option @value={{fred}}>Fred Flintstone</xs.option>
@@ -38,7 +41,15 @@ component to construct select boxes. E.g.
 </XSelect>
 ```
 
-the options are always up to date, so that when the object bound to
+**Ember < 3.4:**
+```handlebars
+{{#x-select value=bob on-change=(action "selectPerson") as |xs|}}
+  {{#xs.option value=fred}}Fred Flintstone{{/xs.option}}
+  {{#xs.option value=bob}}Bob Newhart{{/xs.option}}
+{{/x-select}}
+```
+
+The options are always up to date, so that when the object bound to
 `value` changes, the corresponding option becomes selected.
 
 Whenever the select tag receives a change event, it will fire
