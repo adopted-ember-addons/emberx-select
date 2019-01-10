@@ -210,7 +210,7 @@ export default Component.extend({
 
     if (canSet && this.get('value') == null) {
       // `onChange` is the default event we use
-      this._handleAction('onChange', this._getValue(), null);
+      this._handleAction('onChange', this._getValue(), new Event('change'));
     }
   },
 
