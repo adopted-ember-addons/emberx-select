@@ -16,7 +16,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/thefrontside/emberx-select",
+  "repository": "https://github.com/adopted-ember-addons/emberx-select",
   "scripts": {
     "bower-install": "bower install",
     "build": "ember build",

@@ -334,6 +334,12 @@ known as emberx:
 * `ember test`
 * `ember test --server`
 
+## Release Process
+
+Every commit to master results in a build and push to the demo
+application at http://emberx-select.netlify.com
+
+Npm releases use semver and happen at the project owner's discretion.
 
 ## Code of Conduct
 
