@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:6.12-browsers
+    - image: circleci/node:8-browsers
       environment:
         JOBS: 2
   working_directory: ~/emberx-select
@@ -8,7 +8,7 @@ version: 2.0
 references:
   container_config: &container_config
     docker:
-      - image: circleci/node:6-browsers
+      - image: circleci/node:10-browsers
         environment:
           JOBS: 2
     working_directory: ~/emberx-select
@@ -25,13 +25,6 @@ references:
       keys:
         - v1-dependencies-{{ checksum "package.json" }}
         - v1-dependencies
-
-  restore_bower_components: &restore_bower_components
-    restore_cache:
-      keys:
-        - v1-bower-dependencies-{{ checksum "bower.json" }}
-        - v1-bower-dependencies
-
 jobs:
   checkout_code:
     <<: *container_config
@@ -48,40 +41,31 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: yarn install
-      - run: yarn bower-install
       - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - save_cache:
-          key: v1-bower-dependencies-{{ checksum "bower.json" }}
-          paths:
-            - bower_components
 
-  test-lts-2.12:
+  test-lts-3.0:
     <<: *container_config
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
-      - run: node_modules/.bin/ember try:one ember-lts-2.12 --skip-cleanup
+      - run: node_modules/.bin/ember try:one ember-lts-3.0 --skip-cleanup
 
-  test-lts-2.16:
+  test-lts-3.4:
     <<: *container_config
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
-      - run: node_modules/.bin/ember try:one ember-lts-2.16 --skip-cleanup
+      - run: node_modules/.bin/ember try:one ember-lts-3.4 --skip-cleanup
 
   test-release:
     <<: *container_config
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-release --skip-cleanup
 
   test-beta:
@@ -89,7 +73,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-beta --skip-cleanup
 
   test-canary:
@@ -97,7 +80,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-canary --skip-cleanup
 
   test-default:
@@ -105,7 +87,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-default --skip-cleanup
 
 workflows:
@@ -119,11 +100,11 @@ workflows:
           requires:
             - checkout_code
 
-      - test-lts-2.12:
+      - test-lts-3.0:
           requires:
             - install_dependencies
 
-      - test-lts-2.16:
+      - test-lts-3.4:
           requires:
             - install_dependencies
 
