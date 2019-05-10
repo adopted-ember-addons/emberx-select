@@ -1,6 +1,6 @@
 'use strict';
 
-let getChannelURL = require('ember-source-channel-url');
+const getChannelURL = require('ember-source-channel-url');
 
 module.exports = function() {
   return Promise.all([
@@ -28,38 +28,30 @@ module.exports = function() {
             devDependencies: {
               'ember-source': '~3.4.0'
             }
-          },
-          {
-            name: 'ember-release',
-            npm: {
-              devDependencies: {
-                'ember-source': urls[0]
-              }
+          }
+        },
+        {
+          name: 'ember-release',
+          npm: {
+            devDependencies: {
+              'ember-source': urls[0]
             }
-          },
-          {
-            name: 'ember-beta',
-            npm: {
-              devDependencies: {
-                'ember-source': urls[1]
-              }
+          }
+        },
+        {
+          name: 'ember-beta',
+          npm: {
+            devDependencies: {
+              'ember-source': urls[1]
             }
-          },
-          {
-            name: 'ember-canary',
-            npm: {
-              devDependencies: {
-                'ember-source': urls[2]
-              }
+          }
+        },
+        {
+          name: 'ember-canary',
+          npm: {
+            devDependencies: {
+              'ember-source': urls[2]
             }
-          },
-          {
-            name: 'ember-default',
-            npm: {
-              devDependencies: {}
-            }
-<<<<<<< HEAD
-=======
           }
         },
         // The default `.travis.yml` runs this scenario via `npm test`,
@@ -78,23 +70,14 @@ module.exports = function() {
             EMBER_OPTIONAL_FEATURES: JSON.stringify({
               'jquery-integration': true
             })
->>>>>>> b141500... message
           },
-          {
-            name: 'ember-default-with-jquery',
-            env: {
-              EMBER_OPTIONAL_FEATURES: JSON.stringify({
-                'jquery-integration': true
-              })
-            },
-            npm: {
-              devDependencies: {
-                '@ember/jquery': '^0.5.1'
-              }
+          npm: {
+            devDependencies: {
+              '@ember/jquery': '^0.5.1'
             }
           }
-        ]
-      };
-    }
-  );
+        }
+      ]
+    };
+  });
 };
