@@ -48,24 +48,17 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
-      - run: yarn install
-      - run: yarn bower-install
+      - run: npm install
       - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - save_cache:
-          key: v1-bower-dependencies-{{ checksum "bower.json" }}
-          paths:
-            - bower_components
 
   test-lts-2.12:
     <<: *container_config
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-lts-2.12 --skip-cleanup
 
   test-lts-2.16:
@@ -81,7 +74,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-release --skip-cleanup
 
   test-beta:
@@ -89,7 +81,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-beta --skip-cleanup
 
   test-canary:
@@ -97,7 +88,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-canary --skip-cleanup
 
   test-default:
@@ -105,7 +95,6 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - *restore_bower_components
       - run: node_modules/.bin/ember try:one ember-default --skip-cleanup
 
 workflows:
