@@ -47,12 +47,12 @@ jobs:
           paths:
             - node_modules
 
-  test-lts-3.0:
+  test-lts-2.18:
     <<: *container_config
     steps:
       - *restore_repo
       - *restore_node_modules
-      - run: node_modules/.bin/ember try:one ember-lts-3.0 --skip-cleanup
+      - run: node_modules/.bin/ember try:one ember-lts-2.18 --skip-cleanup
 
   test-lts-3.4:
     <<: *container_config
