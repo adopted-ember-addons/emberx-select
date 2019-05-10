@@ -10,7 +10,7 @@ describe('XSelect: Embedded HTML', function() {
   setupApplicationTest();
 
   beforeEach(async () => {
-    visit('test-bed/zany-embedded-html');
+    await visit('test-bed/zany-embedded-html');
   });
 
   it('renders', async () => {

@@ -1,7 +1,0 @@
-{
-  "name": "emberx-select",
-  "dependencies": {
-    "marked": "^0.3.6",
-    "highlightjs": "^9.6.0"
-  }
-}

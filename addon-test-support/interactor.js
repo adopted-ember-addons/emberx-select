@@ -1,4 +1,10 @@
-import Interactor,{ property, collection, hasClass, attribute, is } from '@bigtest/interactor';
+import Interactor,{
+  property,
+  collection,
+  hasClass,
+  attribute,
+  is
+} from '@bigtest/interactor';
 
 const xSelectInteractor = Interactor.from({
   hasFocus: is(':focus'),
