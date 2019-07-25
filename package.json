@@ -18,7 +18,6 @@
   },
   "repository": "https://github.com/adopted-ember-addons/emberx-select",
   "scripts": {
-    "bower-install": "bower install",
     "build": "ember build",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -34,7 +33,6 @@
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
     "@ember/test-helpers": "^0.7.26",
-    "bower": "^1.8.2",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.4.3",

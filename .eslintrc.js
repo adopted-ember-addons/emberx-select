@@ -4,8 +4,14 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  plugins: ['prefer-let', 'ember'],
-  extends: ['eslint:recommended', 'plugin:ember/recommended'],
+  plugins: [
+    'prefer-let',
+    'ember'
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended'
+  ],
   env: {
     browser: true
   },
@@ -24,7 +30,12 @@ module.exports = {
         'config/**/*.js',
         'tests/dummy/config/**/*.js'
       ],
-      excludedFiles: ['addon/**', 'addon-test-support/**', 'app/**', 'tests/dummy/app/**'],
+      excludedFiles: [
+        'addon/**',
+        'addon-test-support/**',
+        'app/**',
+        'tests/dummy/app/**'
+      ],
       parserOptions: {
         sourceType: 'script',
         ecmaVersion: 2015
