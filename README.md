@@ -15,6 +15,11 @@ The goal of `<XSelect>` is to let you see how it works and style it
 right in your template, rather than passing in a ball of configuration
 or wrapping a hard-coded, inaccessible jQuery plugin.
 
+## Recommended <SelectLight>
+
+This addon contains older Ember patterns and depdendencies.
+While it is still ok to continue using, it is recommended to use the more modern
+[Ember Select Light](https://github.com/ember-a11y/ember-select-light/) addon which has a near drop in API and better support for Octane, Embroider, and Accessibility concerns.
 
 ## Installation
 
