@@ -16,8 +16,7 @@ module.exports = {
     browser: true
   },
   rules: {
-    'prefer-let/prefer-let': 2,
-    'ember/no-jquery': 'error'
+    'ember/no-observers': 0,
   },
   overrides: [
     // node files
@@ -41,9 +40,7 @@ module.exports = {
         node: true
       },
       plugins: ['node'],
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        // add your custom rules and overrides for node files here
-      })
+      extends: ['plugin:node/recommended']
     }
   ]
 };

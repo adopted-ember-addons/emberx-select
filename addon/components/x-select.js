@@ -167,7 +167,7 @@ export default Component.extend({
    * @return {Array|Object} the current selection
    */
   _getValue() {
-    return this.get('multiple') ? this._findMultipleValues() : this._findSingleValue();
+    return this.multiple ? this._findMultipleValues() : this._findSingleValue();
   },
 
   /**
@@ -178,7 +178,7 @@ export default Component.extend({
    * @return {Array} all the values from selected x-options
    */
   _findMultipleValues() {
-    return this.get('options')
+    return this.options
       .filter(isSelectedOption)
       .map(option => option.get('value'));
   },
@@ -191,7 +191,7 @@ export default Component.extend({
    * @return {Object} the value of the first select `x-option`, or null
    */
   _findSingleValue() {
-    let selectedValue = this.get('options').find(isSelectedOption);
+    let selectedValue = this.options.find(isSelectedOption);
     return selectedValue ? selectedValue.get('value') : null;
   },
 
@@ -208,7 +208,7 @@ export default Component.extend({
   __setDefaultValues() {
     let canSet = !this.isDestroying && !this.isDestroyed;
 
-    if (canSet && this.get('value') == null) {
+    if (canSet && this.value == null) {
       // `onChange` is the default event we use
       this._handleAction('onChange', this._getValue(), event);
     }
@@ -260,7 +260,7 @@ export default Component.extend({
      * @private
      */
     registerOption(option) {
-      this.get('options').push(option);
+      this.options.push(option);
       this._setDefaultValues();
     },
 
@@ -273,7 +273,7 @@ export default Component.extend({
      * @private
      */
     unregisterOption(option) {
-      this.get('options').removeObject(option);
+      this.options.removeObject(option);
       this._setDefaultValues();
     }
   }
