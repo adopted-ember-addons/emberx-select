@@ -1,8 +1,14 @@
+'use strict';
+
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: ['prefer-let', 'ember'],
   extends: ['eslint:recommended', 'plugin:ember/recommended'],
@@ -10,7 +16,8 @@ module.exports = {
     browser: true
   },
   rules: {
-    'prefer-let/prefer-let': 2
+    'prefer-let/prefer-let': 2,
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // node files

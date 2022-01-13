@@ -62,6 +62,10 @@ export default Component.extend({
     this.set('_oldDisabled', this.get('disabled'));
   },
 
+  callRegister() {
+    this.get('register')(this)
+  },
+
   /**
    * Register this x-option with the containing `x-select`
    *
@@ -70,9 +74,7 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    scheduleOnce('afterRender', () => {
-      this.get('register')(this);
-    });
+    scheduleOnce('afterRender', this, this.callRegister);
   },
 
   /**
