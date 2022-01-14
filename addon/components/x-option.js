@@ -37,29 +37,33 @@ export default Component.extend({
    * @type Boolean
    */
   selected: computed('value', 'select.{value,multiple}', function() {
-    if (this.get('select.multiple') && isArray(this.get('select.value'))) {
-      let selectValue = A(this.get('select.value'));
+    if (this.select?.multiple && isArray(this.select?.value)) {
+      let selectValue = A(this.select?.value);
 
-      return selectValue.includes(this.get('value'));
+      return selectValue.includes(this.value);
     } else {
-      return this.get('value') === this.get('select.value');
+      return this.value === this.select?.value;
     }
   }),
 
   didReceiveAttrs() {
     this._super.apply(this, arguments);
 
-    let oldDisabled = this.get('_oldDisabled');
+    let oldDisabled = this._oldDisabled;
 
     if (oldDisabled !== undefined && !oldDisabled) {
       // Undefined means the first time
 
-      if (this.get('disabled') !== oldDisabled) {
-        this.get('onDisable')(this.get('value'), this.get('disabled'));
+      if (this.disabled !== oldDisabled) {
+        this.onDisable(this.value, this.disabled);
       }
     }
 
-    this.set('_oldDisabled', this.get('disabled'));
+    this.set('_oldDisabled', this.disabled);
+  },
+
+  callRegister() {
+    this.register(this)
   },
 
   /**
@@ -70,9 +74,7 @@ export default Component.extend({
   didInsertElement() {
     this._super.apply(this, arguments);
 
-    scheduleOnce('afterRender', () => {
-      this.get('register')(this);
-    });
+    scheduleOnce('afterRender', this, this.callRegister);
   },
 
   /**
@@ -81,7 +83,7 @@ export default Component.extend({
    * @override
    */
   willDestroyElement: function() {
-    this.get('unregister')(this);
+    this.unregister(this);
     this._super.apply(this, arguments);
   }
 });
