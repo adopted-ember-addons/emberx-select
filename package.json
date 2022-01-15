@@ -64,7 +64,7 @@
     "highlightjs": "^9.10.0",
     "loader.js": "^4.7.0",
     "markdown-code-highlighting": "^0.2.1",
-    "marked": "^0.5.1",
+    "marked": "^4.0.10",
     "sass": "^1.14.1"
   },
   "engines": {
