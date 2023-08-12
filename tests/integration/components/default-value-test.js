@@ -14,8 +14,9 @@ describe('Integration: DefaultValue', function() {
   describe('default value of null', function() {
     beforeEach(function() {
       this.set('make', null);
-      this.set('selectAction', value => {
+      this.set('selectAction', (value, event) => {
         this.set('make', value);
+        this.set('event', event);
         this.set('wasCalled', true);
       });
 
@@ -37,6 +38,7 @@ describe('Integration: DefaultValue', function() {
 
     it('sets the default value to the first element', function() {
       expect(this.get('make')).to.equal('fordValue');
+      expect(this.get('event') instanceof Event).to.be.true;
     });
 
     it('invokes the select action on init', function() {
